@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulo %}Grafos em Ação{% endblock %} - Algoritmos de Otimização</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo">
+      <div class="logo-icone">G</div>
+      <div>Grafos em Ação<small>Algoritmos de Otimização</small></div>
+    </a>
+    <div class="nav-links">
+      <a href="/" class="{{ 'ativo' if pagina == 'inicio' }}">Início</a>
+      <a href="/dijkstra" class="{{ 'ativo' if pagina == 'dijkstra' }}">Dijkstra</a>
+      <a href="/prim" class="{{ 'ativo' if pagina == 'prim' }}">Prim</a>
+      <a href="/kruskal" class="{{ 'ativo' if pagina == 'kruskal' }}">Kruskal</a>
+      <a href="/dados" class="{{ 'ativo' if pagina == 'dados' }}">Dados e referências</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    {% block conteudo %}{% endblock %}
+  </main>
+
+  <footer>
+    Grafos em Ação - Trabalho Final de Grafos · Engenharia da Computação · Python + Flask + vis-network
+  </footer>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>

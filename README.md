@@ -1,47 +1,61 @@
 # Grafos em Ação
 
-Trabalho Final (P2) de **Teoria dos Grafos e suas Aplicações**: três problemas reais modelados como
-grafos e resolvidos com o algoritmo guloso adequado, cada um com código em Python e apresentação.
+Trabalho final de Grafos (P2). Sistema web com os algoritmos de **Dijkstra**, **Prim** e **Kruskal**
+feitos em Python, com interface em HTML/CSS/JS.
 
-| # | Problema | Algoritmo | Pergunta que o software responde |
-|---|----------|-----------|----------------------------------|
-| 1 | Transporte público de Lorena/SP | **Dijkstra** | Qual é o melhor caminho entre a origem e o destino escolhidos? |
-| 2 | Rede de voos da LATAM no Brasil | **Prim** | Quais conexões ligam todos os aeroportos com uma única via, ao menor custo total? |
-| 3 | Pavimentação de uma cidade | **Kruskal** | Quais vias, de menor comprimento total, interligam todos os bairros? |
+- **Dijkstra**: melhor rota entre dois pontos do transporte público de Lorena/SP
+- **Prim**: rede mínima ligando os principais aeroportos da LATAM no Brasil
+- **Kruskal**: quais vias pavimentar pra ligar todos os bairros gastando o mínimo
 
-O enunciado completo está em [`docs/ENUNCIADO.md`](docs/ENUNCIADO.md).
-
-## Relação com o BoscoGraph
-
-Este projeto é **inspirado** no [BoscoGraph](https://github.com/Martonidaz/BoscoGraph) (ideias como
-"o algoritmo anota passos, a interface só reproduz" e "o grafo mora num arquivo de dados, não no
-código"), mas **não importa nem copia código dele**. Os algoritmos são reescritos aqui do zero.
-Veja [`docs/decisoes/0001-relacao-com-o-boscograph.md`](docs/decisoes/0001-relacao-com-o-boscograph.md).
-
-## Estrutura
-
-```
-Grafos-em-Acao/
-├── CLAUDE.md                contrato de estudo (lido em toda sessão do Claude Code)
-├── src/grafos_em_acao/      domínio: grafo, Dijkstra, Prim, Kruskal
-├── dados/                   os três grafos (Lorena, LATAM, cidade a pavimentar)
-├── tests/                   a especificação, executável
-├── apresentacao/            o PPT de entrega
-└── docs/
-    ├── ENUNCIADO.md         transcrição do enunciado
-    ├── CONTEXTO.md          memória entre sessões
-    └── decisoes/            ADRs: alternativas escritas, decisão justificada
-```
+![Dijkstra](docs/capturas/dijkstra.png)
 
 ## Como rodar
 
-```bash
-python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install pytest ruff networkx
-ruff check .
-pytest
+Precisa do Python 3.9+.
+
+```
+pip install -r requirements.txt
+python app.py
 ```
 
-## Estado
+Depois abre http://127.0.0.1:5000 no navegador.
 
-Andaime criado. Próximo passo: decidir o modelo de dados e a interface (ADRs 0002 e 0003).
+Testes:
+
+```
+python tests/test_algoritmos.py
+```
+
+## Organização
+
+```
+app.py               servidor flask e rotas da api
+algoritmos/          dijkstra.py, prim.py, kruskal.py e grafo.py (funções de apoio)
+dados/               os 3 grafos em json + referências
+templates/           páginas html
+static/              css, js e a biblioteca vis-network
+tests/               testes (usa networkx só pra comparar o resultado)
+docs/                apresentação e prints
+```
+
+## O que dá pra fazer
+
+- escolher origem/destino (Dijkstra) ou aeroporto inicial (Prim) e executar
+- ver o resultado destacado no grafo e o custo total
+- ver o passo a passo da execução (anterior, próximo, reproduzir)
+- clicar numa aresta pra desativar ela e ver o que acontece (outra rota ou grafo desconexo)
+- restaurar o grafo original
+
+## Sobre os dados
+
+Os nomes dos pontos, bairros e aeroportos são reais (fontes em `dados/REFERENCIAS.md`), mas:
+
+- **Dijkstra**: as ligações e distâncias são estimadas pra demonstração (só 2 têm fonte). Não é o itinerário oficial das linhas.
+- **Prim**: as conexões são um modelo com os hubs da LATAM, não a malha real de voos. A distância é calculada pela fórmula de Haversine com as coordenadas dos aeroportos.
+- **Kruskal**: as vias e os comprimentos são estimados pra demonstração.
+
+Pra usar valores reais é só medir no Google Maps (botão direito > Medir distância) e trocar o `peso` no json da pasta `dados/`.
+
+## Tecnologias
+
+Python, Flask, HTML, CSS, JavaScript, vis-network, NetworkX (só nos testes)

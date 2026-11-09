@@ -1,0 +1,49 @@
+{
+  "titulo": "Pavimentação de vias entre bairros de Lorena/SP",
+  "algoritmo": "kruskal",
+  "descricao": "Bairros de Lorena/SP e as vias de acesso candidatas à pavimentação.",
+  "criterio_peso": "Comprimento estimado da via que liga dois bairros, em metros (m).",
+  "unidade": "m",
+  "tipo_dado": "demonstrativo",
+  "aviso": "EXEMPLO ACADÊMICO. Os bairros existem em Lorena/SP (lista de bairros dos Correios/CEPs). As vias e seus comprimentos são VALORES DEMONSTRATIVOS, criados para o exercício. Para usar dados reais, meça cada via no Google Maps (botão direito → Medir distância) e atualize o campo 'peso' deste arquivo.",
+  "vertices": [
+    {"id": "CEN", "nome": "Centro",               "x": 0,    "y": 0},
+    {"id": "VPA", "nome": "Vila Passos",          "x": -220, "y": 70},
+    {"id": "CAB", "nome": "Cabelinha",            "x": -420, "y": 150},
+    {"id": "HEP", "nome": "Vila Hepacaré",        "x": -170, "y": 230},
+    {"id": "CEC", "nome": "Cecap",                "x": -340, "y": 360},
+    {"id": "POR", "nome": "Portal das Palmeiras", "x": -560, "y": 330},
+    {"id": "SAN", "nome": "Santo Antônio",        "x": 190,  "y": 40},
+    {"id": "PON", "nome": "Ponte Nova",           "x": 320,  "y": 330},
+    {"id": "OLA", "nome": "Olaria",               "x": 60,   "y": -210},
+    {"id": "CRU", "nome": "Cruz",                 "x": 230,  "y": -350},
+    {"id": "VNU", "nome": "Vila Nunes",           "x": 420,  "y": -170},
+    {"id": "PRO", "nome": "Parque das Rodovias",  "x": 470,  "y": -430}
+  ],
+  "arestas": [
+    {"origem": "CEN", "destino": "VPA", "peso": 1500},
+    {"origem": "CEN", "destino": "OLA", "peso": 1800},
+    {"origem": "CEN", "destino": "SAN", "peso": 1100},
+    {"origem": "CEN", "destino": "HEP", "peso": 1400},
+    {"origem": "CEN", "destino": "PON", "peso": 2300},
+    {"origem": "VPA", "destino": "CAB", "peso": 1300},
+    {"origem": "VPA", "destino": "HEP", "peso": 900},
+    {"origem": "HEP", "destino": "CAB", "peso": 1800},
+    {"origem": "CAB", "destino": "CEC", "peso": 1700},
+    {"origem": "CAB", "destino": "POR", "peso": 2100},
+    {"origem": "CEC", "destino": "POR", "peso": 1250},
+    {"origem": "CEC", "destino": "HEP", "peso": 2400},
+    {"origem": "OLA", "destino": "CRU", "peso": 2200},
+    {"origem": "OLA", "destino": "SAN", "peso": 1600},
+    {"origem": "OLA", "destino": "VNU", "peso": 2900},
+    {"origem": "CRU", "destino": "PRO", "peso": 1900},
+    {"origem": "CRU", "destino": "VNU", "peso": 1000},
+    {"origem": "PRO", "destino": "VNU", "peso": 1550},
+    {"origem": "SAN", "destino": "PON", "peso": 1200},
+    {"origem": "PON", "destino": "VNU", "peso": 2600}
+  ],
+  "referencias": [
+    {"titulo": "CEPs Brasil - Bairros de Lorena/SP (Centro, Vila Passos, Cabelinha, Vila Hepacare, Cecap, Portal das Palmeiras, Santo Antônio, Ponte Nova, Olaria, Cruz, Vila Nunes, Parque das Rodovias).", "url": "https://cepsbrasil.com.br/sp/lorena"},
+    {"titulo": "Google Maps - referência geográfica para localizar os bairros e medir o comprimento das vias.", "url": "https://www.google.com/maps/place/Lorena,+SP"}
+  ]
+}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block titulo %}Dados e referências{% endblock %}
+{% block conteudo %}
+<section class="hero">
+  <span class="etiqueta">Transparência dos dados</span>
+  <h1>Dados dos grafos e referências</h1>
+  <p>Todos os dados ficam na pasta <code>dados/</code> do projeto, em arquivos JSON. Ao alterar um peso no arquivo,
+     o sistema recalcula tudo automaticamente na próxima execução.</p>
+</section>
+
+{% for nome, g in grafos.items() %}
+<section class="card secao">
+  <span class="etiqueta">{{ nome|capitalize }}</span>
+  <h2>{{ g.titulo }}</h2>
+  <p class="vazio" style="margin:0"><b>Vértices:</b> {{ g.vertices|length }} · <b>Arestas:</b> {{ g.arestas|length }} ·
+     <b>Peso:</b> {{ g.criterio_peso }} · <b>Tipo de dado:</b> {{ g.tipo_dado }}</p>
+  <div class="aviso">{{ g.aviso }}</div>
+
+  <div class="grade" style="grid-template-columns: 1fr 1.4fr; margin-top: 14px">
+    <div class="tabela-wrap">
+      <table>
+        <tr><th>ID</th><th>Vértice</th></tr>
+        {% for v in g.vertices %}<tr><td class="mono">{{ v.id }}</td><td>{{ v.nome }}</td></tr>{% endfor %}
+      </table>
+    </div>
+    <div class="tabela-wrap">
+      <table>
+        <tr><th>Aresta</th><th>Peso</th><th>Origem do valor</th></tr>
+        {% for a in g.arestas %}<tr><td class="mono">{{ a.origem }} - {{ a.destino }}</td><td>{{ a.peso }} {{ g.unidade }}</td><td class="vazio">{{ a.fonte or 'demonstrativo' }}</td></tr>{% endfor %}
+      </table>
+    </div>
+  </div>
+
+  <h3>Referências</h3>
+  <ul>
+    {% for r in g.referencias %}<li class="vazio">{{ r.titulo }} - <a href="{{ r.url }}" target="_blank">{{ r.url }}</a></li>{% endfor %}
+  </ul>
+</section>
+{% endfor %}
+{% endblock %}

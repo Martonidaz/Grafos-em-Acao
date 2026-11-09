@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block titulo %}Kruskal{% endblock %}
+{% block conteudo %}
+<section class="hero">
+  <span class="etiqueta">Módulo 3 · Árvore geradora mínima</span>
+  <h1>Kruskal - Quais vias o prefeito deve pavimentar?</h1>
+  <p>Com recurso limitado, a prefeitura quer pavimentar o <b>menor comprimento total</b> de vias que ainda permita ir de qualquer
+     bairro a qualquer outro. <b>Critério do peso:</b> {{ grafo.criterio_peso }}</p>
+  <div class="aviso"><strong>Dados:</strong> {{ grafo.aviso }}</div>
+</section>
+
+<div class="grade">
+  <div class="coluna">
+    <section class="card">
+      <h2>Execução</h2>
+      <p class="vazio" style="margin:0">O Kruskal não precisa de ponto inicial: ele analisa todas as vias do grafo, da mais curta para a mais longa.</p>
+      <div class="botoes">
+        <button class="btn largo" id="btn-executar">Executar Kruskal</button>
+        <button class="btn secundario" id="btn-restaurar" title="Restaurar grafo original">Restaurar</button>
+      </div>
+      <div id="mensagem" class="mensagem"></div>
+      <p class="dica">Clique numa via para desativá-la (ex.: via inexistente ou bloqueada). Se um bairro ficar isolado, o sistema avisa que o grafo é desconexo.</p>
+    </section>
+
+    <section class="card">
+      <h2>Resultado</h2>
+      <div id="resultado"><p class="vazio">Nenhuma execução ainda.</p></div>
+    </section>
+  </div>
+
+  <section class="card grafo-card">
+    <div class="grafo-topo"><h2>Grafo: bairros e vias de acesso</h2><span class="dica" style="margin:0">Arraste para mover · role para aproximar</span></div>
+    <div id="grafo"></div>
+    <div class="legenda">
+      <span><i class="cor bola" style="background:#4f8cff"></i>Bairro</span>
+      <span><i class="cor" style="background:#fbbf24;height:6px"></i>Via analisada neste passo</span>
+      <span><i class="cor" style="background:#34d399;height:5px"></i>Via aceita (pavimentar)</span>
+      <span><i class="cor tracejada" style="background:repeating-linear-gradient(90deg,#f87171 0 4px,transparent 4px 8px) !important"></i>Via rejeitada (formaria ciclo)</span>
+      <span><i class="cor tracejada"></i>Via desativada</span>
+    </div>
+  </section>
+</div>
+
+<section class="card secao" id="tabelas" style="display:none">
+  <div class="grade" style="grid-template-columns:1fr 1fr">
+    <div><h2>Vias selecionadas para pavimentação</h2><div class="tabela-wrap" id="tab-aceitas"></div></div>
+    <div><h2>Vias descartadas</h2><div class="tabela-wrap" id="tab-descartadas"></div></div>
+  </div>
+</section>
+
+{% include "_player.html" %}
+
+<section class="card secao">
+  <h2>Como o algoritmo funciona?</h2>
+  <div class="explicacao">
+    <div><h4>Objetivo</h4><p>Conectar todos os bairros pavimentando o menor comprimento total de vias.</p></div>
+    <div><h4>Vértices, arestas e pesos</h4><p>Vértices são bairros; arestas são vias entre bairros; o peso é o comprimento da via em metros.</p></div>
+    <div><h4>Critério de escolha</h4><p>Ordena todas as vias da mais curta para a mais longa e analisa uma por uma: <b>aceita</b> se ligar dois grupos de bairros ainda separados; <b>rejeita</b> se as duas pontas já estiverem conectadas (formaria ciclo).</p></div>
+    <div><h4>Como chega ao resultado</h4><p>Ao aceitar V − 1 vias, todos os bairros estão conectados. Essas vias formam a árvore geradora mínima; a soma é o total a pavimentar.</p></div>
+    <div><h4>Por que é adequado</h4><p>Uma via que fecha ciclo é desnecessária - os bairros já se alcançam por vias mais curtas. Kruskal elimina esses gastos e garante o menor comprimento total.</p></div>
+  </div>
+<pre class="pseudo">ordena arestas por peso (crescente)
+cada vértice começa em seu próprio grupo   (Union-Find)
+para cada aresta (u, v) na ordem:
+    se grupo(u) ≠ grupo(v):  ACEITA e une os grupos
+    senão:                   REJEITA (formaria ciclo)
+    se aceitas == V − 1: para
+se aceitas &lt; V − 1: grafo desconexo (floresta)</pre>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='vendor/vis-network.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/grafo.js') }}"></script>
+<script>const DADOS = {{ grafo|tojson }};</script>
+<script src="{{ url_for('static', filename='js/kruskal.js') }}"></script>
+{% endblock %}

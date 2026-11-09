@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block titulo %}Prim{% endblock %}
+{% block conteudo %}
+<section class="hero">
+  <span class="etiqueta">Módulo 2 · Árvore geradora mínima</span>
+  <h1>Prim - Rede mínima de conexões aéreas da LATAM</h1>
+  <p>Objetivo: escolher um conjunto de conexões que ligue <b>todos</b> os aeroportos com o <b>menor custo total</b>, usando
+     uma única via entre cada par na rede (sem ciclos). <b>Critério do peso:</b> {{ grafo.criterio_peso }}</p>
+  <div class="aviso"><strong>Dados:</strong> {{ grafo.aviso }} Prim encontra uma árvore geradora mínima - não é uma rota de voo nem a malha oficial da companhia.</div>
+</section>
+
+<div class="grade">
+  <div class="coluna">
+    <section class="card">
+      <h2>Configuração</h2>
+      <label for="inicio">Aeroporto inicial da árvore</label>
+      <select id="inicio">
+        <option value="">selecione</option>
+        {% for v in grafo.vertices %}<option value="{{ v.id }}">{{ v.nome }}</option>{% endfor %}
+      </select>
+      <div class="botoes">
+        <button class="btn largo" id="btn-executar">Executar Prim</button>
+        <button class="btn secundario" id="btn-restaurar" title="Restaurar grafo original">Restaurar</button>
+      </div>
+      <div id="mensagem" class="mensagem"></div>
+      <p class="dica">Troque o aeroporto inicial: a ordem das escolhas muda, mas o custo total da árvore é o mesmo. Clique numa aresta para desativá-la.</p>
+    </section>
+
+    <section class="card">
+      <h2>Resultado</h2>
+      <div id="resultado"><p class="vazio">Nenhuma árvore calculada ainda.</p></div>
+    </section>
+  </div>
+
+  <section class="card grafo-card">
+    <div class="grafo-topo"><h2>Grafo: aeroportos e conexões consideradas</h2><span class="dica" style="margin:0">Passe o mouse para ver nomes e distâncias</span></div>
+    <div id="grafo"></div>
+    <div class="legenda">
+      <span><i class="cor bola" style="background:#4f8cff"></i>Aeroporto fora da árvore</span>
+      <span><i class="cor bola" style="background:#34d399"></i>Aeroporto já na árvore</span>
+      <span><i class="cor tracejada" style="background:#fbbf24 !important"></i>Aresta candidata (sai da árvore)</span>
+      <span><i class="cor" style="background:#fbbf24;height:6px"></i>Escolhida neste passo</span>
+      <span><i class="cor" style="background:#34d399;height:5px"></i>Aresta da árvore geradora mínima</span>
+      <span><i class="cor tracejada"></i>Aresta desativada</span>
+    </div>
+  </section>
+</div>
+
+{% include "_player.html" %}
+
+<section class="card secao">
+  <h2>Como o algoritmo funciona?</h2>
+  <div class="explicacao">
+    <div><h4>Objetivo</h4><p>Ligar todos os aeroportos usando o menor total de quilômetros possível, sem conexões redundantes (sem ciclos).</p></div>
+    <div><h4>Vértices, arestas e pesos</h4><p>Vértices são aeroportos; arestas são conexões hub/base ↔ destino; o peso é a distância em km calculada por Haversine.</p></div>
+    <div><h4>Critério de escolha</h4><p>A árvore cresce a partir do aeroporto inicial. A cada etapa, entre as arestas que saem da árvore para um aeroporto <b>ainda fora</b> dela, escolhe a de <b>menor peso</b>.</p></div>
+    <div><h4>Como chega ao resultado</h4><p>Quando todos os V aeroportos estão na árvore, temos V − 1 arestas: essa é a árvore geradora mínima, e a soma dos pesos é o custo total.</p></div>
+    <div><h4>Por que é adequado</h4><p>O enunciado pede que toda a demanda seja atendida percorrendo uma só via de conexão: é exatamente uma árvore - conecta todos, sem caminhos duplicados - de custo mínimo.</p></div>
+  </div>
+<pre class="pseudo">árvore = {inicial};  escolhidas = []
+enquanto árvore não contém todos os vértices:
+    candidatas = arestas (u, v) com u na árvore e v fora
+    se candidatas vazia: grafo desconexo → para
+    (u, v) = candidata de menor peso
+    adiciona v à árvore;  escolhidas.append((u, v))
+custo = soma dos pesos de escolhidas</pre>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='vendor/vis-network.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/grafo.js') }}"></script>
+<script>const DADOS = {{ grafo|tojson }};</script>
+<script src="{{ url_for('static', filename='js/prim.js') }}"></script>
+{% endblock %}

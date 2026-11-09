@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block titulo %}Início{% endblock %}
+{% block conteudo %}
+<section class="hero">
+  <span class="etiqueta">Trabalho Final · Teoria dos Grafos</span>
+  <h1>Grafos em Ação - Algoritmos de Otimização</h1>
+  <p>Três problemas reais modelados como grafos e resolvidos com algoritmos clássicos implementados em Python:
+     a melhor rota de ônibus em Lorena/SP (Dijkstra), a rede mínima de conexões aéreas da LATAM (Prim)
+     e a escolha das vias a pavimentar entre bairros (Kruskal).</p>
+</section>
+
+<section class="card">
+  <h2>O que é um grafo?</h2>
+  <p class="vazio" style="margin-top:0">Um grafo <b>G = (V, A)</b> é formado por um conjunto de <b>vértices</b> (pontos) e um conjunto de
+     <b>arestas</b> (ligações entre pares de pontos). Quando cada aresta tem um número associado - distância, tempo, custo -
+     dizemos que o grafo é <b>ponderado</b>. Neste trabalho todos os grafos são não direcionados e ponderados.</p>
+  <div class="conceitos">
+    <div class="card" style="box-shadow:none"><h3 style="margin-top:0">Vértice</h3><p class="vazio">Um ponto do problema: parada de ônibus, aeroporto ou bairro.</p></div>
+    <div class="card" style="box-shadow:none"><h3 style="margin-top:0">Aresta</h3><p class="vazio">Uma ligação entre dois vértices: trecho, conexão aérea ou via.</p></div>
+    <div class="card" style="box-shadow:none"><h3 style="margin-top:0">Peso</h3><p class="vazio">O custo da aresta. Aqui: quilômetros ou metros.</p></div>
+    <div class="card" style="box-shadow:none"><h3 style="margin-top:0">Árvore geradora</h3><p class="vazio">Subconjunto de arestas que liga todos os vértices sem formar ciclos (V − 1 arestas).</p></div>
+  </div>
+</section>
+
+<section class="cards-3 secao">
+  <a href="/dijkstra" class="card card-alg">
+    <h2>Dijkstra</h2>
+    <p>Encontra o <b>caminho de menor custo</b> entre uma origem e um destino. Aplicado aos pontos do transporte público de Lorena/SP.</p>
+    <span class="tag">Menor caminho</span>
+  </a>
+  <a href="/prim" class="card card-alg">
+    <h2>Prim</h2>
+    <p>Constrói a <b>árvore geradora mínima</b> crescendo a partir de um vértice. Aplicado aos principais aeroportos da LATAM no Brasil.</p>
+    <span class="tag">Árvore geradora mínima</span>
+  </a>
+  <a href="/kruskal" class="card card-alg">
+    <h2>Kruskal</h2>
+    <p>Constrói a <b>árvore geradora mínima</b> escolhendo as arestas mais curtas sem formar ciclo. Aplicado à pavimentação entre bairros.</p>
+    <span class="tag">Árvore geradora mínima</span>
+  </a>
+</section>
+
+<section class="card secao">
+  <h2>Comparando os três algoritmos</h2>
+  <div class="tabela-wrap">
+    <table>
+      <tr><th>Algoritmo</th><th>Problema que resolve</th><th>Critério de escolha</th><th>Resultado</th></tr>
+      <tr><td><b>Dijkstra</b></td><td>Menor caminho de uma origem até um destino</td><td>Vértice não visitado com menor distância acumulada</td><td>Um caminho (sequência de vértices)</td></tr>
+      <tr><td><b>Prim</b></td><td>Ligar todos os vértices com custo mínimo</td><td>Aresta mais barata que sai da árvore para um vértice novo</td><td>Árvore geradora mínima</td></tr>
+      <tr><td><b>Kruskal</b></td><td>Ligar todos os vértices com custo mínimo</td><td>Aresta mais barata do grafo que não forma ciclo</td><td>Árvore geradora mínima</td></tr>
+    </table>
+  </div>
+  <p class="dica">Os dados de cada grafo e suas fontes estão em <a href="/dados">Dados e referências</a>. Os valores demonstrativos são identificados em cada página.</p>
+</section>
+{% endblock %}
