@@ -15,7 +15,7 @@ class UnionFind:
     def encontrar(self, v):
         # sobe ate achar o representante do grupo
         while self.pai[v] != v:
-            self.pai[v] = self.pai[self.pai[v]]  # compressao de caminho
+            self.pai[v] = self.pai[self.pai[v]]  # path halving: aponta pro avo, encurta o caminho pela metade
             v = self.pai[v]
         return v
 

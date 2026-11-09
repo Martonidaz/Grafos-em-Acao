@@ -39,6 +39,12 @@ def pagina_dados():
 
 # ---- API (o javascript chama essas rotas com fetch) ----
 
+@app.errorhandler(ValueError)
+def entrada_invalida(e):
+    # toda validacao (dados, pedido, algoritmo) levanta ValueError -> vira 400 com a mensagem
+    return jsonify({"ok": False, "erro": str(e)}), 400
+
+
 @app.route("/api/grafo/<nome>")
 def api_grafo(nome):
     if nome not in ["dijkstra", "prim", "kruskal"]:
@@ -58,11 +64,7 @@ def ler_pedido(nome):
 @app.route("/api/dijkstra", methods=["POST"])
 def api_dijkstra():
     dados, grafo, vertices, nomes, arestas = ler_pedido("dijkstra")
-    try:
-        r = dijkstra(vertices, arestas, dados.get("origem"), dados.get("destino"), nomes, grafo["unidade"])
-    except ValueError as e:
-        return jsonify({"ok": False, "erro": str(e)}), 400
-    return jsonify(r)
+    return jsonify(dijkstra(vertices, arestas, dados.get("origem"), dados.get("destino"), nomes, grafo["unidade"]))
 
 
 @app.route("/api/prim", methods=["POST"])
@@ -70,24 +72,18 @@ def api_prim():
     dados, grafo, vertices, nomes, arestas = ler_pedido("prim")
     if not dados.get("inicio"):
         return jsonify({"ok": False, "erro": "Selecione o aeroporto inicial."}), 400
-    try:
-        r = prim(vertices, arestas, dados["inicio"], nomes, grafo["unidade"])
-    except ValueError as e:
-        return jsonify({"ok": False, "erro": str(e)}), 400
-    return jsonify(r)
+    return jsonify(prim(vertices, arestas, dados["inicio"], nomes, grafo["unidade"]))
 
 
 @app.route("/api/kruskal", methods=["POST"])
 def api_kruskal():
-    dados, grafo, vertices, nomes, arestas = ler_pedido("kruskal")
+    _, grafo, vertices, nomes, arestas = ler_pedido("kruskal")
     if len(arestas) == 0:
         return jsonify({"ok": False, "erro": "Não tem nenhuma via ativa no grafo."}), 400
-    try:
-        r = kruskal(vertices, arestas, nomes, grafo["unidade"])
-    except ValueError as e:
-        return jsonify({"ok": False, "erro": str(e)}), 400
-    return jsonify(r)
+    return jsonify(kruskal(vertices, arestas, nomes, grafo["unidade"]))
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # sem debug=True: o depurador do Werkzeug executa codigo vindo do navegador.
+    # Para desenvolver com recarga automatica: flask --app app run --debug
+    app.run()

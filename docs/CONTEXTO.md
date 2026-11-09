@@ -16,7 +16,7 @@
 DFS (tempos d/f, cores), BFS (distância em arestas), Dijkstra (tabela do conjunto S), Prim (corte,
 conjunto S), Kruskal (floresta, ordenação de arestas, detecção de ciclo).
 
-## Defeitos abertos na v1 (corrigir um por vez, nesta ordem)
+## Defeitos da v1
 
 | # | Defeito | Nome técnico | Onde | Por que importa |
 |---|---|---|---|---|
@@ -28,7 +28,10 @@ conjunto S), Kruskal (floresta, ordenação de arestas, detecção de ciclo).
 | 6 | `app.run(debug=True)` | depurador do Werkzeug exposto (execução remota de código) | `app.py` | hábito inseguro, mesmo em 127.0.0.1 |
 | 7 | `remover_arestas` aceita string: `"A\|B" in "CEN\|ALD"` vira busca de substring | confusão de tipos na fronteira de confiança | `grafo.py` + `app.py` | entrada da API não é validada |
 
-Defeitos já corrigidos: (nenhum ainda)
+Corrigidos em 09/11/2026 (modo desenvolvimento): **2** (`validar_grafo` na carga + `validar_pesos`
+no Dijkstra), **4** (`deque`), **5** (comentário: *path halving*), **6** (`app.run()` sem debug) e **7**
+(`remover_arestas` exige lista; `@app.errorhandler(ValueError)` → 400 no lugar de 3 `try/except`).
+Testes: `tests/test_validacao.py`. **Abertos: 1 e 3** (dependem de medir no Google Maps).
 
 ## Decisões em aberto
 
@@ -37,6 +40,6 @@ Defeitos já corrigidos: (nenhum ainda)
 
 ## Próximos passos
 
-1. Defeito 2 (validação na carga), porque protege todos os outros: escrever primeiro o teste que falha.
-2. Defeito 1 (pesos reais com `fonte`), começando pelo Kruskal (12 bairros, 20 vias).
-3. Pedir o nome da colega para registrar a coautoria (`Co-authored-by`) nos próximos commits.
+1. Defeito 1 (pesos reais com `fonte`), começando pelo Kruskal (12 bairros, 20 vias).
+2. Defeito 3 (modelagem do ônibus: direção e baldeação).
+3. Integrantes do grupo convidados como colaboradores no GitHub (09/11).

@@ -18,6 +18,13 @@ def validar_entrada(vertices, origem, destino):
         raise ValueError("A origem e o destino devem ser pontos diferentes.")
 
 
+def validar_pesos(arestas):
+    # com peso negativo a escolha gulosa deixa de ser definitiva e o resultado sai errado
+    for a in arestas:
+        if a["peso"] < 0:
+            raise ValueError(f"Aresta {a['origem']}-{a['destino']} com peso negativo: o Dijkstra exige pesos >= 0.")
+
+
 def montar_tabela(vertices, dist, anterior, visitados):
     # copia da tabela de distancias pra mostrar no passo a passo
     tabela = []
@@ -33,6 +40,7 @@ def montar_tabela(vertices, dist, anterior, visitados):
 
 def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
     validar_entrada(vertices, origem, destino)
+    validar_pesos(arestas)
     if nomes is None:
         nomes = {v: v for v in vertices}
 
