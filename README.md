@@ -74,8 +74,8 @@ ficam dentro da cota gratuita mensal do Google (10.000 de Compute Routes Essenti
 exige conta de faturamento com cartão e cobra tudo acima da cota**. Só rode depois destas travas:
 
 1. **Conta antiga:** em *Faturamento → Relatórios*, confira se algum projeto antigo ainda gera custo
-   de Maps; desative as chaves antigas em *APIs e serviços → Credenciais*. A cota grátis é contada
-   por conta de faturamento, então uso antigo esquecido consome a mesma cota.
+   de Maps; desative as chaves antigas em *APIs e serviços → Credenciais*. Por segurança, trate a
+   cota grátis como compartilhada entre todos os projetos da mesma conta de faturamento.
 2. **Projeto novo e separado** (ex.: `grafos-em-acao`) ligado à sua conta de faturamento existente.
    Ative **somente** a *Routes API*.
 3. **Chave restrita:** *Credenciais → Criar chave de API → Restrições de API → só Routes API*.
