@@ -18,7 +18,13 @@ para um problema real.
 
 Alternativa 1.
 
-## Consequências
+## Revisão (09/11/2026)
+
+A colega do grupo já tinha uma v1 completa (Flask + vis-network). A v1 foi importada como base
+(commit "Importa a v1 do grupo") e será **corrigida, não reescrita**. O BoscoGraph continua como
+inspiração e como oráculo; a regra "não copiar código do BoscoGraph" segue valendo.
+
+## Consequências (decisão original)
 
 - (+) Reescrever é o exercício: cada linha precisa ser defendida na apresentação.
 - (+) Código pequeno e focado, mais fácil de explicar que 24 mil linhas genéricas.

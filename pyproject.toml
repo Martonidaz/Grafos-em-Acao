@@ -1,21 +1,13 @@
-[project]
-name = "grafos-em-acao"
-version = "0.1.0"
-description = "Dijkstra, Prim e Kruskal aplicados a problemas reais (Trabalho Final de Teoria dos Grafos)"
-readme = "README.md"
-requires-python = ">=3.11"
-dependencies = []
-
-# Sem dependências de execução. Para desenvolver: pip install pytest ruff networkx
-# (networkx só como oráculo nos testes, nunca em src/). Sem build/instalação: o pytest acha src/ sozinho.
+# Só configuração de ferramentas; dependências em requirements.txt.
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["."]
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+extend-exclude = ["static/vendor"]
 
 [tool.ruff.lint]
 # F: código morto/no-op · SIM103: if x: return True else: return False · RET505: else redundante

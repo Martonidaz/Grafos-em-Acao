@@ -1,41 +1,29 @@
 # Grafos em Ação
 
-Trabalho final de Grafos (P2). Sistema web com os algoritmos de **Dijkstra**, **Prim** e **Kruskal**
-feitos em Python, com interface em HTML/CSS/JS.
+Trabalho Final (P2) de **Teoria dos Grafos e suas Aplicações**: três problemas reais modelados como
+grafos e resolvidos com o algoritmo guloso adequado, num sistema web que mostra o resultado e o passo
+a passo da execução.
 
-- **Dijkstra**: melhor rota entre dois pontos do transporte público de Lorena/SP
-- **Prim**: rede mínima ligando os principais aeroportos da LATAM no Brasil
-- **Kruskal**: quais vias pavimentar pra ligar todos os bairros gastando o mínimo
+| # | Problema | Algoritmo | Pergunta que o software responde |
+|---|----------|-----------|----------------------------------|
+| 1 | Transporte público de Lorena/SP | **Dijkstra** | Qual é o melhor caminho entre a origem e o destino escolhidos? |
+| 2 | Rede de voos da LATAM no Brasil | **Prim** | Quais conexões ligam todos os aeroportos com uma única via, ao menor custo total? |
+| 3 | Pavimentação dos bairros de Lorena/SP | **Kruskal** | Quais vias, de menor comprimento total, interligam todos os bairros? |
+
+O enunciado completo está em [`docs/ENUNCIADO.md`](docs/ENUNCIADO.md).
 
 ![Dijkstra](docs/capturas/dijkstra.png)
 
 ## Como rodar
 
-Precisa do Python 3.9+.
+Precisa do Python 3.11+.
 
-```
+```bash
+python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python app.py
-```
-
-Depois abre http://127.0.0.1:5000 no navegador.
-
-Testes:
-
-```
-python tests/test_algoritmos.py
-```
-
-## Organização
-
-```
-app.py               servidor flask e rotas da api
-algoritmos/          dijkstra.py, prim.py, kruskal.py e grafo.py (funções de apoio)
-dados/               os 3 grafos em json + referências
-templates/           páginas html
-static/              css, js e a biblioteca vis-network
-tests/               testes (usa networkx só pra comparar o resultado)
-docs/                apresentação e prints
+python app.py          # abre em http://127.0.0.1:5000
+pytest                 # testes (NetworkX só como gabarito)
+ruff check .
 ```
 
 ## O que dá pra fazer
@@ -43,19 +31,32 @@ docs/                apresentação e prints
 - escolher origem/destino (Dijkstra) ou aeroporto inicial (Prim) e executar
 - ver o resultado destacado no grafo e o custo total
 - ver o passo a passo da execução (anterior, próximo, reproduzir)
-- clicar numa aresta pra desativar ela e ver o que acontece (outra rota ou grafo desconexo)
+- clicar numa aresta para desativá-la e ver o que acontece (outra rota ou grafo desconexo)
 - restaurar o grafo original
+
+## Organização
+
+```
+app.py               servidor Flask e rotas da API
+algoritmos/          dijkstra.py, prim.py, kruskal.py (puros) e grafo.py (leitura e apoio)
+dados/               os 3 grafos em JSON + REFERENCIAS.md
+templates/ static/   páginas HTML, CSS, JS e a biblioteca vis-network
+tests/               testes (NetworkX só para comparar o resultado)
+docs/                enunciado, apresentação, capturas, memória (CONTEXTO.md) e decisões (ADRs)
+CLAUDE.md            regras de trabalho do projeto
+```
 
 ## Sobre os dados
 
-Os nomes dos pontos, bairros e aeroportos são reais (fontes em `dados/REFERENCIAS.md`), mas:
+Os nomes dos pontos, bairros e aeroportos são reais (fontes em `dados/REFERENCIAS.md`), mas na v1:
 
-- **Dijkstra**: as ligações e distâncias são estimadas pra demonstração (só 2 têm fonte). Não é o itinerário oficial das linhas.
-- **Prim**: as conexões são um modelo com os hubs da LATAM, não a malha real de voos. A distância é calculada pela fórmula de Haversine com as coordenadas dos aeroportos.
-- **Kruskal**: as vias e os comprimentos são estimados pra demonstração.
+- **Dijkstra**: ligações e distâncias estimadas para demonstração (só 2 têm fonte).
+- **Prim**: conexões modeladas a partir dos hubs da LATAM, não a malha real; distância por Haversine.
+- **Kruskal**: vias e comprimentos estimados para demonstração.
 
-Pra usar valores reais é só medir no Google Maps (botão direito > Medir distância) e trocar o `peso` no json da pasta `dados/`.
+Trocar esses valores por medidas reais (Google Maps) está em andamento, veja `docs/CONTEXTO.md`.
 
 ## Tecnologias
 
-Python, Flask, HTML, CSS, JavaScript, vis-network, NetworkX (só nos testes)
+Python, Flask, HTML, CSS, JavaScript, vis-network, NetworkX (só nos testes). Inspirado no
+[BoscoGraph](https://github.com/Martonidaz/BoscoGraph).

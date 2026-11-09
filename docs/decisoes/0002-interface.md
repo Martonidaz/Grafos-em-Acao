@@ -1,6 +1,6 @@
 # ADR 0002 — Interface com o usuário
 
-- **Status:** em aberto
+- **Status:** aceita de fato pela v1 do grupo: **Web com Flask + vis-network**
 
 ## Contexto
 
@@ -25,4 +25,6 @@ pelo usuário. A apresentação precisa mostrar o grafo e o resultado.
 
 ## Decisão
 
->>> ESCREVA AQUI SUA DECISÃO (e a justificativa, respondendo P1–P3)
+Web com Flask + vis-network (já implementada na v1).
+
+>>> ESCREVA AQUI A JUSTIFICATIVA (respondendo P1–P3): o professor vai perguntar "por que web?"

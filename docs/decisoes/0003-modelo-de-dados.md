@@ -8,6 +8,12 @@ Os três grafos (paradas de ônibus de Lorena, aeroportos da LATAM, bairros e vi
 sair do Google Maps e de pesquisa na web. O peso de cada aresta é o que o algoritmo otimiza, então a
 **qualidade do dado é a qualidade da resposta**.
 
+## Ponto de partida (v1)
+
+JSON, um arquivo por grafo, com metadados (`criterio_peso`, `unidade`, `tipo_dado`, `aviso`,
+`referencias`). Pesos: Dijkstra 25 de 27 `demonstrativo`; LATAM por Haversine; bairros sem fonte.
+Não há validação na carga (aresta com id inexistente vira `KeyError`; peso negativo passa).
+
 ## Alternativas de formato
 
 - **JSON** (um arquivo por grafo: vértices com nome/coordenadas, arestas com peso e fonte).
