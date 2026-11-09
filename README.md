@@ -37,7 +37,7 @@ Grafos-em-Acao/
 
 ```bash
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -e ".[dev]"
+pip install pytest ruff networkx
 ruff check .
 pytest
 ```

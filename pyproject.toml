@@ -6,16 +6,8 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []
 
-[project.optional-dependencies]
-# networkx entra só como oráculo nos testes, nunca no código de src/
-dev = ["pytest>=8", "ruff>=0.6", "networkx>=3.2"]
-
-[build-system]
-requires = ["setuptools>=68"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools.packages.find]
-where = ["src"]
+# Sem dependências de execução. Para desenvolver: pip install pytest ruff networkx
+# (networkx só como oráculo nos testes, nunca em src/). Sem build/instalação: o pytest acha src/ sozinho.
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
