@@ -38,6 +38,12 @@ Testes: `tests/test_validacao.py`. **Abertos: 1 e 3** (dependem de medir no Goog
 - ADR 0002: decidida de fato (Flask + vis-network); falta a justificativa, que será cobrada na defesa.
 - ADR 0003: origem dos pesos e onde validar (ligado aos defeitos 1 e 2).
 
+## Pedido registrado (09/11/2026)
+
+Depois de terminar as correções (defeitos 1 e 3), o Daniel vai listar pontos de design para mudar.
+Cada ponto deve vir em **duas variantes de visual/comportamento** para ele escolher qual fica.
+Pendente: a lista dos pontos.
+
 ## Próximos passos
 
 1. Defeito 1 (pesos reais com `fonte`): planilhas `dados/medicoes_*.csv` geradas (27 + 20 arestas,
