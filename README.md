@@ -69,5 +69,4 @@ Linhas em branco são ignoradas, então dá para dividir as linhas entre o grupo
 
 ## Tecnologias
 
-Python, Flask, HTML, CSS, JavaScript, vis-network, NetworkX (só nos testes). Inspirado no
-[BoscoGraph](https://github.com/Martonidaz/BoscoGraph).
+Python, Flask, HTML, CSS, JavaScript, vis-network, NetworkX (só nos testes).
