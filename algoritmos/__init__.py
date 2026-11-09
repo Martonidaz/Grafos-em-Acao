@@ -1,4 +1,13 @@
 from .dijkstra import dijkstra
-from .prim import prim
+from .grafo import carregar_grafo, componentes_conexas, remover_arestas
 from .kruskal import kruskal
-from .grafo import carregar_grafo, remover_arestas, componentes_conexas
+from .prim import prim
+
+__all__ = [
+    "carregar_grafo",
+    "componentes_conexas",
+    "dijkstra",
+    "kruskal",
+    "prim",
+    "remover_arestas",
+]

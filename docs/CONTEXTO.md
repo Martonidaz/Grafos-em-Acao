@@ -7,8 +7,8 @@
   andaime no commit seguinte. Estratégia: **corrigir a v1, não reescrever**.
 - Estado medido após a integração: `pytest` → 8/8 passando (Dijkstra igual à NetworkX nos 210
   pares; Prim igual partindo dos 14 aeroportos; Kruskal; desconexos; Prim = Kruskal).
-  `ruff check .` → 40 avisos (16 E501, 6 PLR2004, 6 F401 em `algoritmos/__init__.py`, que são
-  re-exports intencionais e se resolvem com `__all__`, além de complexidade em `app.py`/algoritmos).
+  `ruff check .` → 40 avisos na v1, zerados no commit "Deixa o ruff limpo" (ruff format, `__all__`,
+  strings quebradas; PLR09xx e PLR2004 desligados por serem ruído em código didático).
 - O BoscoGraph segue como inspiração e oráculo, sem código copiado.
 
 ## O que já foi estudado (aulas)

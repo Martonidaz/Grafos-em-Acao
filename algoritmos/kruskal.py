@@ -15,7 +15,9 @@ class UnionFind:
     def encontrar(self, v):
         # sobe ate achar o representante do grupo
         while self.pai[v] != v:
-            self.pai[v] = self.pai[self.pai[v]]  # path halving: aponta pro avo, encurta o caminho pela metade
+            self.pai[v] = self.pai[
+                self.pai[v]
+            ]  # path halving: aponta pro avo, encurta o caminho pela metade
             v = self.pai[v]
         return v
 
@@ -50,11 +52,19 @@ def kruskal(vertices, arestas, nomes=None, unidade=""):
     rejeitadas = []
     custo = 0
 
-    ordem = ", ".join(f"{a['origem']}-{a['destino']} ({formatar(a['peso'], unidade)})" for a in ordenadas)
-    passos = [{
-        "texto": "Início: cada bairro é um grupo separado. Arestas em ordem crescente: " + ordem,
-        "aceitas": [], "rejeitadas": [], "atual": None, "decisao": None,
-    }]
+    ordem = ", ".join(
+        f"{a['origem']}-{a['destino']} ({formatar(a['peso'], unidade)})" for a in ordenadas
+    )
+    passos = [
+        {
+            "texto": "Início: cada bairro é um grupo separado. Arestas em ordem crescente: "
+            + ordem,
+            "aceitas": [],
+            "rejeitadas": [],
+            "atual": None,
+            "decisao": None,
+        }
+    ]
 
     for i, a in enumerate(ordenadas):
         u = a["origem"]
@@ -65,7 +75,9 @@ def kruskal(vertices, arestas, nomes=None, unidade=""):
             aceitas.append(a)
             custo += a["peso"]
             decisao = "aceita"
-            texto = f"ACEITA {via}: estavam em grupos diferentes. Total: {formatar(custo, unidade)}."
+            texto = (
+                f"ACEITA {via}: estavam em grupos diferentes. Total: {formatar(custo, unidade)}."
+            )
         else:
             rejeitadas.append(a)
             decisao = "rejeitada"
@@ -75,40 +87,52 @@ def kruskal(vertices, arestas, nomes=None, unidade=""):
         for g in uf.grupos():
             grupos.append("{" + ", ".join(sorted(nomes[x] for x in g)) + "}")
 
-        passos.append({
-            "texto": texto,
-            "detalhes": ["Grupos: " + " | ".join(grupos)],
-            "aceitas": [x["id"] for x in aceitas],
-            "rejeitadas": [x["id"] for x in rejeitadas],
-            "atual": a["id"],
-            "decisao": decisao,
-        })
+        passos.append(
+            {
+                "texto": texto,
+                "detalhes": ["Grupos: " + " | ".join(grupos)],
+                "aceitas": [x["id"] for x in aceitas],
+                "rejeitadas": [x["id"] for x in rejeitadas],
+                "atual": a["id"],
+                "decisao": decisao,
+            }
+        )
 
         # com V-1 arestas ja ta tudo ligado
         if len(aceitas) == len(vertices) - 1:
-            resto = ordenadas[i + 1:]
+            resto = ordenadas[i + 1 :]
             if len(resto) > 0:
                 rejeitadas.extend(resto)
-                passos.append({
-                    "texto": f"Já tem V - 1 = {len(vertices) - 1} vias, todos os bairros ligados. "
-                             f"As {len(resto)} vias que sobraram são descartadas (todas formariam ciclo).",
-                    "aceitas": [x["id"] for x in aceitas],
-                    "rejeitadas": [x["id"] for x in rejeitadas],
-                    "atual": None, "decisao": None,
-                })
+                passos.append(
+                    {
+                        "texto": f"Já tem V - 1 = {len(vertices) - 1} vias, todos os bairros "
+                        f"ligados. As {len(resto)} vias que sobraram são descartadas "
+                        "(todas formariam ciclo).",
+                        "aceitas": [x["id"] for x in aceitas],
+                        "rejeitadas": [x["id"] for x in rejeitadas],
+                        "atual": None,
+                        "decisao": None,
+                    }
+                )
             break
 
     descartadas = []
     for r in rejeitadas:
-        descartadas.append({
-            "origem": r["origem"], "destino": r["destino"], "peso": r["peso"],
-            "motivo": "formaria ciclo (os bairros já estavam ligados por vias menores)",
-        })
+        descartadas.append(
+            {
+                "origem": r["origem"],
+                "destino": r["destino"],
+                "peso": r["peso"],
+                "motivo": "formaria ciclo (os bairros já estavam ligados por vias menores)",
+            }
+        )
 
     resultado = {
         "aceitas": [x["id"] for x in aceitas],
         "rejeitadas": [x["id"] for x in rejeitadas],
-        "arestas_aceitas": [{"origem": x["origem"], "destino": x["destino"], "peso": x["peso"]} for x in aceitas],
+        "arestas_aceitas": [
+            {"origem": x["origem"], "destino": x["destino"], "peso": x["peso"]} for x in aceitas
+        ],
         "descartadas": descartadas,
         "custo": round(custo, 2),
         "custo_formatado": formatar(custo, unidade),
@@ -120,7 +144,10 @@ def kruskal(vertices, arestas, nomes=None, unidade=""):
     if len(aceitas) < len(vertices) - 1:
         grupos = [[nomes[x] for x in g] for g in uf.grupos()]
         resultado["ok"] = False
-        resultado["erro"] = f"Grafo desconexo: ficaram {len(grupos)} partes separadas, não dá pra ligar todos os bairros."
+        resultado["erro"] = (
+            f"Grafo desconexo: ficaram {len(grupos)} partes separadas, "
+            "não dá pra ligar todos os bairros."
+        )
         resultado["grupos"] = grupos
 
     return resultado

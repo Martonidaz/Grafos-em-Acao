@@ -13,3 +13,5 @@ extend-exclude = ["static/vendor"]
 # F: código morto/no-op · SIM103: if x: return True else: return False · RET505: else redundante
 # B006: mutable default argument · PL: complexidade e números mágicos · I: ordem dos imports
 select = ["F", "E", "W", "I", "B", "SIM", "RET", "PL", "RUF"]
+# complexidade e números mágicos: o código que monta o passo a passo é didático e linear de propósito
+ignore = ["PLR0912", "PLR0913", "PLR0915", "PLR0917", "PLR2004"]

@@ -2,7 +2,7 @@
 # acha o menor caminho entre a origem e o destino
 # (todos os pesos sao positivos, entao funciona)
 
-from .grafo import lista_adjacencia, id_aresta, formatar
+from .grafo import formatar, id_aresta, lista_adjacencia
 
 INF = float("inf")
 
@@ -22,19 +22,20 @@ def validar_pesos(arestas):
     # com peso negativo a escolha gulosa deixa de ser definitiva e o resultado sai errado
     for a in arestas:
         if a["peso"] < 0:
-            raise ValueError(f"Aresta {a['origem']}-{a['destino']} com peso negativo: o Dijkstra exige pesos >= 0.")
+            raise ValueError(
+                f"Aresta {a['origem']}-{a['destino']} com peso negativo: "
+                "o Dijkstra exige pesos >= 0."
+            )
 
 
 def montar_tabela(vertices, dist, anterior, visitados):
     # copia da tabela de distancias pra mostrar no passo a passo
     tabela = []
     for v in vertices:
-        d = dist[v]
-        if d == INF:
-            d = None
-        else:
-            d = round(d, 2)
-        tabela.append({"vertice": v, "distancia": d, "anterior": anterior[v], "visitado": v in visitados})
+        d = None if dist[v] == INF else round(dist[v], 2)
+        tabela.append(
+            {"vertice": v, "distancia": d, "anterior": anterior[v], "visitado": v in visitados}
+        )
     return tabela
 
 
@@ -56,14 +57,16 @@ def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
     visitados = set()
 
     passos = []
-    passos.append({
-        "texto": f"Início: distância de {nomes[origem]} = 0, os outros pontos começam com ∞.",
-        "atual": origem,
-        "visitados": [],
-        "arestas_analisadas": [],
-        "arvore": [],
-        "tabela": montar_tabela(vertices, dist, anterior, visitados),
-    })
+    passos.append(
+        {
+            "texto": f"Início: distância de {nomes[origem]} = 0, os outros pontos começam com ∞.",
+            "atual": origem,
+            "visitados": [],
+            "arestas_analisadas": [],
+            "arvore": [],
+            "tabela": montar_tabela(vertices, dist, anterior, visitados),
+        }
+    )
 
     while len(visitados) < len(vertices):
         # pega o vertice nao visitado com a menor distancia
@@ -88,13 +91,13 @@ def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
                 continue
             analisadas.append(id_aresta(atual, vizinho))
             nova = dist[atual] + peso
-            conta = f"{nomes[vizinho]}: {formatar(dist[atual], unidade)} + {formatar(peso, unidade)} = {formatar(nova, unidade)}"
+            conta = (
+                f"{nomes[vizinho]}: {formatar(dist[atual], unidade)} + {formatar(peso, unidade)}"
+                f" = {formatar(nova, unidade)}"
+            )
 
             if nova < dist[vizinho]:
-                if dist[vizinho] == INF:
-                    antiga = "∞"
-                else:
-                    antiga = formatar(dist[vizinho], unidade)
+                antiga = "∞" if dist[vizinho] == INF else formatar(dist[vizinho], unidade)
                 dist[vizinho] = nova
                 anterior[vizinho] = atual
                 detalhes.append(f"{conta} < {antiga}, atualiza (anterior = {nomes[atual]})")
@@ -109,15 +112,18 @@ def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
             if anterior[v] is not None:
                 arvore.append(id_aresta(anterior[v], v))
 
-        passos.append({
-            "texto": f"Visita {nomes[atual]} (menor distância ainda não visitada: {formatar(dist[atual], unidade)}).",
-            "detalhes": detalhes,
-            "atual": atual,
-            "visitados": sorted(visitados),
-            "arestas_analisadas": analisadas,
-            "arvore": arvore,
-            "tabela": montar_tabela(vertices, dist, anterior, visitados),
-        })
+        passos.append(
+            {
+                "texto": f"Visita {nomes[atual]} (menor distância ainda não visitada: "
+                f"{formatar(dist[atual], unidade)}).",
+                "detalhes": detalhes,
+                "atual": atual,
+                "visitados": sorted(visitados),
+                "arestas_analisadas": analisadas,
+                "arvore": arvore,
+                "tabela": montar_tabela(vertices, dist, anterior, visitados),
+            }
+        )
 
         # quando visita o destino a distancia dele nao muda mais, entao pode parar
         if atual == destino:
@@ -126,7 +132,8 @@ def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
     if dist[destino] == INF:
         return {
             "ok": False,
-            "erro": f"Não existe caminho entre {nomes[origem]} e {nomes[destino]} (grafo desconexo para esses pontos).",
+            "erro": f"Não existe caminho entre {nomes[origem]} e {nomes[destino]} "
+            "(grafo desconexo para esses pontos).",
             "passos": passos,
         }
 
@@ -144,16 +151,19 @@ def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
 
     nomes_caminho = [nomes[c] for c in caminho]
 
-    passos.append({
-        "texto": f"Fim: {nomes[destino]} foi visitado com distância {formatar(dist[destino], unidade)}. "
-                 f"Voltando pelo 'anterior': " + " -> ".join(nomes_caminho),
-        "atual": destino,
-        "visitados": sorted(visitados),
-        "arestas_analisadas": [],
-        "arvore": arestas_caminho,
-        "caminho": arestas_caminho,
-        "tabela": montar_tabela(vertices, dist, anterior, visitados),
-    })
+    passos.append(
+        {
+            "texto": f"Fim: {nomes[destino]} foi visitado com distância "
+            f"{formatar(dist[destino], unidade)}. Voltando pelo 'anterior': "
+            + " -> ".join(nomes_caminho),
+            "atual": destino,
+            "visitados": sorted(visitados),
+            "arestas_analisadas": [],
+            "arvore": arestas_caminho,
+            "caminho": arestas_caminho,
+            "tabela": montar_tabela(vertices, dist, anterior, visitados),
+        }
+    )
 
     return {
         "ok": True,

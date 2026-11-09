@@ -3,7 +3,7 @@
 
 from flask import Flask, jsonify, render_template, request
 
-from algoritmos import carregar_grafo, remover_arestas, dijkstra, prim, kruskal
+from algoritmos import carregar_grafo, dijkstra, kruskal, prim, remover_arestas
 
 app = Flask(__name__)
 app.json.ensure_ascii = False
@@ -39,6 +39,7 @@ def pagina_dados():
 
 # ---- API (o javascript chama essas rotas com fetch) ----
 
+
 @app.errorhandler(ValueError)
 def entrada_invalida(e):
     # toda validacao (dados, pedido, algoritmo) levanta ValueError -> vira 400 com a mensagem
@@ -64,7 +65,11 @@ def ler_pedido(nome):
 @app.route("/api/dijkstra", methods=["POST"])
 def api_dijkstra():
     dados, grafo, vertices, nomes, arestas = ler_pedido("dijkstra")
-    return jsonify(dijkstra(vertices, arestas, dados.get("origem"), dados.get("destino"), nomes, grafo["unidade"]))
+    return jsonify(
+        dijkstra(
+            vertices, arestas, dados.get("origem"), dados.get("destino"), nomes, grafo["unidade"]
+        )
+    )
 
 
 @app.route("/api/prim", methods=["POST"])

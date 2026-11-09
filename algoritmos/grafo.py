@@ -26,7 +26,10 @@ def haversine_km(lat1, lon1, lat2, lon2):
     R = 6371.0
     dlat = math.radians(lat2 - lat1)
     dlon = math.radians(lon2 - lon1)
-    a = math.sin(dlat / 2) ** 2 + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
+    a = (
+        math.sin(dlat / 2) ** 2
+        + math.cos(math.radians(lat1)) * math.cos(math.radians(lat2)) * math.sin(dlon / 2) ** 2
+    )
     return 2 * R * math.asin(math.sqrt(a))
 
 
@@ -81,7 +84,12 @@ def validar_grafo(grafo):
         if o == d:
             raise erro(f"{via} é um laço (origem = destino).")
         # bool é subclasse de int em Python, por isso a checagem explícita
-        if isinstance(peso, bool) or not isinstance(peso, (int, float)) or not math.isfinite(peso) or peso <= 0:
+        if (
+            isinstance(peso, bool)
+            or not isinstance(peso, (int, float))
+            or not math.isfinite(peso)
+            or peso <= 0
+        ):
             raise erro(f"{via} tem peso inválido ({peso!r}); precisa ser um número maior que zero.")
         par = id_aresta(o, d)
         if par in vistas:

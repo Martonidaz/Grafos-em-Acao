@@ -8,7 +8,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import networkx as nx
-from algoritmos import dijkstra, prim, kruskal, carregar_grafo, remover_arestas
+
+from algoritmos import carregar_grafo, dijkstra, kruskal, prim, remover_arestas
 
 
 def grafo_nx(g):
@@ -104,9 +105,13 @@ def test_prim_e_kruskal_mesmo_custo():
 
 if __name__ == "__main__":
     testes = [
-        test_dijkstra_igual_networkx, test_dijkstra_entradas_invalidas, test_dijkstra_desconexo,
-        test_prim_igual_networkx, test_prim_desconexo,
-        test_kruskal_igual_networkx, test_kruskal_desconexo,
+        test_dijkstra_igual_networkx,
+        test_dijkstra_entradas_invalidas,
+        test_dijkstra_desconexo,
+        test_prim_igual_networkx,
+        test_prim_desconexo,
+        test_kruskal_igual_networkx,
+        test_kruskal_desconexo,
         test_prim_e_kruskal_mesmo_custo,
     ]
     for t in testes:

@@ -20,13 +20,15 @@ def prim(vertices, arestas, inicio=None, nomes=None, unidade=""):
     escolhidas = []
     custo = 0
 
-    passos = [{
-        "texto": f"Início: a árvore tem só {nomes[inicio]}.",
-        "na_arvore": [inicio],
-        "escolhidas": [],
-        "candidatas": [],
-        "atual": None,
-    }]
+    passos = [
+        {
+            "texto": f"Início: a árvore tem só {nomes[inicio]}.",
+            "na_arvore": [inicio],
+            "escolhidas": [],
+            "candidatas": [],
+            "atual": None,
+        }
+    ]
 
     while len(na_arvore) < len(vertices):
         # candidatas = arestas com uma ponta dentro e a outra fora da arvore
@@ -71,28 +73,35 @@ def prim(vertices, arestas, inicio=None, nomes=None, unidade=""):
         if len(ordenadas) > 6:
             texto_lista += f" ... (+{len(ordenadas) - 6})"
 
-        passos.append({
-            "texto": f"Escolhe {nomes[velho]} -> {nomes[novo]} ({formatar(menor['peso'], unidade)}), "
-                     f"a aresta mais barata que sai da árvore. Total até agora: {formatar(custo, unidade)}.",
-            "detalhes": [f"{len(candidatas)} candidatas: {texto_lista}"],
+        passos.append(
+            {
+                "texto": f"Escolhe {nomes[velho]} -> {nomes[novo]} "
+                f"({formatar(menor['peso'], unidade)}), a aresta mais barata que sai da árvore. "
+                f"Total até agora: {formatar(custo, unidade)}.",
+                "detalhes": [f"{len(candidatas)} candidatas: {texto_lista}"],
+                "na_arvore": sorted(na_arvore),
+                "escolhidas": [a["id"] for a in escolhidas],
+                "candidatas": [a["id"] for a in candidatas],
+                "atual": menor["id"],
+            }
+        )
+
+    passos.append(
+        {
+            "texto": f"Fim: os {len(vertices)} vértices estão na árvore com "
+            f"{len(escolhidas)} arestas (V - 1). Custo total: {formatar(custo, unidade)}.",
             "na_arvore": sorted(na_arvore),
             "escolhidas": [a["id"] for a in escolhidas],
-            "candidatas": [a["id"] for a in candidatas],
-            "atual": menor["id"],
-        })
-
-    passos.append({
-        "texto": f"Fim: os {len(vertices)} vértices estão na árvore com {len(escolhidas)} arestas (V - 1). "
-                 f"Custo total: {formatar(custo, unidade)}.",
-        "na_arvore": sorted(na_arvore),
-        "escolhidas": [a["id"] for a in escolhidas],
-        "candidatas": [],
-        "atual": None,
-    })
+            "candidatas": [],
+            "atual": None,
+        }
+    )
 
     arestas_escolhidas = []
     for a in escolhidas:
-        arestas_escolhidas.append({"origem": a["origem"], "destino": a["destino"], "peso": a["peso"]})
+        arestas_escolhidas.append(
+            {"origem": a["origem"], "destino": a["destino"], "peso": a["peso"]}
+        )
 
     return {
         "ok": True,
