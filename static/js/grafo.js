@@ -145,7 +145,7 @@ function criarPlayer(passos, desenhar, classeDoPasso) {
       (p.detalhes && p.detalhes.length ? "<ul>" + p.detalhes.map(d => `<li>${escapar(d)}</li>`).join("") + "</ul>" : "");
     el("contador").textContent = `Passo ${i + 1} de ${passos.length}`;
     [...lista.children].forEach((li, k2) => li.classList.toggle("ativo", k2 === i));
-    lista.children[i].scrollIntoView({ block: "nearest" });
+    rolarLista(lista, lista.children[i]);
     el("btn-anterior").disabled = i === 0;
     el("btn-proximo").disabled = i === passos.length - 1;
     desenhar(p, i);
@@ -163,8 +163,16 @@ function criarPlayer(passos, desenhar, classeDoPasso) {
   el("btn-play").onclick = play;
   el("btn-final").onclick = () => { parar(); ir(passos.length - 1); };
   ["btn-anterior", "btn-proximo", "btn-play", "btn-final"].forEach(b => (el(b).disabled = false));
+  // uma rolagem só, de propósito: leva o usuário até o grafo, onde a execução vai aparecer
+  document.querySelector(".grafo-card").scrollIntoView({ behavior: "smooth", block: "start" });
 
   return { ir, parar, ultimo: () => ir(passos.length - 1) };
+}
+
+// rola só a lista, nunca a página (scrollIntoView rolaria a janela inteira e tiraria o grafo da tela)
+function rolarLista(lista, item) {
+  const r = item.getBoundingClientRect(), rl = lista.getBoundingClientRect();
+  if (r.top < rl.top || r.bottom > rl.bottom) lista.scrollTop += r.top - rl.top - (rl.height - r.height) / 2;
 }
 
 function desativarPlayer() {

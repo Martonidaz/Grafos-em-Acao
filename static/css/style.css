@@ -129,7 +129,7 @@ select:focus { outline: 2px solid var(--azul); }
 .grafo-card { padding: 0; overflow: hidden; }
 .grafo-topo { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; border-bottom: 1px solid var(--borda); gap: 10px; flex-wrap: wrap; }
 .grafo-topo h2 { margin: 0; }
-#grafo { height: 560px; background: radial-gradient(circle at 50% 40%, #121a3a, #0b1124); }
+#grafo { height: min(560px, 60vh); background: radial-gradient(circle at 50% 40%, #121a3a, #0b1124); }
 .legenda { display: flex; gap: 14px; flex-wrap: wrap; padding: 12px 18px; border-top: 1px solid var(--borda); font-size: 13px; color: var(--texto-2); }
 .legenda span { display: inline-flex; align-items: center; gap: 6px; }
 .cor { width: 22px; height: 4px; border-radius: 2px; display: inline-block; }
@@ -138,6 +138,8 @@ select:focus { outline: 2px solid var(--azul); }
 
 /* Passo a passo */
 .player { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+.player-grafo { padding: 12px 18px; border-top: 1px solid var(--borda); }
+.player-grafo .player { margin-bottom: 10px; }
 .contador { margin-left: auto; color: var(--texto-2); font-size: 13px; }
 .passo-atual { background: var(--fundo); border: 1px solid var(--borda); border-left: 4px solid var(--roxo); border-radius: 10px; padding: 14px 16px; }
 .passo-atual p { margin: 0; }
