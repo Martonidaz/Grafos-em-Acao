@@ -54,7 +54,18 @@ Os nomes dos pontos, bairros e aeroportos são reais (fontes em `dados/REFERENCI
 - **Prim**: conexões modeladas a partir dos hubs da LATAM, não a malha real; distância por Haversine.
 - **Kruskal**: vias e comprimentos estimados para demonstração.
 
-Trocar esses valores por medidas reais (Google Maps) está em andamento, veja `docs/CONTEXTO.md`.
+### Como medir os pesos no Google Maps (grátis)
+
+Sem API e sem chave: só links que abrem a rota no navegador, então não há como gerar cobrança.
+
+1. Abra `dados/medicoes_dijkstra.csv` ou `dados/medicoes_kruskal.csv` no Excel ou no Google Sheets.
+2. Em cada linha, clique em `link_google_maps`, confira se os dois pontos caíram no lugar certo
+   (corrija no próprio Maps se precisar) e anote a distância da rota em `peso_medido_km` ou
+   `peso_medido_m`, só o número (`1,7` / `850`), mais `medido_por` e `data`.
+3. Salve como CSV (separador `;`) e rode `python -m dados.medicoes aplicar`. O script grava o peso e
+   a fonte em cada aresta, valida o grafo inteiro e não grava nada se algum valor estiver errado.
+
+Linhas em branco são ignoradas, então dá para dividir as linhas entre o grupo e aplicar aos poucos.
 
 ## Tecnologias
 

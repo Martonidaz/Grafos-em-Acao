@@ -40,6 +40,9 @@ Testes: `tests/test_validacao.py`. **Abertos: 1 e 3** (dependem de medir no Goog
 
 ## Próximos passos
 
-1. Defeito 1 (pesos reais com `fonte`), começando pelo Kruskal (12 bairros, 20 vias).
+1. Defeito 1 (pesos reais com `fonte`): planilhas `dados/medicoes_*.csv` geradas (27 + 20 arestas,
+   link do Maps em cada uma). Falta o grupo medir e rodar `python -m dados.medicoes aplicar`.
+   Google Maps só via links (Maps URLs, sem chave): o Daniel já pagou R$ 350 com API do Maps;
+   **nunca** usar Distance Matrix/Directions/Places API neste projeto.
 2. Defeito 3 (modelagem do ônibus: direção e baldeação).
 3. Integrantes do grupo convidados como colaboradores no GitHub (09/11).
