@@ -1,0 +1,31 @@
+[project]
+name = "grafos-em-acao"
+version = "0.1.0"
+description = "Dijkstra, Prim e Kruskal aplicados a problemas reais (Trabalho Final de Teoria dos Grafos)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+# networkx entra só como oráculo nos testes, nunca no código de src/
+dev = ["pytest>=8", "ruff>=0.6", "networkx>=3.2"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+# F: código morto/no-op · SIM103: if x: return True else: return False · RET505: else redundante
+# B006: mutable default argument · PL: complexidade e números mágicos · I: ordem dos imports
+select = ["F", "E", "W", "I", "B", "SIM", "RET", "PL", "RUF"]
