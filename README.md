@@ -67,6 +67,33 @@ Sem API e sem chave: só links que abrem a rota no navegador, então não há co
 
 Linhas em branco são ignoradas, então dá para dividir as linhas entre o grupo e aplicar aos poucos.
 
+### Alternativa: medir com a Routes API (paga, com travas)
+
+O script `python -m dados.rotas_api` preenche as linhas vazias das mesmas planilhas. As 47 chamadas
+ficam dentro da cota gratuita mensal do Google (10.000 de Compute Routes Essentials), **mas a API
+exige conta de faturamento com cartão e cobra tudo acima da cota**. Só rode depois destas travas:
+
+1. **Conta antiga:** em *Faturamento → Relatórios*, confira se algum projeto antigo ainda gera custo
+   de Maps; desative as chaves antigas em *APIs e serviços → Credenciais*. A cota grátis é contada
+   por conta de faturamento, então uso antigo esquecido consome a mesma cota.
+2. **Projeto novo e separado** (ex.: `grafos-em-acao`) ligado à sua conta de faturamento existente.
+   Ative **somente** a *Routes API*.
+3. **Chave restrita:** *Credenciais → Criar chave de API → Restrições de API → só Routes API*.
+4. **Cota baixa (a única trava que realmente impede gasto):** *APIs e serviços → Routes API →
+   Cotas*: reduza o limite de requisições por dia para 100 (se só houver limite por minuto, use um
+   valor baixo, como 10).
+5. **Alerta de orçamento** de R$ 1 em *Faturamento → Orçamentos e alertas* (só avisa, não bloqueia).
+6. Rode com a chave só na sessão do terminal (nunca em arquivo do repositório):
+   ```powershell
+   $env:GOOGLE_MAPS_API_KEY = "cole-a-chave-aqui"   # PowerShell; no bash: export GOOGLE_MAPS_API_KEY=...
+   python -m dados.rotas_api        # mostra quantas chamadas fará e pede confirmação
+   python -m dados.medicoes aplicar
+   ```
+7. **Depois de medir:** exclua a chave, desative a Routes API e desvincule o faturamento do projeto.
+
+O próprio script tem teto de 60 chamadas, pede confirmação, só pede `distanceMeters` sem trânsito
+(SKU Essentials), para no primeiro erro e não repete chamada para linha já medida.
+
 ## Tecnologias
 
 Python, Flask, HTML, CSS, JavaScript, vis-network, NetworkX (só nos testes).

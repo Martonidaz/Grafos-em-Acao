@@ -49,6 +49,8 @@ Pendente: a lista dos pontos.
 1. Defeito 1 (pesos reais com `fonte`): planilhas `dados/medicoes_*.csv` geradas (27 + 20 arestas,
    link do Maps em cada uma). Falta o grupo medir e rodar `python -m dados.medicoes aplicar`.
    Google Maps só via links (Maps URLs, sem chave): o Daniel já pagou R$ 350 com API do Maps;
-   **nunca** usar Distance Matrix/Directions/Places API neste projeto.
+   Alternativa a pedido do Daniel (09/11): `dados/rotas_api.py` (Routes API Essentials, 47
+   chamadas, dentro da cota grátis) com travas no script e roteiro de travas no Cloud no README.
+   Nunca usar outra API do Maps (Distance Matrix, Places, Geocoding) neste projeto.
 2. Defeito 3 (modelagem do ônibus: direção e baldeação).
 3. Integrantes do grupo convidados como colaboradores no GitHub (09/11).
