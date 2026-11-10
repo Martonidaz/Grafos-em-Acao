@@ -15,3 +15,6 @@ extend-exclude = ["static/vendor"]
 select = ["F", "E", "W", "I", "B", "SIM", "RET", "PL", "RUF"]
 # complexidade e números mágicos: o código que monta o passo a passo é didático e linear de propósito
 ignore = ["PLR0912", "PLR0913", "PLR0915", "PLR0917", "PLR2004"]
+
+[tool.ruff.lint.per-file-ignores]
+"dados/bairros_api.py" = ["E501"]  # lista de bairros e chamadas longas, lidas melhor numa linha só
