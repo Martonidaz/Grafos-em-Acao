@@ -3,7 +3,7 @@
 import pytest
 
 import app as servidor
-from algoritmos import dijkstra, remover_arestas
+from algoritmos import carregar_grafo, dijkstra, remover_arestas
 from algoritmos.grafo import validar_grafo
 
 
@@ -75,3 +75,14 @@ def test_api_responde_400_para_entrada_invalida():
     )
     assert r.status_code == 400
     assert not r.get_json()["ok"]
+
+
+def test_linhas_reais_estao_nas_arestas_certas():
+    # Diário do Transporte (16/03/2022): linha 8, linha 6 e linhas 3/5 da ABC Transportes
+    com_linha = {
+        a["id"]: a["linhas"] for a in carregar_grafo("dijkstra")["arestas"] if "linhas" in a
+    }
+    assert com_linha == {
+        "ALD|USP2": ["8"], "SHO|USP2": ["8"], "CEN|SHO": ["6"], "CEN|USP1": ["6"],
+        "CAM|USP1": ["6"], "CRU|NOV": ["3", "5"], "CRU|PRO": ["3", "5"],
+    }  # fmt: skip

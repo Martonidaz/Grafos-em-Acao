@@ -31,7 +31,18 @@ conjunto S), Kruskal (floresta, ordenação de arestas, detecção de ciclo).
 Corrigidos em 09/11/2026 (modo desenvolvimento): **2** (`validar_grafo` na carga + `validar_pesos`
 no Dijkstra), **4** (`deque`), **5** (comentário: *path halving*), **6** (`app.run()` sem debug) e **7**
 (`remover_arestas` exige lista; `@app.errorhandler(ValueError)` → 400 no lugar de 3 `try/except`).
-Testes: `tests/test_validacao.py`. **Abertos: 1 e 3** (dependem de medir no Google Maps).
+Testes: `tests/test_validacao.py`.
+
+**1 resolvido (09/11):** 47 distâncias reais (Routes API + conferência no site; vale a menor rota).
+**3 resolvido no que as fontes permitem (09/11):** 7 das 27 ligações levam `linhas` reais da ABC
+Transportes (Diário do Transporte, 16/03/2022: linha 8 Aldo Nassif–USP II–Shopping; linha 6
+Shopping–Centro–USP I–Campinho; linhas 3/5 Novo Horizonte–Cruz–Parque das Rodovias). O resultado do
+Dijkstra mostra a linha de cada trecho e conta as trocas de linha. Limites assumidos: rede não
+direcionada (as linhas fazem ida e volta) e a troca de linha não entra no peso (o Dijkstra minimiza
+distância). Itinerário completo das linhas não está publicado nas fontes consultadas.
+
+Grupo: Breno Ryan de Andrade Fernandes, Daniel Marton Barbosa, João Vitor Ferreira Azevedo Pereira,
+Mariana Gonçalves de Freitas Ribeiro. Professor: Prof. Me. Warner Brezolin. Entrega: 09/11/2026, 23h.
 
 ## Decisões em aberto
 

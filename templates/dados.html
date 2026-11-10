@@ -26,7 +26,7 @@
     <div class="tabela-wrap">
       <table>
         <tr><th>Aresta</th><th>Peso</th><th>Origem do valor</th></tr>
-        {% for a in g.arestas %}<tr><td class="mono">{{ a.origem }} - {{ a.destino }}</td><td>{{ a.peso }} {{ g.unidade }}</td><td class="vazio">{{ a.fonte or 'demonstrativo' }}</td></tr>{% endfor %}
+        {% for a in g.arestas %}<tr><td class="mono">{{ a.origem }} - {{ a.destino }}</td><td>{{ a.peso }} {{ g.unidade }}</td><td class="vazio">{{ a.fonte or 'sem fonte' }}{% if a.linhas %} · linha {{ a.linhas|join('/') }}{% endif %}</td></tr>{% endfor %}
       </table>
     </div>
   </div>

@@ -1,6 +1,6 @@
 # ADR 0003 — Formato e origem dos dados dos grafos
 
-- **Status:** em aberto
+- **Status:** aceita (09/11/2026)
 
 ## Contexto
 
@@ -37,4 +37,9 @@ Não há validação na carga (aresta com id inexistente vira `KeyError`; peso n
 
 ## Decisão
 
->>> ESCREVA AQUI SUA DECISÃO (e a justificativa, respondendo P1–P4)
+JSON (um arquivo por grafo) com `fonte` por aresta; validação na carga (`validar_grafo`, camada de
+ingestão) e de novo no Dijkstra para peso negativo. Pesos: voos por Haversine (avião voa quase em
+linha reta); ônibus e vias pela rota de carro do Google Maps (rua não é linha reta), vale a menor
+rota encontrada. Aresta não direcionada guardada uma vez; duplicata é recusada na carga.
+
+>>> Justificativa em palavras do grupo (P1–P4), para a defesa.

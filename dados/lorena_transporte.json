@@ -5,7 +5,7 @@
   "criterio_peso": "Distância da rota de carro entre os pontos no Google Maps (a menor rota encontrada), em quilômetros (km).",
   "unidade": "km",
   "tipo_dado": "medido",
-  "aviso": "Os pontos são locais reais de Lorena citados nas fontes (linhas da ABC Transportes e pontos centrais). As DISTÂNCIAS são reais: rota de carro medida no Google Maps em 09/11/2026 (Routes API, conferida no site). As LIGAÇÕES entre os pontos são um modelo do grupo e não o itinerário oficial das linhas, que não estava disponível nas fontes consultadas.",
+  "aviso": "Os pontos são locais reais de Lorena citados nas fontes. As DISTÂNCIAS são reais: rota de carro medida no Google Maps em 09/11/2026 (Routes API, conferida no site). 7 das 27 ligações seguem linhas reais da ABC Transportes (linha 8: Aldo Nassif–USP II–Shopping; linha 6: Shopping–Centro–USP I–Campinho; linhas 3/5: Novo Horizonte–Bairro da Cruz–Parque das Rodovias, segundo o Diário do Transporte); as demais são ligações modeladas pelo grupo, porque o itinerário completo das linhas não está publicado nas fontes consultadas.",
   "vertices": [
     {
       "id": "CEN",
@@ -133,7 +133,10 @@
       "origem": "CEN",
       "destino": "SHO",
       "peso": 4.33,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)",
+      "linhas": [
+        "6"
+      ]
     },
     {
       "origem": "ROD",
@@ -151,25 +154,37 @@
       "origem": "CEN",
       "destino": "USP1",
       "peso": 5.48,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)",
+      "linhas": [
+        "6"
+      ]
     },
     {
       "origem": "USP1",
       "destino": "CAM",
       "peso": 0.26,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)",
+      "linhas": [
+        "6"
+      ]
     },
     {
       "origem": "SHO",
       "destino": "USP2",
       "peso": 4.39,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)",
+      "linhas": [
+        "8"
+      ]
     },
     {
       "origem": "USP2",
       "destino": "ALD",
       "peso": 7.39,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)",
+      "linhas": [
+        "8"
+      ]
     },
     {
       "origem": "SHO",
@@ -241,13 +256,21 @@
       "origem": "CRU",
       "destino": "PRO",
       "peso": 2.62,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)",
+      "linhas": [
+        "3",
+        "5"
+      ]
     },
     {
       "origem": "CRU",
       "destino": "NOV",
       "peso": 3.41,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)",
+      "linhas": [
+        "3",
+        "5"
+      ]
     },
     {
       "origem": "OLA",

@@ -8,7 +8,8 @@ const g = criarGrafo("grafo", DADOS, {
 });
 
 const pesoDe = {};
-DADOS.arestas.forEach(a => (pesoDe[a.id] = a.peso));
+const linhasDe = {};
+DADOS.arestas.forEach(a => { pesoDe[a.id] = a.peso; linhasDe[a.id] = a.linhas || []; });
 const idAresta = (a, b) => [a, b].sort().join("|");
 
 let origemAtual = null, destinoAtual = null;
@@ -53,16 +54,27 @@ async function executar() {
 
 function mostrarResultado(r) {
   const trechos = [];
+  let linhaAtual = null, trocas = 0, modeladas = 0;
   for (let i = 0; i < r.caminho.length - 1; i++) {
-    const a = r.caminho[i], b = r.caminho[i + 1];
-    trechos.push(`<tr><td>${i + 1}</td><td>${g.nomes[a]} → ${g.nomes[b]}</td><td>${formatarPeso(pesoDe[idAresta(a, b)], DADOS.unidade)}</td></tr>`);
+    const a = r.caminho[i], b = r.caminho[i + 1], id = idAresta(a, b);
+    const linhas = linhasDe[id];
+    // troca de linha: o trecho tem linha real, mas nenhuma em comum com a linha que o passageiro já está
+    if (!linhas.length) { modeladas++; linhaAtual = null; }
+    else {
+      if (linhaAtual && !linhas.some(l => linhaAtual.includes(l))) trocas++;
+      linhaAtual = linhaAtual && linhas.some(l => linhaAtual.includes(l)) ? linhas.filter(l => linhaAtual.includes(l)) : linhas;
+    }
+    const rotulo = linhas.length ? `Linha ${linhas.join("/")}` : '<span class="vazio">ligação modelada</span>';
+    trechos.push(`<tr><td>${i + 1}</td><td>${g.nomes[a]} → ${g.nomes[b]}</td><td>${rotulo}</td><td>${formatarPeso(pesoDe[id], DADOS.unidade)}</td></tr>`);
   }
+  const resumoLinhas = `${r.caminho.length - 1 - modeladas} trecho(s) em linha real, ${modeladas} ligação(ões) modelada(s), ${trocas} troca(s) de linha`;
   document.getElementById("resultado").innerHTML = `
     <div class="custo-rotulo">Distância total</div>
     <div class="custo">${formatarPeso(r.custo, DADOS.unidade)}</div>
     <div class="custo-rotulo" style="margin-top:10px">Sequência de pontos</div>
     <div class="sequencia">${r.caminho_nomes.map(n => `<span class="ponto">${n}</span>`).join('<span class="seta">→</span>')}</div>
-    <div class="tabela-wrap"><table><tr><th>#</th><th>Trecho</th><th>Distância</th></tr>${trechos.join("")}</table></div>`;
+    <div class="tabela-wrap"><table><tr><th>#</th><th>Trecho</th><th>Linha</th><th>Distância</th></tr>${trechos.join("")}</table></div>
+    <p class="dica">${resumoLinhas}</p>`;
 }
 
 
