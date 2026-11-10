@@ -1,16 +1,17 @@
 # Referências dos dados
 
-Consultadas em outubro de 2026.
+Consultadas em outubro de 2026; distâncias de Lorena medidas em 09/11/2026.
 
 ## Dijkstra — transporte público de Lorena/SP (`lorena_transporte.json`)
 
 - Diário do Transporte — *Lorena (SP) altera itinerários de três linhas de ônibus* (16/03/2022). Operadora ABC Transportes; pontos Aldo Nassif, USP II, Shopping, Centro, USP I, Campinho, Novo Horizonte, Bairro da Cruz, Parque das Rodovias. https://diariodotransporte.com.br/2022/03/16/lorena-sp-altera-itinerarios-de-tres-linhas-de-onibus/
 - Mobilidade Sampa — *Itinerários de três linhas de ônibus são atualizados em Lorena* (03/2022). https://mobilidadesampa.com.br/2022/03/lorena-itinerarios-linhas-de-onibus-atualizacao/
-- Buser — Estação Ferroviária de Lorena e pontos próximos (Praça Arnolfo de Azevedo a 0,4 km; Terminal Rodoviário a 0,7 km). https://www.buser.com.br/destinos/pontos-turisticos/sp/lorena/estacao-ferroviaria-de-lorena
 - Prefeitura de Lorena — Horário de ônibus. http://www.lorena.sp.gov.br/wordpress/index.php/horario-de-onibus-lorena-2/
 - CEPs Brasil — Bairros de Lorena/SP. https://cepsbrasil.com.br/sp/lorena
 
-**Limitação:** os itinerários completos (ruas) das linhas não estavam disponíveis nas fontes consultadas. Por isso as ligações e distâncias (exceto as duas da Buser) são demonstrativas.
+- Google Maps — distância da rota de carro de cada ligação (27), pela Routes API (sem trânsito) e conferida no site; vale a menor rota encontrada. Fonte de cada aresta no campo `fonte` do JSON e em `dados/medicoes_dijkstra.csv`.
+
+**Limitação:** os itinerários completos (ruas) das linhas não estavam disponíveis nas fontes consultadas. As **distâncias são reais**, mas **quais pontos se ligam** é um modelo do grupo. A versão anterior usava 0,4 e 0,7 km da Buser para Estação–Praça e Estação–Rodoviária; foram trocadas pela rota de carro para todas as arestas seguirem o mesmo critério.
 
 ## Prim — LATAM (`latam_aeroportos.json`)
 
@@ -24,9 +25,9 @@ Consultadas em outubro de 2026.
 ## Kruskal — bairros de Lorena/SP (`lorena_bairros.json`)
 
 - CEPs Brasil — Bairros de Lorena/SP. https://cepsbrasil.com.br/sp/lorena
-- Google Maps — referência para medir as vias. https://www.google.com/maps/place/Lorena,+SP
+- Google Maps — distância da rota de carro entre os bairros (20 vias), pela Routes API e conferida no site; vale a menor rota encontrada. Detalhe em `dados/medicoes_kruskal.csv`.
 
-**Limitação:** vias e comprimentos demonstrativos.
+**Limitação:** os comprimentos são reais (rota entre pontos de referência dos bairros), mas quais pares de bairros têm via candidata é um modelo do grupo.
 
 ## Teoria
 

@@ -2,62 +2,286 @@
   "titulo": "Transporte público de Lorena/SP",
   "algoritmo": "dijkstra",
   "descricao": "Pontos de referência do transporte coletivo urbano de Lorena/SP e ligações entre eles.",
-  "criterio_peso": "Distância estimada de deslocamento entre os pontos, em quilômetros (km).",
+  "criterio_peso": "Distância da rota de carro entre os pontos no Google Maps (a menor rota encontrada), em quilômetros (km).",
   "unidade": "km",
-  "tipo_dado": "demonstrativo",
-  "aviso": "EXEMPLO ACADÊMICO. Os nomes dos pontos são locais reais de Lorena citados nas fontes (linhas da ABC Transportes e pontos centrais da cidade). As ligações e as distâncias são ESTIMATIVAS DEMONSTRATIVAS, exceto as duas marcadas com fonte (Estação–Praça e Estação–Rodoviária). Não representam o itinerário oficial das linhas. Para usar valores reais, meça cada ligação no Google Maps e atualize o campo 'peso' deste arquivo.",
+  "tipo_dado": "medido",
+  "aviso": "Os pontos são locais reais de Lorena citados nas fontes (linhas da ABC Transportes e pontos centrais). As DISTÂNCIAS são reais: rota de carro medida no Google Maps em 09/11/2026 (Routes API, conferida no site). As LIGAÇÕES entre os pontos são um modelo do grupo e não o itinerário oficial das linhas, que não estava disponível nas fontes consultadas.",
   "vertices": [
-    {"id": "CEN",  "nome": "Centro (Praça Arnolfo de Azevedo)", "x": 0,    "y": 0},
-    {"id": "EST",  "nome": "Estação Ferroviária / Basílica São Benedito", "x": -90, "y": -110},
-    {"id": "ROD",  "nome": "Terminal Rodoviário", "x": 120, "y": -120},
-    {"id": "SHO",  "nome": "Shopping", "x": 220, "y": 60},
-    {"id": "USP1", "nome": "EEL-USP Área I (Campus I)", "x": 60, "y": 260},
-    {"id": "CAM",  "nome": "Campinho", "x": -90, "y": 380},
-    {"id": "USP2", "nome": "EEL-USP Área II (Campus II)", "x": 440, "y": 230},
-    {"id": "ALD",  "nome": "Res. Dr. João Aldo Nassif", "x": 540, "y": 360},
-    {"id": "VPA",  "nome": "Vila Passos", "x": -230, "y": 90},
-    {"id": "CAB",  "nome": "Cabelinha", "x": -400, "y": 170},
-    {"id": "CEC",  "nome": "Cecap", "x": -260, "y": 300},
-    {"id": "OLA",  "nome": "Olaria", "x": -180, "y": -230},
-    {"id": "CRU",  "nome": "Bairro da Cruz", "x": 60, "y": -350},
-    {"id": "PRO",  "nome": "Parque das Rodovias", "x": 300, "y": -420},
-    {"id": "NOV",  "nome": "Jardim Novo Horizonte", "x": -110, "y": -470}
+    {
+      "id": "CEN",
+      "nome": "Centro (Praça Arnolfo de Azevedo)",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "EST",
+      "nome": "Estação Ferroviária / Basílica São Benedito",
+      "x": -90,
+      "y": -110
+    },
+    {
+      "id": "ROD",
+      "nome": "Terminal Rodoviário",
+      "x": 120,
+      "y": -120
+    },
+    {
+      "id": "SHO",
+      "nome": "Shopping",
+      "x": 220,
+      "y": 60
+    },
+    {
+      "id": "USP1",
+      "nome": "EEL-USP Área I (Campus I)",
+      "x": 60,
+      "y": 260
+    },
+    {
+      "id": "CAM",
+      "nome": "Campinho",
+      "x": -90,
+      "y": 380
+    },
+    {
+      "id": "USP2",
+      "nome": "EEL-USP Área II (Campus II)",
+      "x": 440,
+      "y": 230
+    },
+    {
+      "id": "ALD",
+      "nome": "Res. Dr. João Aldo Nassif",
+      "x": 540,
+      "y": 360
+    },
+    {
+      "id": "VPA",
+      "nome": "Vila Passos",
+      "x": -230,
+      "y": 90
+    },
+    {
+      "id": "CAB",
+      "nome": "Cabelinha",
+      "x": -400,
+      "y": 170
+    },
+    {
+      "id": "CEC",
+      "nome": "Cecap",
+      "x": -260,
+      "y": 300
+    },
+    {
+      "id": "OLA",
+      "nome": "Olaria",
+      "x": -180,
+      "y": -230
+    },
+    {
+      "id": "CRU",
+      "nome": "Bairro da Cruz",
+      "x": 60,
+      "y": -350
+    },
+    {
+      "id": "PRO",
+      "nome": "Parque das Rodovias",
+      "x": 300,
+      "y": -420
+    },
+    {
+      "id": "NOV",
+      "nome": "Jardim Novo Horizonte",
+      "x": -110,
+      "y": -470
+    }
   ],
   "arestas": [
-    {"origem": "EST",  "destino": "CEN",  "peso": 0.4, "fonte": "Buser - distância Estação Ferroviária ↔ Praça Arnolfo de Azevedo (0,4 km)"},
-    {"origem": "EST",  "destino": "ROD",  "peso": 0.7, "fonte": "Buser - distância Estação Ferroviária ↔ Terminal Rodoviário (0,7 km)"},
-    {"origem": "CEN",  "destino": "ROD",  "peso": 0.9, "fonte": "demonstrativo"},
-    {"origem": "CEN",  "destino": "VPA",  "peso": 1.5, "fonte": "demonstrativo"},
-    {"origem": "CEN",  "destino": "OLA",  "peso": 1.8, "fonte": "demonstrativo"},
-    {"origem": "CEN",  "destino": "SHO",  "peso": 2.0, "fonte": "demonstrativo"},
-    {"origem": "ROD",  "destino": "SHO",  "peso": 1.6, "fonte": "demonstrativo"},
-    {"origem": "SHO",  "destino": "USP1", "peso": 2.6, "fonte": "demonstrativo"},
-    {"origem": "CEN",  "destino": "USP1", "peso": 3.2, "fonte": "demonstrativo"},
-    {"origem": "USP1", "destino": "CAM",  "peso": 1.4, "fonte": "demonstrativo"},
-    {"origem": "SHO",  "destino": "USP2", "peso": 4.5, "fonte": "demonstrativo"},
-    {"origem": "USP2", "destino": "ALD",  "peso": 1.2, "fonte": "demonstrativo"},
-    {"origem": "SHO",  "destino": "ALD",  "peso": 5.9, "fonte": "demonstrativo"},
-    {"origem": "CAM",  "destino": "ALD",  "peso": 6.3, "fonte": "demonstrativo"},
-    {"origem": "USP1", "destino": "USP2", "peso": 4.1, "fonte": "demonstrativo"},
-    {"origem": "VPA",  "destino": "CAB",  "peso": 1.3, "fonte": "demonstrativo"},
-    {"origem": "CAB",  "destino": "CEC",  "peso": 1.7, "fonte": "demonstrativo"},
-    {"origem": "VPA",  "destino": "CEC",  "peso": 2.5, "fonte": "demonstrativo"},
-    {"origem": "CEC",  "destino": "USP1", "peso": 2.9, "fonte": "demonstrativo"},
-    {"origem": "CEC",  "destino": "CAM",  "peso": 2.2, "fonte": "demonstrativo"},
-    {"origem": "EST",  "destino": "OLA",  "peso": 1.3, "fonte": "demonstrativo"},
-    {"origem": "OLA",  "destino": "CRU",  "peso": 2.2, "fonte": "demonstrativo"},
-    {"origem": "ROD",  "destino": "CRU",  "peso": 2.8, "fonte": "demonstrativo"},
-    {"origem": "CRU",  "destino": "PRO",  "peso": 1.9, "fonte": "demonstrativo"},
-    {"origem": "CRU",  "destino": "NOV",  "peso": 1.6, "fonte": "demonstrativo"},
-    {"origem": "OLA",  "destino": "NOV",  "peso": 2.7, "fonte": "demonstrativo"},
-    {"origem": "ROD",  "destino": "PRO",  "peso": 4.0, "fonte": "demonstrativo"}
+    {
+      "origem": "EST",
+      "destino": "CEN",
+      "peso": 1.82,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "EST",
+      "destino": "ROD",
+      "peso": 1.16,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEN",
+      "destino": "ROD",
+      "peso": 2.27,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEN",
+      "destino": "VPA",
+      "peso": 3.49,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEN",
+      "destino": "OLA",
+      "peso": 2.44,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEN",
+      "destino": "SHO",
+      "peso": 4.33,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "ROD",
+      "destino": "SHO",
+      "peso": 3.38,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "SHO",
+      "destino": "USP1",
+      "peso": 10.3,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEN",
+      "destino": "USP1",
+      "peso": 5.48,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "USP1",
+      "destino": "CAM",
+      "peso": 0.26,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "SHO",
+      "destino": "USP2",
+      "peso": 4.39,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "USP2",
+      "destino": "ALD",
+      "peso": 7.39,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "SHO",
+      "destino": "ALD",
+      "peso": 6.86,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CAM",
+      "destino": "ALD",
+      "peso": 12.79,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "USP1",
+      "destino": "USP2",
+      "peso": 6.56,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "VPA",
+      "destino": "CAB",
+      "peso": 3.2,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CAB",
+      "destino": "CEC",
+      "peso": 4.43,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "VPA",
+      "destino": "CEC",
+      "peso": 5.9,
+      "fonte": "Google Maps, rota de carro (medido por Daniel Marton (site do Google Maps, rota mais curta) em 09/11/2026)"
+    },
+    {
+      "origem": "CEC",
+      "destino": "USP1",
+      "peso": 8.98,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEC",
+      "destino": "CAM",
+      "peso": 8.79,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "EST",
+      "destino": "OLA",
+      "peso": 1.06,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "OLA",
+      "destino": "CRU",
+      "peso": 1.77,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "ROD",
+      "destino": "CRU",
+      "peso": 2.73,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CRU",
+      "destino": "PRO",
+      "peso": 2.62,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CRU",
+      "destino": "NOV",
+      "peso": 3.41,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "OLA",
+      "destino": "NOV",
+      "peso": 3.65,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "ROD",
+      "destino": "PRO",
+      "peso": 4.15,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    }
   ],
   "referencias": [
-    {"titulo": "Diário do Transporte - Lorena (SP) altera itinerários de três linhas de ônibus (16/03/2022). Cita a operadora ABC Transportes e os pontos Aldo Nassif, USP II, Shopping, Centro, USP I, Campinho, Novo Horizonte, Bairro da Cruz e Parque das Rodovias.", "url": "https://diariodotransporte.com.br/2022/03/16/lorena-sp-altera-itinerarios-de-tres-linhas-de-onibus/"},
-    {"titulo": "Mobilidade Sampa - Itinerários de três linhas de ônibus são atualizados em Lorena (03/2022).", "url": "https://mobilidadesampa.com.br/2022/03/lorena-itinerarios-linhas-de-onibus-atualizacao/"},
-    {"titulo": "Buser - Estação Ferroviária de Lorena e pontos próximos (distâncias até a Praça Arnolfo de Azevedo e o Terminal Rodoviário).", "url": "https://www.buser.com.br/destinos/pontos-turisticos/sp/lorena/estacao-ferroviaria-de-lorena"},
-    {"titulo": "Prefeitura de Lorena - Horário de ônibus (página oficial com horários das linhas urbanas).", "url": "http://www.lorena.sp.gov.br/wordpress/index.php/horario-de-onibus-lorena-2/"},
-    {"titulo": "CEPs Brasil - Lista de bairros de Lorena/SP (confirma Cabelinha, Vila Passos, Olaria, Cecap, Campinho, Cruz, Parque das Rodovias, Jardim Novo Horizonte, Res. Dr. João Aldo Nassif).", "url": "https://cepsbrasil.com.br/sp/lorena"},
-    {"titulo": "Google Maps - referência geográfica para localizar os pontos e medir as distâncias.", "url": "https://www.google.com/maps/place/Lorena,+SP"}
+    {
+      "titulo": "Diário do Transporte - Lorena (SP) altera itinerários de três linhas de ônibus (16/03/2022). Cita a operadora ABC Transportes e os pontos Aldo Nassif, USP II, Shopping, Centro, USP I, Campinho, Novo Horizonte, Bairro da Cruz e Parque das Rodovias.",
+      "url": "https://diariodotransporte.com.br/2022/03/16/lorena-sp-altera-itinerarios-de-tres-linhas-de-onibus/"
+    },
+    {
+      "titulo": "Mobilidade Sampa - Itinerários de três linhas de ônibus são atualizados em Lorena (03/2022).",
+      "url": "https://mobilidadesampa.com.br/2022/03/lorena-itinerarios-linhas-de-onibus-atualizacao/"
+    },
+    {
+      "titulo": "Prefeitura de Lorena - Horário de ônibus (página oficial com horários das linhas urbanas).",
+      "url": "http://www.lorena.sp.gov.br/wordpress/index.php/horario-de-onibus-lorena-2/"
+    },
+    {
+      "titulo": "CEPs Brasil - Lista de bairros de Lorena/SP (confirma Cabelinha, Vila Passos, Olaria, Cecap, Campinho, Cruz, Parque das Rodovias, Jardim Novo Horizonte, Res. Dr. João Aldo Nassif).",
+      "url": "https://cepsbrasil.com.br/sp/lorena"
+    },
+    {
+      "titulo": "Google Maps (Routes API e site) - distâncias de rota de carro medidas em 09/11/2026.",
+      "url": "https://www.google.com/maps/place/Lorena,+SP"
+    }
   ]
 }

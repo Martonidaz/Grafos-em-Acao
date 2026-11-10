@@ -59,7 +59,7 @@
   <h2>Como o algoritmo funciona?</h2>
   <div class="explicacao">
     <div><h4>Objetivo</h4><p>Encontrar o caminho de menor custo total entre a origem e o destino escolhidos.</p></div>
-    <div><h4>Vértices, arestas e pesos</h4><p>Cada vértice é um ponto de parada; cada aresta é um trecho entre dois pontos; o peso é a distância estimada do trecho em km.</p></div>
+    <div><h4>Vértices, arestas e pesos</h4><p>Cada vértice é um ponto de parada; cada aresta é um trecho entre dois pontos; o peso é a distância da rota de carro do trecho no Google Maps, em km.</p></div>
     <div><h4>Critério de escolha</h4><p>A cada etapa, visita o ponto <b>ainda não visitado</b> que tem a <b>menor distância acumulada</b> desde a origem. Depois tenta melhorar a distância dos vizinhos: se <code>dist[atual] + peso &lt; dist[vizinho]</code>, atualiza.</p></div>
     <div><h4>Como chega ao resultado</h4><p>Quando o destino é visitado, sua distância é definitiva. O caminho é reconstruído de trás para frente usando o campo <b>anterior</b> de cada ponto.</p></div>
     <div><h4>Por que é adequado</h4><p>Num sistema de transporte, o passageiro quer o trajeto mais curto entre dois pontos. Como as distâncias nunca são negativas, Dijkstra garante o ótimo.</p></div>

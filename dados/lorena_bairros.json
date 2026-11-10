@@ -2,48 +2,214 @@
   "titulo": "Pavimentação de vias entre bairros de Lorena/SP",
   "algoritmo": "kruskal",
   "descricao": "Bairros de Lorena/SP e as vias de acesso candidatas à pavimentação.",
-  "criterio_peso": "Comprimento estimado da via que liga dois bairros, em metros (m).",
+  "criterio_peso": "Distância da rota de carro entre os bairros no Google Maps (a menor rota encontrada), em metros (m).",
   "unidade": "m",
-  "tipo_dado": "demonstrativo",
-  "aviso": "EXEMPLO ACADÊMICO. Os bairros existem em Lorena/SP (lista de bairros dos Correios/CEPs). As vias e seus comprimentos são VALORES DEMONSTRATIVOS, criados para o exercício. Para usar dados reais, meça cada via no Google Maps (botão direito → Medir distância) e atualize o campo 'peso' deste arquivo.",
+  "tipo_dado": "medido",
+  "aviso": "Os bairros existem em Lorena/SP (lista de bairros dos Correios/CEPs). Os COMPRIMENTOS são reais: rota de carro entre os bairros medida no Google Maps em 09/11/2026 (Routes API, conferida no site). Quais pares de bairros têm via candidata é um modelo do grupo (bairros vizinhos).",
   "vertices": [
-    {"id": "CEN", "nome": "Centro",               "x": 0,    "y": 0},
-    {"id": "VPA", "nome": "Vila Passos",          "x": -220, "y": 70},
-    {"id": "CAB", "nome": "Cabelinha",            "x": -420, "y": 150},
-    {"id": "HEP", "nome": "Vila Hepacaré",        "x": -170, "y": 230},
-    {"id": "CEC", "nome": "Cecap",                "x": -340, "y": 360},
-    {"id": "POR", "nome": "Portal das Palmeiras", "x": -560, "y": 330},
-    {"id": "SAN", "nome": "Santo Antônio",        "x": 190,  "y": 40},
-    {"id": "PON", "nome": "Ponte Nova",           "x": 320,  "y": 330},
-    {"id": "OLA", "nome": "Olaria",               "x": 60,   "y": -210},
-    {"id": "CRU", "nome": "Cruz",                 "x": 230,  "y": -350},
-    {"id": "VNU", "nome": "Vila Nunes",           "x": 420,  "y": -170},
-    {"id": "PRO", "nome": "Parque das Rodovias",  "x": 470,  "y": -430}
+    {
+      "id": "CEN",
+      "nome": "Centro",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "VPA",
+      "nome": "Vila Passos",
+      "x": -220,
+      "y": 70
+    },
+    {
+      "id": "CAB",
+      "nome": "Cabelinha",
+      "x": -420,
+      "y": 150
+    },
+    {
+      "id": "HEP",
+      "nome": "Vila Hepacaré",
+      "x": -170,
+      "y": 230
+    },
+    {
+      "id": "CEC",
+      "nome": "Cecap",
+      "x": -340,
+      "y": 360
+    },
+    {
+      "id": "POR",
+      "nome": "Portal das Palmeiras",
+      "x": -560,
+      "y": 330
+    },
+    {
+      "id": "SAN",
+      "nome": "Santo Antônio",
+      "x": 190,
+      "y": 40
+    },
+    {
+      "id": "PON",
+      "nome": "Ponte Nova",
+      "x": 320,
+      "y": 330
+    },
+    {
+      "id": "OLA",
+      "nome": "Olaria",
+      "x": 60,
+      "y": -210
+    },
+    {
+      "id": "CRU",
+      "nome": "Cruz",
+      "x": 230,
+      "y": -350
+    },
+    {
+      "id": "VNU",
+      "nome": "Vila Nunes",
+      "x": 420,
+      "y": -170
+    },
+    {
+      "id": "PRO",
+      "nome": "Parque das Rodovias",
+      "x": 470,
+      "y": -430
+    }
   ],
   "arestas": [
-    {"origem": "CEN", "destino": "VPA", "peso": 1500},
-    {"origem": "CEN", "destino": "OLA", "peso": 1800},
-    {"origem": "CEN", "destino": "SAN", "peso": 1100},
-    {"origem": "CEN", "destino": "HEP", "peso": 1400},
-    {"origem": "CEN", "destino": "PON", "peso": 2300},
-    {"origem": "VPA", "destino": "CAB", "peso": 1300},
-    {"origem": "VPA", "destino": "HEP", "peso": 900},
-    {"origem": "HEP", "destino": "CAB", "peso": 1800},
-    {"origem": "CAB", "destino": "CEC", "peso": 1700},
-    {"origem": "CAB", "destino": "POR", "peso": 2100},
-    {"origem": "CEC", "destino": "POR", "peso": 1250},
-    {"origem": "CEC", "destino": "HEP", "peso": 2400},
-    {"origem": "OLA", "destino": "CRU", "peso": 2200},
-    {"origem": "OLA", "destino": "SAN", "peso": 1600},
-    {"origem": "OLA", "destino": "VNU", "peso": 2900},
-    {"origem": "CRU", "destino": "PRO", "peso": 1900},
-    {"origem": "CRU", "destino": "VNU", "peso": 1000},
-    {"origem": "PRO", "destino": "VNU", "peso": 1550},
-    {"origem": "SAN", "destino": "PON", "peso": 1200},
-    {"origem": "PON", "destino": "VNU", "peso": 2600}
+    {
+      "origem": "CEN",
+      "destino": "VPA",
+      "peso": 3490,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEN",
+      "destino": "OLA",
+      "peso": 2445,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEN",
+      "destino": "SAN",
+      "peso": 2550,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEN",
+      "destino": "HEP",
+      "peso": 1738,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEN",
+      "destino": "PON",
+      "peso": 3542,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "VPA",
+      "destino": "CAB",
+      "peso": 3204,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "VPA",
+      "destino": "HEP",
+      "peso": 3675,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "HEP",
+      "destino": "CAB",
+      "peso": 2419,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CAB",
+      "destino": "CEC",
+      "peso": 4429,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CAB",
+      "destino": "POR",
+      "peso": 4429,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEC",
+      "destino": "POR",
+      "peso": 1796,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CEC",
+      "destino": "HEP",
+      "peso": 3229,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "OLA",
+      "destino": "CRU",
+      "peso": 1588,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "OLA",
+      "destino": "SAN",
+      "peso": 2112,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "OLA",
+      "destino": "VNU",
+      "peso": 3230,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CRU",
+      "destino": "PRO",
+      "peso": 3160,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "CRU",
+      "destino": "VNU",
+      "peso": 4000,
+      "fonte": "Google Maps, rota de carro (medido por Daniel Marton (site do Google Maps, rota mais curta) em 09/11/2026)"
+    },
+    {
+      "origem": "PRO",
+      "destino": "VNU",
+      "peso": 2789,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "SAN",
+      "destino": "PON",
+      "peso": 5797,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    },
+    {
+      "origem": "PON",
+      "destino": "VNU",
+      "peso": 6096,
+      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+    }
   ],
   "referencias": [
-    {"titulo": "CEPs Brasil - Bairros de Lorena/SP (Centro, Vila Passos, Cabelinha, Vila Hepacare, Cecap, Portal das Palmeiras, Santo Antônio, Ponte Nova, Olaria, Cruz, Vila Nunes, Parque das Rodovias).", "url": "https://cepsbrasil.com.br/sp/lorena"},
-    {"titulo": "Google Maps - referência geográfica para localizar os bairros e medir o comprimento das vias.", "url": "https://www.google.com/maps/place/Lorena,+SP"}
+    {
+      "titulo": "CEPs Brasil - Bairros de Lorena/SP (Centro, Vila Passos, Cabelinha, Vila Hepacare, Cecap, Portal das Palmeiras, Santo Antônio, Ponte Nova, Olaria, Cruz, Vila Nunes, Parque das Rodovias).",
+      "url": "https://cepsbrasil.com.br/sp/lorena"
+    },
+    {
+      "titulo": "Google Maps (Routes API e site) - distâncias de rota de carro medidas em 09/11/2026.",
+      "url": "https://www.google.com/maps/place/Lorena,+SP"
+    }
   ]
 }

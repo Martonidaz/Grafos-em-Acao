@@ -15,7 +15,7 @@ CRU|OLA;Olaria;Cruz;2200;1588;Google Routes API;09/11/2026;https://www.google.co
 OLA|SAN;Olaria;Santo Antônio;1600;2112;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Olaria%2C+Lorena+-+SP&destination=Santo+Ant%C3%B4nio%2C+Lorena+-+SP&travelmode=driving
 OLA|VNU;Olaria;Vila Nunes;2900;3230;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Olaria%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving
 CRU|PRO;Cruz;Parque das Rodovias;1900;3160;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Cruz%2C+Lorena+-+SP&destination=Parque+das+Rodovias%2C+Lorena+-+SP&travelmode=driving
-CRU|VNU;Cruz;Vila Nunes;1000;4348;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Cruz%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving
+CRU|VNU;Cruz;Vila Nunes;1000;4000;Daniel Marton (site do Google Maps, rota mais curta);09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Cruz%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving
 PRO|VNU;Parque das Rodovias;Vila Nunes;1550;2789;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Parque+das+Rodovias%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving
 PON|SAN;Santo Antônio;Ponte Nova;1200;5797;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Santo+Ant%C3%B4nio%2C+Lorena+-+SP&destination=Ponte+Nova%2C+Lorena+-+SP&travelmode=driving
 PON|VNU;Ponte Nova;Vila Nunes;2600;6096;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Ponte+Nova%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving

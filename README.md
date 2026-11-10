@@ -48,11 +48,11 @@ CLAUDE.md            regras de trabalho do projeto
 
 ## Sobre os dados
 
-Os nomes dos pontos, bairros e aeroportos são reais (fontes em `dados/REFERENCIAS.md`), mas na v1:
+Os nomes dos pontos, bairros e aeroportos são reais (fontes em `dados/REFERENCIAS.md`):
 
-- **Dijkstra**: ligações e distâncias estimadas para demonstração (só 2 têm fonte).
+- **Dijkstra**: distâncias reais (rota de carro no Google Maps, 09/11/2026); quais pontos se ligam é um modelo, não o itinerário oficial.
 - **Prim**: conexões modeladas a partir dos hubs da LATAM, não a malha real; distância por Haversine.
-- **Kruskal**: vias e comprimentos estimados para demonstração.
+- **Kruskal**: comprimentos reais (rota de carro entre bairros no Google Maps, 09/11/2026); os pares de bairros vizinhos são um modelo.
 
 ### Como medir os pesos no Google Maps (grátis)
 

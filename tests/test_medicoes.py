@@ -1,6 +1,5 @@
 import csv
 import json
-import shutil
 
 import pytest
 
@@ -24,7 +23,10 @@ def test_numero_recusa_texto(texto):
 def preparar(tmp_path):
     original, _ = caminhos("kruskal")
     js, cs = tmp_path / "g.json", tmp_path / "m.csv"
-    shutil.copy(original, js)
+    grafo = json.loads(original.read_text(encoding="utf-8"))
+    for aresta in grafo["arestas"]:  # cenário fixo: nenhuma aresta medida ainda
+        aresta.pop("fonte", None)
+    js.write_text(json.dumps(grafo), encoding="utf-8")
     gerar(js, cs)
     with cs.open(newline="", encoding="utf-8-sig") as f:
         linhas = list(csv.reader(f, delimiter=SEP))
