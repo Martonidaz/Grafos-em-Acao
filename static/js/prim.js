@@ -2,7 +2,8 @@
 
 const g = criarGrafo("grafo", DADOS, {
   rotuloCurto: true, // mostra so a sigla (GRU, BSB...)
-  escala: 2.2,
+  escala: 1.3,
+  pesoSoNoMouse: true, // 155 rotas: duração no tooltip e no texto do passo
   aoAlterarArestas: removidas => {
     limparResultado();
     mostrarMensagem(`${removidas.size} aresta(s) desativada(s). Execute novamente para recalcular.`, "ok");

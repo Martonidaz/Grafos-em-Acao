@@ -71,7 +71,8 @@ def test_prim_igual_networkx():
 
 def test_prim_desconexo():
     g = carregar_grafo("prim")
-    arestas = remover_arestas(g, [a["id"] for a in g["arestas"] if "MAO" in a["id"]])
+    isolado = "MAO"  # Manaus: tira todas as rotas dele
+    arestas = remover_arestas(g, [a["id"] for a in g["arestas"] if isolado in a["id"].split("|")])
     r = prim(ids(g), arestas, "GRU")
     assert not r["ok"]
     assert "MAO" in r["erro"]

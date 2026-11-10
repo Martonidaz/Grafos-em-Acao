@@ -1,54 +1,1684 @@
 {
-  "titulo": "Conexões aéreas da LATAM no Brasil",
+  "titulo": "Rotas domésticas da LATAM no Brasil",
   "algoritmo": "prim",
-  "descricao": "Principais aeroportos brasileiros atendidos pela LATAM, ligados por conexões entre hubs/bases e destinos.",
-  "criterio_peso": "Distância em linha reta (ortodrômica) entre os aeroportos, em quilômetros, calculada pela fórmula de Haversine a partir das coordenadas de cada aeroporto.",
-  "unidade": "km",
-  "tipo_dado": "modelo acadêmico",
-  "aviso": "MODELO ACADÊMICO. Os aeroportos, os hubs (Guarulhos, Brasília, Fortaleza) e as bases (Galeão, Porto Alegre, Confins, Florianópolis, Recife) vêm das referências pesquisadas. As arestas são as ligações hub/base ↔ destino consideradas no modelo; elas NÃO representam a malha operacional oficial nem horários de voo da LATAM. Os pesos são calculados pelo programa (Haversine), não informados pela companhia.",
+  "descricao": "64 aeroportos brasileiros com voos domésticos da LATAM realizados em setembro de 2026 e as 155 rotas operadas entre eles.",
+  "criterio_peso": "Duração real do voo em minutos (chegada real - partida real): mediana de cada sentido e média de ida e volta, ANAC VRA de setembro de 2026.",
+  "unidade": "min",
+  "tipo_dado": "real",
+  "aviso": "Dados reais: 23251 voos domésticos realizados pela LATAM (ICAO TAM) em setembro de 2026, segundo o VRA da ANAC. Cada aresta é uma rota que a LATAM de fato operou (pelo menos 4 voos no mês) e o peso é a duração real do voo. Coordenadas dos aeroportos: OurAirports. O Prim encontra a árvore geradora mínima: o menor tempo total de voo que ainda liga todos os aeroportos; não é um itinerário de passageiro.",
+  "referencias": [
+    {
+      "titulo": "ANAC - Voo Regular Ativo (VRA), arquivo VRA_20269.csv (setembro de 2026, atualizado em 28/10/2026).",
+      "url": "https://www.gov.br/anac/pt-br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/voo-regular-ativo-vra/voo-regular-ativo-vra"
+    },
+    {
+      "titulo": "OurAirports - base pública de aeroportos (coordenadas e códigos ICAO/IATA).",
+      "url": "https://ourairports.com/data/"
+    }
+  ],
   "vertices": [
-    {"id": "GRU", "nome": "São Paulo - Guarulhos (GRU)",     "lat": -23.4356, "lon": -46.4731, "tipo": "hub"},
-    {"id": "BSB", "nome": "Brasília (BSB)",                  "lat": -15.8697, "lon": -47.9208, "tipo": "hub"},
-    {"id": "FOR", "nome": "Fortaleza (FOR)",                 "lat": -3.7763,  "lon": -38.5326, "tipo": "hub"},
-    {"id": "GIG", "nome": "Rio de Janeiro - Galeão (GIG)",   "lat": -22.8090, "lon": -43.2506, "tipo": "base"},
-    {"id": "POA", "nome": "Porto Alegre (POA)",              "lat": -29.9939, "lon": -51.1711, "tipo": "base"},
-    {"id": "CNF", "nome": "Belo Horizonte - Confins (CNF)",  "lat": -19.6244, "lon": -43.9719, "tipo": "base"},
-    {"id": "FLN", "nome": "Florianópolis (FLN)",             "lat": -27.6703, "lon": -48.5525, "tipo": "base"},
-    {"id": "REC", "nome": "Recife (REC)",                    "lat": -8.1265,  "lon": -34.9236, "tipo": "base"},
-    {"id": "SSA", "nome": "Salvador (SSA)",                  "lat": -12.9086, "lon": -38.3225, "tipo": "destino"},
-    {"id": "MAO", "nome": "Manaus (MAO)",                    "lat": -3.0386,  "lon": -60.0497, "tipo": "destino"},
-    {"id": "BEL", "nome": "Belém (BEL)",                     "lat": -1.3793,  "lon": -48.4763, "tipo": "destino"},
-    {"id": "CWB", "nome": "Curitiba (CWB)",                  "lat": -25.5285, "lon": -49.1758, "tipo": "destino"},
-    {"id": "CGB", "nome": "Cuiabá (CGB)",                    "lat": -15.6529, "lon": -56.1167, "tipo": "destino"},
-    {"id": "GYN", "nome": "Goiânia (GYN)",                   "lat": -16.6320, "lon": -49.2207, "tipo": "destino", "x": -170, "y": 110, "obs": "posição de tela deslocada só para não sobrepor Brasília"}
+    {
+      "id": "AJU",
+      "icao": "SBAR",
+      "nome": "Aracaju (AJU)",
+      "lat": -10.9839,
+      "lon": -37.0729,
+      "x": 613,
+      "y": -174
+    },
+    {
+      "id": "BEL",
+      "icao": "SBBE",
+      "nome": "Belém (BEL)",
+      "lat": -1.3793,
+      "lon": -48.4762,
+      "x": -23,
+      "y": -562
+    },
+    {
+      "id": "BSB",
+      "icao": "SBBR",
+      "nome": "Brasília (BSB)",
+      "lat": -15.8692,
+      "lon": -47.9208,
+      "x": 54,
+      "y": -9
+    },
+    {
+      "id": "BVB",
+      "icao": "SBBV",
+      "nome": "Boa Vista (BVB)",
+      "lat": 2.8462,
+      "lon": -60.6906,
+      "x": -640,
+      "y": -650
+    },
+    {
+      "id": "CAC",
+      "icao": "SBCA",
+      "nome": "Cascavel (CAC)",
+      "lat": -25.0003,
+      "lon": -53.5012,
+      "x": -386,
+      "y": 397
+    },
+    {
+      "id": "CNF",
+      "icao": "SBCF",
+      "nome": "Belo Horizonte (CNF)",
+      "lat": -19.6357,
+      "lon": -43.9669,
+      "x": 240,
+      "y": 137
+    },
+    {
+      "id": "CGR",
+      "icao": "SBCG",
+      "nome": "Campo Grande (CGR)",
+      "lat": -20.47,
+      "lon": -54.674,
+      "x": -440,
+      "y": 184
+    },
+    {
+      "id": "XAP",
+      "icao": "SBCH",
+      "nome": "Chapecó (XAP)",
+      "lat": -27.1342,
+      "lon": -52.6566,
+      "x": -360,
+      "y": 484
+    },
+    {
+      "id": "CLV",
+      "icao": "SBCN",
+      "nome": "Caldas Novas (CLV)",
+      "lat": -17.7251,
+      "lon": -48.6063,
+      "x": -76,
+      "y": 76
+    },
+    {
+      "id": "CWB",
+      "icao": "SBCT",
+      "nome": "Curitiba (CWB)",
+      "lat": -25.5285,
+      "lon": -49.1758,
+      "x": -171,
+      "y": 424
+    },
+    {
+      "id": "CXJ",
+      "icao": "SBCX",
+      "nome": "Caxias Do Sul (CXJ)",
+      "lat": -29.1972,
+      "lon": -51.1876,
+      "x": -263,
+      "y": 555
+    },
+    {
+      "id": "CGB",
+      "icao": "SBCY",
+      "nome": "Cuiabá (CGB)",
+      "lat": -15.6529,
+      "lon": -56.1167,
+      "x": -511,
+      "y": -13
+    },
+    {
+      "id": "BYO",
+      "icao": "SBDB",
+      "nome": "Bonito (BYO)",
+      "lat": -21.2473,
+      "lon": -56.4524,
+      "x": -533,
+      "y": 232
+    },
+    {
+      "id": "MAO",
+      "icao": "SBEG",
+      "nome": "Manaus (MAO)",
+      "lat": -3.0386,
+      "lon": -60.0497,
+      "x": -613,
+      "y": -475
+    },
+    {
+      "id": "IGU",
+      "icao": "SBFI",
+      "nome": "Foz do Iguaçu (IGU)",
+      "lat": -25.5942,
+      "lon": -54.4894,
+      "x": -448,
+      "y": 463
+    },
+    {
+      "id": "FLN",
+      "icao": "SBFL",
+      "nome": "Florianópolis (FLN)",
+      "lat": -27.6703,
+      "lon": -48.5525,
+      "x": -1,
+      "y": 553
+    },
+    {
+      "id": "FEN",
+      "icao": "SBFN",
+      "nome": "Fernando de Noronha (FEN)",
+      "lat": -3.8545,
+      "lon": -32.423,
+      "x": 800,
+      "y": -438
+    },
+    {
+      "id": "FOR",
+      "icao": "SBFZ",
+      "nome": "Fortaleza (FOR)",
+      "lat": -3.7758,
+      "lon": -38.5322,
+      "x": 568,
+      "y": -451
+    },
+    {
+      "id": "GIG",
+      "icao": "SBGL",
+      "nome": "Rio De Janeiro (GIG)",
+      "lat": -22.81,
+      "lon": -43.2506,
+      "x": 258,
+      "y": 276
+    },
+    {
+      "id": "GYN",
+      "icao": "SBGO",
+      "nome": "Goiânia (GYN)",
+      "lat": -16.632,
+      "lon": -49.2207,
+      "x": -158,
+      "y": 39
+    },
+    {
+      "id": "GRU",
+      "icao": "SBGR",
+      "nome": "São Paulo (GRU)",
+      "lat": -23.4313,
+      "lon": -46.47,
+      "x": 188,
+      "y": 399
+    },
+    {
+      "id": "IOS",
+      "icao": "SBIL",
+      "nome": "Ilhéus (IOS)",
+      "lat": -14.8159,
+      "lon": -39.0335,
+      "x": 494,
+      "y": -72
+    },
+    {
+      "id": "IMP",
+      "icao": "SBIZ",
+      "nome": "Imperatriz (IMP)",
+      "lat": -5.5313,
+      "lon": -47.46,
+      "x": 87,
+      "y": -375
+    },
+    {
+      "id": "JJG",
+      "icao": "SBJA",
+      "nome": "Jaguaruna (JJG)",
+      "lat": -28.6753,
+      "lon": -49.0596,
+      "x": -122,
+      "y": 586
+    },
+    {
+      "id": "JJD",
+      "icao": "SBJE",
+      "nome": "Cruz (JJD)",
+      "lat": -2.9064,
+      "lon": -40.3573,
+      "x": 453,
+      "y": -487
+    },
+    {
+      "id": "JPA",
+      "icao": "SBJP",
+      "nome": "João Pessoa (JPA)",
+      "lat": -7.1487,
+      "lon": -34.9506,
+      "x": 762,
+      "y": -350
+    },
+    {
+      "id": "JDO",
+      "icao": "SBJU",
+      "nome": "Juazeiro do Norte (JDO)",
+      "lat": -7.2193,
+      "lon": -39.2691,
+      "x": 494,
+      "y": -313
+    },
+    {
+      "id": "JOI",
+      "icao": "SBJV",
+      "nome": "Joinville (JOI)",
+      "lat": -26.2245,
+      "lon": -48.7974,
+      "x": -81,
+      "y": 417
+    },
+    {
+      "id": "CPV",
+      "icao": "SBKG",
+      "nome": "Campina Grande (CPV)",
+      "lat": -7.2697,
+      "lon": -35.8961,
+      "x": 643,
+      "y": -296
+    },
+    {
+      "id": "VCP",
+      "icao": "SBKP",
+      "nome": "Campinas (VCP)",
+      "lat": -23.0074,
+      "lon": -47.1345,
+      "x": 85,
+      "y": 309
+    },
+    {
+      "id": "LDB",
+      "icao": "SBLO",
+      "nome": "Londrina (LDB)",
+      "lat": -23.3344,
+      "lon": -51.1284,
+      "x": -219,
+      "y": 330
+    },
+    {
+      "id": "MAB",
+      "icao": "SBMA",
+      "nome": "Marabá (MAB)",
+      "lat": -5.3686,
+      "lon": -49.138,
+      "x": -126,
+      "y": -390
+    },
+    {
+      "id": "MGF",
+      "icao": "SBMG",
+      "nome": "Maringá (MGF)",
+      "lat": -23.4761,
+      "lon": -52.0162,
+      "x": -302,
+      "y": 366
+    },
+    {
+      "id": "MOC",
+      "icao": "SBMK",
+      "nome": "Montes Claros (MOC)",
+      "lat": -16.7069,
+      "lon": -43.8189,
+      "x": 260,
+      "y": 50
+    },
+    {
+      "id": "MCZ",
+      "icao": "SBMO",
+      "nome": "Maceió (MCZ)",
+      "lat": -9.5126,
+      "lon": -35.7918,
+      "x": 690,
+      "y": -219
+    },
+    {
+      "id": "MCP",
+      "icao": "SBMQ",
+      "nome": "Macapá (MCP)",
+      "lat": 0.0507,
+      "lon": -51.0722,
+      "x": -222,
+      "y": -596
+    },
+    {
+      "id": "NVT",
+      "icao": "SBNF",
+      "nome": "Navegantes (NVT)",
+      "lat": -26.8794,
+      "lon": -48.651,
+      "x": -79,
+      "y": 507
+    },
+    {
+      "id": "POA",
+      "icao": "SBPA",
+      "nome": "Porto Alegre (POA)",
+      "lat": -29.994,
+      "lon": -51.1675,
+      "x": -233,
+      "y": 640
+    },
+    {
+      "id": "PHB",
+      "icao": "SBPB",
+      "nome": "Parnaíba (PHB)",
+      "lat": -2.8937,
+      "lon": -41.732,
+      "x": 364,
+      "y": -504
+    },
+    {
+      "id": "PFB",
+      "icao": "SBPF",
+      "nome": "Passo Fundo (PFB)",
+      "lat": -28.244,
+      "lon": -52.3278,
+      "x": -352,
+      "y": 573
+    },
+    {
+      "id": "PMW",
+      "icao": "SBPJ",
+      "nome": "Palmas (PMW)",
+      "lat": -10.2915,
+      "lon": -48.357,
+      "x": -6,
+      "y": -180
+    },
+    {
+      "id": "PET",
+      "icao": "SBPK",
+      "nome": "Pelotas (PET)",
+      "lat": -31.7172,
+      "lon": -52.3278,
+      "x": -322,
+      "y": 658
+    },
+    {
+      "id": "PNZ",
+      "icao": "SBPL",
+      "nome": "Petrolina (PNZ)",
+      "lat": -9.3624,
+      "lon": -40.5691,
+      "x": 424,
+      "y": -231
+    },
+    {
+      "id": "BPS",
+      "icao": "SBPS",
+      "nome": "Porto Seguro (BPS)",
+      "lat": -16.4384,
+      "lon": -39.0806,
+      "x": 494,
+      "y": 37
+    },
+    {
+      "id": "PVH",
+      "icao": "SBPV",
+      "nome": "Porto Velho (PVH)",
+      "lat": -8.7085,
+      "lon": -63.9023,
+      "x": -713,
+      "y": -253
+    },
+    {
+      "id": "RBR",
+      "icao": "SBRB",
+      "nome": "Rio Branco (RBR)",
+      "lat": -9.869,
+      "lon": -67.894,
+      "x": -800,
+      "y": -199
+    },
+    {
+      "id": "REC",
+      "icao": "SBRF",
+      "nome": "Recife (REC)",
+      "lat": -8.1275,
+      "lon": -34.923,
+      "x": 770,
+      "y": -261
+    },
+    {
+      "id": "SDU",
+      "icao": "SBRJ",
+      "nome": "Rio de Janeiro (SDU)",
+      "lat": -22.9104,
+      "lon": -43.1628,
+      "x": 345,
+      "y": 315
+    },
+    {
+      "id": "RAO",
+      "icao": "SBRP",
+      "nome": "Ribeirão Preto (RAO)",
+      "lat": -21.1343,
+      "lon": -47.7741,
+      "x": 85,
+      "y": 219
+    },
+    {
+      "id": "NAT",
+      "icao": "SBSG",
+      "nome": "Natal (NAT)",
+      "lat": -5.7698,
+      "lon": -35.3666,
+      "x": 676,
+      "y": -379
+    },
+    {
+      "id": "OPS",
+      "icao": "SBSI",
+      "nome": "Sinop (OPS)",
+      "lat": -11.885,
+      "lon": -55.5861,
+      "x": -487,
+      "y": -131
+    },
+    {
+      "id": "SJK",
+      "icao": "SBSJ",
+      "nome": "São José Dos Campos (SJK)",
+      "lat": -23.2292,
+      "lon": -45.8615,
+      "x": 175,
+      "y": 310
+    },
+    {
+      "id": "SLZ",
+      "icao": "SBSL",
+      "nome": "São Luís (SLZ)",
+      "lat": -2.5864,
+      "lon": -44.235,
+      "x": 221,
+      "y": -519
+    },
+    {
+      "id": "STM",
+      "icao": "SBSN",
+      "nome": "Santarém (STM)",
+      "lat": -2.4224,
+      "lon": -54.7931,
+      "x": -457,
+      "y": -534
+    },
+    {
+      "id": "CGH",
+      "icao": "SBSP",
+      "nome": "São Paulo (CGH)",
+      "lat": -23.6277,
+      "lon": -46.6546,
+      "x": 98,
+      "y": 398
+    },
+    {
+      "id": "SJP",
+      "icao": "SBSR",
+      "nome": "São José do Rio Preto (SJP)",
+      "lat": -20.8171,
+      "lon": -49.407,
+      "x": -177,
+      "y": 201
+    },
+    {
+      "id": "SSA",
+      "icao": "SBSV",
+      "nome": "Salvador (SSA)",
+      "lat": -12.9086,
+      "lon": -38.3225,
+      "x": 582,
+      "y": -89
+    },
+    {
+      "id": "UNA",
+      "icao": "SBTC",
+      "nome": "Una (UNA)",
+      "lat": -15.3544,
+      "lon": -38.9987,
+      "x": 577,
+      "y": 0
+    },
+    {
+      "id": "THE",
+      "icao": "SBTE",
+      "nome": "Teresina (THE)",
+      "lat": -5.0602,
+      "lon": -42.8237,
+      "x": 338,
+      "y": -407
+    },
+    {
+      "id": "UDI",
+      "icao": "SBUL",
+      "nome": "Uberlândia (UDI)",
+      "lat": -18.8836,
+      "lon": -48.2259,
+      "x": 14,
+      "y": 72
+    },
+    {
+      "id": "UBA",
+      "icao": "SBUR",
+      "nome": "Uberaba (UBA)",
+      "lat": -19.765,
+      "lon": -47.9648,
+      "x": 16,
+      "y": 162
+    },
+    {
+      "id": "VDC",
+      "icao": "SBVC",
+      "nome": "Vitória da Conquista (VDC)",
+      "lat": -14.9079,
+      "lon": -40.9148,
+      "x": 403,
+      "y": -49
+    },
+    {
+      "id": "VIX",
+      "icao": "SBVT",
+      "nome": "Vitória (VIX)",
+      "lat": -20.258,
+      "lon": -40.285,
+      "x": 460,
+      "y": 168
+    },
+    {
+      "id": "IZA",
+      "icao": "SBZM",
+      "nome": "Juiz de Fora (IZA)",
+      "lat": -21.5131,
+      "lon": -43.1731,
+      "x": 330,
+      "y": 221
+    }
   ],
   "arestas": [
-    {"origem": "GRU", "destino": "BSB"}, {"origem": "GRU", "destino": "FOR"},
-    {"origem": "GRU", "destino": "GIG"}, {"origem": "GRU", "destino": "POA"},
-    {"origem": "GRU", "destino": "CNF"}, {"origem": "GRU", "destino": "FLN"},
-    {"origem": "GRU", "destino": "REC"}, {"origem": "GRU", "destino": "SSA"},
-    {"origem": "GRU", "destino": "MAO"}, {"origem": "GRU", "destino": "BEL"},
-    {"origem": "GRU", "destino": "CWB"}, {"origem": "GRU", "destino": "CGB"},
-    {"origem": "GRU", "destino": "GYN"},
-    {"origem": "BSB", "destino": "FOR"}, {"origem": "BSB", "destino": "GIG"},
-    {"origem": "BSB", "destino": "POA"}, {"origem": "BSB", "destino": "CNF"},
-    {"origem": "BSB", "destino": "REC"}, {"origem": "BSB", "destino": "SSA"},
-    {"origem": "BSB", "destino": "MAO"}, {"origem": "BSB", "destino": "BEL"},
-    {"origem": "BSB", "destino": "CGB"}, {"origem": "BSB", "destino": "GYN"},
-    {"origem": "BSB", "destino": "CWB"},
-    {"origem": "FOR", "destino": "REC"}, {"origem": "FOR", "destino": "SSA"},
-    {"origem": "FOR", "destino": "BEL"}, {"origem": "FOR", "destino": "MAO"},
-    {"origem": "FOR", "destino": "GIG"},
-    {"origem": "GIG", "destino": "CNF"}, {"origem": "GIG", "destino": "POA"},
-    {"origem": "GIG", "destino": "SSA"}, {"origem": "GIG", "destino": "REC"},
-    {"origem": "POA", "destino": "FLN"}, {"origem": "POA", "destino": "CWB"},
-    {"origem": "REC", "destino": "SSA"}
-  ],
-  "referencias": [
-    {"titulo": "Wikipedia - LATAM Airlines Brasil (hubs: Brasília, Fortaleza, São Paulo–Congonhas e São Paulo–Guarulhos; cidades-foco: Porto Alegre, Rio de Janeiro–Galeão, Belo Horizonte–Confins, Florianópolis, Recife; lista de destinos domésticos).", "url": "https://en.wikipedia.org/wiki/LATAM_Airlines_Brasil"},
-    {"titulo": "Poder360 - Latam amplia voos e consolida Brasília como hub doméstico.", "url": "https://www.poder360.com.br/poder-infra/latam-amplia-voos-e-consolida-brasilia-como-hub-domestico/"},
-    {"titulo": "Mercado & Eventos - Expansão da Latam impulsiona oferta de voos em Brasília, Guarulhos, Porto Alegre e Curitiba.", "url": "https://www.mercadoeeventos.com.br/noticias/aviacao/expansao-da-latam-impulsiona-oferta-de-voos-em-brasilia-guarulhos-porto-alegre-e-curitiba/"},
-    {"titulo": "LATAM - site oficial (consulta de destinos e voos).", "url": "https://www.latamairlines.com/br/pt"},
-    {"titulo": "Google Maps - localização dos aeroportos (coordenadas aproximadas).", "url": "https://www.google.com/maps"}
+    {
+      "origem": "AJU",
+      "destino": "BSB",
+      "peso": 128,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "AJU",
+      "destino": "GRU",
+      "peso": 158,
+      "voos": 208,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BEL",
+      "destino": "BSB",
+      "peso": 149,
+      "voos": 120,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BEL",
+      "destino": "FOR",
+      "peso": 114,
+      "voos": 120,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BEL",
+      "destino": "GRU",
+      "peso": 215,
+      "voos": 315,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BEL",
+      "destino": "MAO",
+      "peso": 124,
+      "voos": 18,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BEL",
+      "destino": "MCP",
+      "peso": 52,
+      "voos": 51,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BPS",
+      "destino": "CGH",
+      "peso": 120,
+      "voos": 118,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "BPS",
+      "peso": 100,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "BVB",
+      "peso": 211,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "CGB",
+      "peso": 96,
+      "voos": 177,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "CGH",
+      "peso": 103,
+      "voos": 664,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "CGR",
+      "peso": 95,
+      "voos": 119,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "CNF",
+      "peso": 76,
+      "voos": 171,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "CPV",
+      "peso": 149,
+      "voos": 44,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "CWB",
+      "peso": 112,
+      "voos": 170,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "FLN",
+      "peso": 128,
+      "voos": 126,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "FOR",
+      "peso": 154,
+      "voos": 166,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "GIG",
+      "peso": 102,
+      "voos": 180,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "GRU",
+      "peso": 102,
+      "voos": 347,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "GYN",
+      "peso": 41,
+      "voos": 183,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "IGU",
+      "peso": 124,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "IMP",
+      "peso": 116,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "JPA",
+      "peso": 158,
+      "voos": 116,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "MAB",
+      "peso": 115,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "MAO",
+      "peso": 174,
+      "voos": 120,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "MCP",
+      "peso": 160,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "MCZ",
+      "peso": 142,
+      "voos": 118,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "NAT",
+      "peso": 162,
+      "voos": 120,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "OPS",
+      "peso": 101,
+      "voos": 67,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "PMW",
+      "peso": 74,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "POA",
+      "peso": 152,
+      "voos": 178,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "PVH",
+      "peso": 167,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "RBR",
+      "peso": 194,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "REC",
+      "peso": 154,
+      "voos": 229,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "SDU",
+      "peso": 101,
+      "voos": 407,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "SJK",
+      "peso": 106,
+      "voos": 40,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "SJP",
+      "peso": 71,
+      "voos": 26,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "SLZ",
+      "peso": 146,
+      "voos": 120,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "SSA",
+      "peso": 113,
+      "voos": 197,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "STM",
+      "peso": 150,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "THE",
+      "peso": 128,
+      "voos": 110,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "UDI",
+      "peso": 57,
+      "voos": 44,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "VCP",
+      "peso": 93,
+      "voos": 177,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BSB",
+      "destino": "VIX",
+      "peso": 100,
+      "voos": 101,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BVB",
+      "destino": "GRU",
+      "peso": 273,
+      "voos": 16,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "BYO",
+      "destino": "GRU",
+      "peso": 114,
+      "voos": 18,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CAC",
+      "destino": "GRU",
+      "peso": 94,
+      "voos": 91,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CGB",
+      "destino": "CGH",
+      "peso": 138,
+      "voos": 116,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CGB",
+      "destino": "GRU",
+      "peso": 134,
+      "voos": 258,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CGH",
+      "destino": "SJP",
+      "peso": 65,
+      "voos": 117,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CGH",
+      "destino": "SSA",
+      "peso": 146,
+      "voos": 432,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CGH",
+      "destino": "UDI",
+      "peso": 78,
+      "voos": 111,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CGH",
+      "destino": "VIX",
+      "peso": 93,
+      "voos": 227,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CGR",
+      "destino": "CGH",
+      "peso": 104,
+      "voos": 59,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CGR",
+      "destino": "GRU",
+      "peso": 106,
+      "voos": 219,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CLV",
+      "destino": "GRU",
+      "peso": 86,
+      "voos": 16,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CNF",
+      "destino": "CGH",
+      "peso": 77,
+      "voos": 453,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CNF",
+      "destino": "FOR",
+      "peso": 166,
+      "voos": 59,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CNF",
+      "destino": "GRU",
+      "peso": 75,
+      "voos": 334,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CNF",
+      "destino": "POA",
+      "peso": 133,
+      "voos": 110,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CWB",
+      "destino": "CGH",
+      "peso": 60,
+      "voos": 483,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CWB",
+      "destino": "GIG",
+      "peso": 84,
+      "voos": 109,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CWB",
+      "destino": "GRU",
+      "peso": 65,
+      "voos": 360,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CWB",
+      "destino": "IGU",
+      "peso": 69,
+      "voos": 61,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CWB",
+      "destino": "POA",
+      "peso": 69,
+      "voos": 118,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "CXJ",
+      "destino": "GRU",
+      "peso": 96,
+      "voos": 51,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FEN",
+      "destino": "GRU",
+      "peso": 225,
+      "voos": 42,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FLN",
+      "destino": "CGH",
+      "peso": 68,
+      "voos": 401,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FLN",
+      "destino": "GRU",
+      "peso": 80,
+      "voos": 310,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FLN",
+      "destino": "OPS",
+      "peso": 194,
+      "voos": 4,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FLN",
+      "destino": "POA",
+      "peso": 57,
+      "voos": 61,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FLN",
+      "destino": "SJK",
+      "peso": 81,
+      "voos": 28,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FOR",
+      "destino": "CGH",
+      "peso": 206,
+      "voos": 160,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FOR",
+      "destino": "GIG",
+      "peso": 192,
+      "voos": 224,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FOR",
+      "destino": "GRU",
+      "peso": 202,
+      "voos": 425,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FOR",
+      "destino": "JDO",
+      "peso": 57,
+      "voos": 32,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FOR",
+      "destino": "NAT",
+      "peso": 60,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FOR",
+      "destino": "PHB",
+      "peso": 56,
+      "voos": 16,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FOR",
+      "destino": "REC",
+      "peso": 77,
+      "voos": 96,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FOR",
+      "destino": "SJK",
+      "peso": 212,
+      "voos": 10,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FOR",
+      "destino": "SLZ",
+      "peso": 76,
+      "voos": 94,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FOR",
+      "destino": "SSA",
+      "peso": 104,
+      "voos": 101,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "FOR",
+      "destino": "THE",
+      "peso": 64,
+      "voos": 86,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GIG",
+      "destino": "CGH",
+      "peso": 94,
+      "voos": 6,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GIG",
+      "destino": "GRU",
+      "peso": 64,
+      "voos": 461,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GIG",
+      "destino": "JPA",
+      "peso": 174,
+      "voos": 16,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GIG",
+      "destino": "POA",
+      "peso": 118,
+      "voos": 196,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GIG",
+      "destino": "SLZ",
+      "peso": 196,
+      "voos": 13,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GIG",
+      "destino": "SSA",
+      "peso": 123,
+      "voos": 120,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GIG",
+      "destino": "VIX",
+      "peso": 63,
+      "voos": 171,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "BPS",
+      "peso": 115,
+      "voos": 213,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "CGH",
+      "peso": 58,
+      "voos": 5,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "IMP",
+      "peso": 182,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "IOS",
+      "peso": 121,
+      "voos": 179,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "IZA",
+      "peso": 65,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "JDO",
+      "peso": 174,
+      "voos": 120,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "JJD",
+      "peso": 202,
+      "voos": 120,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "JJG",
+      "peso": 85,
+      "voos": 40,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "JOI",
+      "peso": 72,
+      "voos": 82,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "JPA",
+      "peso": 194,
+      "voos": 239,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "LDB",
+      "peso": 75,
+      "voos": 168,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "MCP",
+      "peso": 228,
+      "voos": 52,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "MCZ",
+      "peso": 174,
+      "voos": 287,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "MGF",
+      "peso": 82,
+      "voos": 223,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "MOC",
+      "peso": 89,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "NAT",
+      "peso": 202,
+      "voos": 232,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "NVT",
+      "peso": 72,
+      "voos": 240,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "OPS",
+      "peso": 151,
+      "voos": 61,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "PET",
+      "peso": 122,
+      "voos": 22,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "PFB",
+      "peso": 97,
+      "voos": 100,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "PMW",
+      "peso": 144,
+      "voos": 146,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "PNZ",
+      "peso": 158,
+      "voos": 176,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "POA",
+      "peso": 105,
+      "voos": 438,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "PVH",
+      "peso": 216,
+      "voos": 67,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "RAO",
+      "peso": 60,
+      "voos": 65,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "RBR",
+      "peso": 239,
+      "voos": 22,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "REC",
+      "peso": 188,
+      "voos": 336,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "SDU",
+      "peso": 62,
+      "voos": 180,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "SJP",
+      "peso": 69,
+      "voos": 111,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "SLZ",
+      "peso": 205,
+      "voos": 240,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "SSA",
+      "peso": 140,
+      "voos": 383,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "THE",
+      "peso": 186,
+      "voos": 176,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "UBA",
+      "peso": 68,
+      "voos": 26,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "UDI",
+      "peso": 80,
+      "voos": 214,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "UNA",
+      "peso": 125,
+      "voos": 8,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "VCP",
+      "peso": 82,
+      "voos": 8,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "VDC",
+      "peso": 116,
+      "voos": 175,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GRU",
+      "destino": "VIX",
+      "peso": 90,
+      "voos": 336,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GYN",
+      "destino": "CGH",
+      "peso": 98,
+      "voos": 285,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "GYN",
+      "destino": "GRU",
+      "peso": 99,
+      "voos": 255,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "IGU",
+      "destino": "CGH",
+      "peso": 98,
+      "voos": 109,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "IGU",
+      "destino": "GIG",
+      "peso": 123,
+      "voos": 103,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "IGU",
+      "destino": "GRU",
+      "peso": 104,
+      "voos": 253,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "IOS",
+      "destino": "CGH",
+      "peso": 126,
+      "voos": 16,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "JOI",
+      "destino": "CGH",
+      "peso": 60,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "JPA",
+      "destino": "CGH",
+      "peso": 200,
+      "voos": 59,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "LDB",
+      "destino": "CGH",
+      "peso": 70,
+      "voos": 106,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "MAO",
+      "destino": "FOR",
+      "peso": 200,
+      "voos": 60,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "MAO",
+      "destino": "GIG",
+      "peso": 239,
+      "voos": 17,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "MAO",
+      "destino": "GRU",
+      "peso": 233,
+      "voos": 257,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "MCZ",
+      "destino": "CGH",
+      "peso": 176,
+      "voos": 62,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "MGF",
+      "destino": "CGH",
+      "peso": 76,
+      "voos": 95,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "NAT",
+      "destino": "CGH",
+      "peso": 202,
+      "voos": 56,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "NVT",
+      "destino": "CGH",
+      "peso": 64,
+      "voos": 272,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "OPS",
+      "destino": "SJK",
+      "peso": 155,
+      "voos": 13,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "PNZ",
+      "destino": "REC",
+      "peso": 73,
+      "voos": 26,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "POA",
+      "destino": "CGH",
+      "peso": 96,
+      "voos": 622,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "RAO",
+      "destino": "CGH",
+      "peso": 60,
+      "voos": 107,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "REC",
+      "destino": "CGH",
+      "peso": 192,
+      "voos": 236,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "SDU",
+      "destino": "CGH",
+      "peso": 62,
+      "voos": 1160,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "SJK",
+      "destino": "SSA",
+      "peso": 144,
+      "voos": 11,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "SLZ",
+      "destino": "CGH",
+      "peso": 208,
+      "voos": 44,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "VCP",
+      "destino": "CGH",
+      "peso": 80,
+      "voos": 7,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    },
+    {
+      "origem": "XAP",
+      "destino": "GRU",
+      "peso": 92,
+      "voos": 212,
+      "fonte": "ANAC VRA (duração real, mediana por sentido)"
+    }
   ]
 }

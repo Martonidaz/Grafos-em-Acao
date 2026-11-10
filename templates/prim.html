@@ -53,7 +53,7 @@
   <h2>Como o algoritmo funciona?</h2>
   <div class="explicacao">
     <div><h4>Objetivo</h4><p>Ligar todos os aeroportos usando o menor total de quilômetros possível, sem conexões redundantes (sem ciclos).</p></div>
-    <div><h4>Vértices, arestas e pesos</h4><p>Vértices são aeroportos; arestas são conexões hub/base ↔ destino; o peso é a distância em km calculada por Haversine.</p></div>
+    <div><h4>Vértices, arestas e pesos</h4><p>Vértices são aeroportos; arestas são as rotas que a LATAM operou em setembro de 2026 (ANAC VRA); o peso é a duração real do voo em minutos.</p></div>
     <div><h4>Critério de escolha</h4><p>A árvore cresce a partir do aeroporto inicial. A cada etapa, entre as arestas que saem da árvore para um aeroporto <b>ainda fora</b> dela, escolhe a de <b>menor peso</b>.</p></div>
     <div><h4>Como chega ao resultado</h4><p>Quando todos os V aeroportos estão na árvore, temos V − 1 arestas: essa é a árvore geradora mínima, e a soma dos pesos é o custo total.</p></div>
     <div><h4>Por que é adequado</h4><p>O enunciado pede que toda a demanda seja atendida percorrendo uma só via de conexão: é exatamente uma árvore - conecta todos, sem caminhos duplicados - de custo mínimo.</p></div>

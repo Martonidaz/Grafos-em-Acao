@@ -15,12 +15,13 @@ Consultadas em outubro de 2026; distâncias de Lorena medidas em 09/11/2026.
 
 ## Prim — LATAM (`latam_aeroportos.json`)
 
-- Wikipedia — *LATAM Airlines Brasil*: hubs Brasília, Fortaleza, São Paulo–Congonhas e São Paulo–Guarulhos; cidades-foco Porto Alegre, Rio de Janeiro–Galeão, Belo Horizonte–Confins, Florianópolis e Recife; lista de destinos domésticos. https://en.wikipedia.org/wiki/LATAM_Airlines_Brasil
-- Poder360 — *Latam amplia voos e consolida Brasília como hub doméstico*. https://www.poder360.com.br/poder-infra/latam-amplia-voos-e-consolida-brasilia-como-hub-domestico/
-- Mercado & Eventos — *Expansão da Latam impulsiona oferta de voos em Brasília, Guarulhos, Porto Alegre e Curitiba*. https://www.mercadoeeventos.com.br/noticias/aviacao/expansao-da-latam-impulsiona-oferta-de-voos-em-brasilia-guarulhos-porto-alegre-e-curitiba/
-- Coordenadas dos aeroportos: valores aproximados (Google Maps). Pesos = distância ortodrômica por Haversine, calculada em `algoritmos/grafo.py`.
-
-**Limitação:** São Paulo foi representada só por Guarulhos (GRU) para simplificar. As arestas são as ligações hub/base ↔ destino do modelo, e não uma lista verificada de voos operados.
+- ANAC — Voo Regular Ativo (VRA), setembro de 2026 (atualizado em 28/10/2026), dados abertos.
+  https://www.gov.br/anac/pt-br/acesso-a-informacao/dados-abertos/areas-de-atuacao/voos-e-operacoes-aereas/voo-regular-ativo-vra/voo-regular-ativo-vra
+  Filtro: empresa ICAO `TAM` (LATAM Brasil), voos domésticos com situação REALIZADO: 23.251 voos,
+  64 aeroportos, 155 rotas com pelo menos 4 voos no mês. Gerado por `python -m dados.vra_latam ARQUIVO.csv`.
+- Peso: duração real (chegada real − partida real), mediana por sentido e média de ida e volta
+  (cancela diferença de fuso, caso o arquivo use hora local).
+- OurAirports — coordenadas e códigos ICAO/IATA (`dados/aeroportos_br.csv`). https://ourairports.com/data/
 
 ## Kruskal — bairros de Lorena/SP (`lorena_bairros.json`)
 
