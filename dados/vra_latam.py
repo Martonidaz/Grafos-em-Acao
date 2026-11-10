@@ -43,7 +43,7 @@ def ler(caminho):
     linhas = texto.splitlines()
     # alguns arquivos da ANAC têm linhas de aviso antes do cabeçalho: procura a linha com "icao"
     i = next(k for k, linha in enumerate(linhas[:20]) if "icao" in normal(linha))
-    sep = ";" if linhas[i].count(";") > linhas[i].count(",") else ","
+    sep = max(";,\t", key=linhas[i].count)  # o VRA já veio com ";" e com tabulação
     leitor = csv.reader(io.StringIO("\n".join(linhas[i:])), delimiter=sep)
     cab = [normal(c) for c in next(leitor)]
 
