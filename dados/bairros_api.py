@@ -15,6 +15,7 @@ import re
 import unicodedata
 import urllib.error
 import urllib.request
+from collections import Counter
 from datetime import date
 from itertools import combinations
 from pathlib import Path
@@ -28,6 +29,7 @@ CENTRO = "Praça Arnolfo de Azevedo, Lorena - SP"
 # caixa em volta de Lorena: ponto fora dela = bairro localizado em outra cidade
 LAT, LON = (-22.82, -22.62), (-45.25, -45.00)
 SAIDA = Path(PASTA_DADOS) / "lorena_bairros_todos.json"
+PONTOS = Path(PASTA_DADOS) / "lorena_bairros_pontos.json"
 
 # cepsdobrasil.com.br (base de CEPs dos Correios), consultado em 09/11/2026; sem "Área Rural de Lorena"
 BAIRROS = [
@@ -81,7 +83,7 @@ def vizinhancas(pontos):
     """Cada bairro com os VIZINHOS mais próximos; depois liga componentes soltos pelo par mais próximo."""
     ids = list(pontos)
     dist = {(a, b): haversine_km(*pontos[a], *pontos[b]) for a, b in combinations(ids, 2)}
-    d = lambda a, b: dist.get((a, b)) or dist[(b, a)]  # noqa: E731
+    d = lambda a, b: dist[(a, b)] if (a, b) in dist else dist[(b, a)]  # noqa: E731 (0 km é válido)
     pares = set()
     for a in ids:
         for b in sorted((x for x in ids if x != a), key=lambda x: d(a, x))[:VIZINHOS]:
@@ -121,16 +123,29 @@ def main():
     centro = {"address": CENTRO}
 
     try:
+        if PONTOS.exists():  # cache: não paga a localização duas vezes
+            achados = json.loads(PONTOS.read_text(encoding="utf-8"))
+        else:
+            achados = {}
+            for nome in BAIRROS:
+                r = rota({"address": f"{nome}, Lorena - SP"}, centro, "routes.legs.startLocation")
+                ll = r["legs"][0]["startLocation"]["latLng"] if r else None
+                achados[nome] = [ll["latitude"], ll["longitude"]] if ll else None
+            PONTOS.write_text(json.dumps(achados, ensure_ascii=False, indent=2), encoding="utf-8")
+
         usadas, vertices, pontos, fora = set(), [], {}, []
-        for nome in BAIRROS:
-            r = rota({"address": f"{nome}, Lorena - SP"}, centro, "routes.legs.startLocation")
-            if not r:
+        mesmo_ponto = Counter(tuple(round(c, 5) for c in ll) for ll in achados.values() if ll)
+        for nome, ll in achados.items():
+            if not ll:
                 fora.append(f"{nome} (não localizado)")
                 continue
-            ll = r["legs"][0]["startLocation"]["latLng"]
-            lat, lon = ll["latitude"], ll["longitude"]
+            lat, lon = ll
             if not (LAT[0] <= lat <= LAT[1] and LON[0] <= lon <= LON[1]):
-                fora.append(f"{nome} ({lat:.4f}, {lon:.4f})")
+                fora.append(f"{nome} (fora de Lorena: {lat:.4f}, {lon:.4f})")
+                continue
+            if mesmo_ponto[(round(lat, 5), round(lon, 5))] > 1:
+                # o Google devolve um ponto genérico quando não acha o bairro: mesmo ponto = não achado
+                fora.append(f"{nome} (impreciso: mesmo ponto de outro bairro)")
                 continue
             vid = sigla(nome, usadas)
             pontos[vid] = (lat, lon)
