@@ -43,7 +43,6 @@ dados/               os 3 grafos em JSON + REFERENCIAS.md
 templates/ static/   páginas HTML, CSS, JS e a biblioteca vis-network
 tests/               testes (NetworkX só para comparar o resultado)
 docs/                enunciado, apresentação, capturas, memória (CONTEXTO.md) e decisões (ADRs)
-CLAUDE.md            regras de trabalho do projeto
 ```
 
 ## Sobre os dados
