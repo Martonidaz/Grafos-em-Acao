@@ -18,6 +18,8 @@
         <option value="">selecione</option>
         {% for v in grafo.vertices %}<option value="{{ v.id }}">{{ v.nome }}</option>{% endfor %}
       </select>
+      <label for="filtro">Vértices exibidos</label>
+      <select id="filtro"></select>
       <div class="botoes">
         <button class="btn largo" id="btn-executar">Executar Prim</button>
         <button class="btn secundario" id="btn-restaurar" title="Restaurar grafo original">Restaurar</button>

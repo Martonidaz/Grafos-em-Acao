@@ -77,6 +77,14 @@ def test_api_responde_400_para_entrada_invalida():
     assert not r.get_json()["ok"]
 
 
+def test_filtro_de_vertices_roda_no_subgrafo():
+    cliente = servidor.app.test_client()
+    poucos = ["GRU", "BSB", "CGH", "GIG"]
+    r = cliente.post("/api/prim", json={"inicio": "GRU", "vertices": poucos}).get_json()
+    assert r["ok"] and len(r["escolhidas"]) == len(poucos) - 1
+    assert cliente.post("/api/kruskal", json={"vertices": "GRU"}).status_code == 400
+
+
 def test_linhas_reais_estao_nas_arestas_certas():
     # Diário do Transporte (16/03/2022): linha 8, linha 6 e linhas 3/5 da ABC Transportes
     com_linha = {

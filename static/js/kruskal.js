@@ -24,10 +24,10 @@ function limparResultado() {
 
 async function executar() {
   limparResultado();
-  const r = await chamarAPI("/api/kruskal", { removidas: [...g.removidas] });
+  const r = await chamarAPI("/api/kruskal", { removidas: [...g.removidas], vertices: g.visiveis && [...g.visiveis] });
   if (!r.passos) return mostrarMensagem(r.erro, "erro");
 
-  if (r.ok) mostrarMensagem(`${r.aceitas.length} vias selecionadas conectam os ${DADOS.vertices.length} bairros.`, "ok");
+  if (r.ok) mostrarMensagem(`${r.aceitas.length} vias selecionadas conectam os ${(g.visiveis ? g.visiveis.size : DADOS.vertices.length)} bairros.`, "ok");
   else mostrarMensagem(r.erro + " Grupos: " + r.grupos.map(x => "{" + x.join(", ") + "}").join(" "), "erro");
 
   mostrarResultado(r);
@@ -35,7 +35,8 @@ async function executar() {
 }
 
 function mostrarResultado(r) {
-  const totalGrafo = DADOS.arestas.filter(a => !g.removidas.has(a.id)).reduce((s, a) => s + a.peso, 0);
+  const ve = id => !g.visiveis || g.visiveis.has(id);
+  const totalGrafo = DADOS.arestas.filter(a => !g.removidas.has(a.id) && ve(a.origem) && ve(a.destino)).reduce((s, a) => s + a.peso, 0);
   const economia = totalGrafo - r.custo;
   document.getElementById("resultado").innerHTML = `
     <div class="custo-rotulo">Comprimento total a pavimentar</div>

@@ -59,6 +59,13 @@ def ler_pedido(nome):
     vertices = [v["id"] for v in grafo["vertices"]]
     nomes = {v["id"]: v["nome"] for v in grafo["vertices"]}
     arestas = remover_arestas(grafo, dados.get("removidas", []))
+    manter = dados.get("vertices")  # filtro de visibilidade: roda no subgrafo exibido
+    if manter is not None:
+        if not isinstance(manter, list) or not manter:
+            raise ValueError("'vertices' precisa ser uma lista não vazia de ids.")
+        manter = set(manter)
+        vertices = [v for v in vertices if v in manter]
+        arestas = [a for a in arestas if a["origem"] in manter and a["destino"] in manter]
     return dados, grafo, vertices, nomes, arestas
 
 

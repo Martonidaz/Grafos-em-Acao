@@ -29,14 +29,14 @@ async function executar() {
   if (!inicio) return mostrarMensagem("Selecione o aeroporto inicial.", "erro");
 
   limparResultado();
-  const r = await chamarAPI("/api/prim", { inicio, removidas: [...g.removidas] });
+  const r = await chamarAPI("/api/prim", { inicio, removidas: [...g.removidas], vertices: g.visiveis && [...g.visiveis] });
 
   if (!r.ok) {
     mostrarMensagem(r.erro, "erro");
     if (r.passos) criarPlayer(r.passos, desenharPasso).ultimo();
     return;
   }
-  mostrarMensagem(`Árvore geradora mínima com ${r.escolhidas.length} conexões ligando ${DADOS.vertices.length} aeroportos.`, "ok");
+  mostrarMensagem(`Árvore geradora mínima com ${r.escolhidas.length} conexões ligando ${(g.visiveis ? g.visiveis.size : DADOS.vertices.length)} aeroportos.`, "ok");
   mostrarResultado(r);
   criarPlayer(r.passos, desenharPasso).ultimo();
 }

@@ -68,6 +68,31 @@ function criarGrafo(idContainer, dados, opcoes = {}) {
       rede.fit({ animation: { duration: 400 } });
     },
 
+    visiveis: null, // null = todos
+
+    filtrar(n) {
+      if (!n || n >= dados.vertices.length) {
+        g.visiveis = null;
+      } else {
+        const grau = {}, viz = {};
+        dados.vertices.forEach(v => { grau[v.id] = 0; viz[v.id] = []; });
+        dados.arestas.forEach(a => { grau[a.origem]++; grau[a.destino]++; viz[a.origem].push(a.destino); viz[a.destino].push(a.origem); });
+        const ordem = Object.keys(grau).sort((a, b) => grau[b] - grau[a]);
+        const dentro = new Set([ordem[0]]);
+        while (dentro.size < n) {
+          // fronteira: vizinhos de quem já está dentro; entra o de mais conexões (subgrafo continua conexo)
+          const proximo = ordem.find(v => !dentro.has(v) && viz[v].some(u => dentro.has(u)));
+          if (!proximo) break;
+          dentro.add(proximo);
+        }
+        g.visiveis = dentro;
+      }
+      const ve = id => !g.visiveis || g.visiveis.has(id);
+      nodes.update(dados.vertices.map(v => ({ id: v.id, hidden: !ve(v.id) })));
+      edges.update(dados.arestas.map(a => ({ id: a.id, hidden: !(ve(a.origem) && ve(a.destino)) })));
+      rede.fit({ animation: { duration: 300 } });
+    },
+
     vertice(id, estilo) { nodes.update(estiloVertice(id, estilo)); },
     aresta(id, estilo) { if (!removidas.has(id)) edges.update(estiloAresta(id, estilo)); },
   };
@@ -80,6 +105,15 @@ function criarGrafo(idContainer, dados, opcoes = {}) {
     g.limpar();
     opcoes.aoAlterarArestas(removidas);
   });
+
+  // seletor "Vértices exibidos", se a página tiver um
+  const filtro = document.getElementById("filtro");
+  if (filtro) {
+    const total = dados.vertices.length;
+    filtro.innerHTML = `<option value="">todos (${total})</option>` +
+      [30, 20, 10].filter(k => k < total).map(k => `<option value="${k}">${k} mais conectados</option>`).join("");
+    filtro.onchange = () => { g.filtrar(Number(filtro.value)); if (opcoes.aoAlterarArestas) opcoes.aoAlterarArestas(removidas); };
+  }
 
   g.limpar();
   setTimeout(() => rede.fit(), 50);
