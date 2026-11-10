@@ -10,6 +10,7 @@ só SKU Essentials (sem trânsito), para no primeiro erro, chave só em variáve
 """
 
 import json
+import math
 import os
 import re
 import unicodedata
@@ -106,6 +107,38 @@ def vizinhancas(pontos):
     return sorted(pares)
 
 
+def posicoes(vertices, largura=1400, altura=1000, mistura=0.6):
+    """x, y para desenhar: mistura a posição geográfica com a ordem (oeste->leste, sul->norte).
+
+    Só geografia amontoa os bairros do centro; só a ordem perde a forma da cidade. A mistura mantém
+    quem está a oeste à esquerda e quem está ao norte em cima, mas espaça os vizinhos colados."""
+    n = len(vertices)
+    for eixo, chave, tamanho, sinal in (("x", "lon", largura, 1), ("y", "lat", altura, -1)):
+        valores = [v[chave] for v in vertices]
+        lo, hi = min(valores), max(valores)
+        ordem = {i: r for r, i in enumerate(sorted(range(n), key=lambda i: valores[i]))}
+        for i, v in enumerate(vertices):
+            geo, rank = (valores[i] - lo) / (hi - lo), ordem[i] / (n - 1)
+            v[eixo] = round(sinal * ((1 - mistura) * geo + mistura * rank - 0.5) * tamanho)
+    # afastamento mínimo: empurra para longe só os pares mais próximos que MIN px
+    # ponytail: O(V²) por rodada, ok para dezenas de bairros
+    minimo = 90
+    for _ in range(50):
+        mexeu = False
+        for a, b in combinations(vertices, 2):
+            dx, dy = b["x"] - a["x"], b["y"] - a["y"]
+            d = math.hypot(dx, dy) or 1.0
+            if d < minimo:
+                k = (minimo - d) / 2 / d
+                a["x"], a["y"] = a["x"] - dx * k, a["y"] - dy * k
+                b["x"], b["y"] = b["x"] + dx * k, b["y"] + dy * k
+                mexeu = True
+        if not mexeu:
+            break
+    for v in vertices:
+        v["x"], v["y"] = round(v["x"]), round(v["y"])
+
+
 def main():
     chave = os.environ.get("GOOGLE_MAPS_API_KEY", "").strip()
     if not chave:
@@ -176,11 +209,7 @@ def main():
     except urllib.error.HTTPError as e:
         raise SystemExit(f"Google respondeu {e.code}: {e.read().decode()[:500]}\nParei.") from None
 
-    # posições para desenhar: graus -> pixels, centradas na média
-    mlat = sum(p[0] for p in pontos.values()) / len(pontos)
-    mlon = sum(p[1] for p in pontos.values()) / len(pontos)
-    for v in vertices:
-        v["x"], v["y"] = round((v["lon"] - mlon) * 9000), round(-(v["lat"] - mlat) * 9000)
+    posicoes(vertices)
     SAIDA.write_text(json.dumps({"vertices": vertices, "arestas": arestas, "descartados": fora},
                                 ensure_ascii=False, indent=2) + "\n", encoding="utf-8")  # fmt: skip
     print(f"{len(arestas)} vias medidas; {contador['n']} chamadas. Gravado em {SAIDA.name}.")

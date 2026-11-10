@@ -1,6 +1,7 @@
 // pagina do kruskal
 
 const g = criarGrafo("grafo", DADOS, {
+  pesoSoNoMouse: true,
   aoAlterarArestas: removidas => {
     limparResultado();
     mostrarMensagem(`${removidas.size} via(s) desativada(s). Execute novamente para recalcular.`, "ok");

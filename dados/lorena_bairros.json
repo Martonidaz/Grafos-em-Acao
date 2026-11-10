@@ -84,280 +84,280 @@
       "nome": "Aterrado",
       "lat": -22.752224,
       "lon": -45.137029,
-      "x": -172,
-      "y": 142
+      "x": -700,
+      "y": 351
     },
     {
       "id": "CABE",
       "nome": "Cabelinha",
       "lat": -22.724818,
       "lon": -45.122072,
-      "x": -38,
-      "y": -105
+      "x": -147,
+      "y": -211
     },
     {
       "id": "CAMP",
       "nome": "Campinho",
       "lat": -22.698777,
       "lon": -45.120329,
-      "x": -22,
-      "y": -339
+      "x": -101,
+      "y": -448
     },
     {
       "id": "CECA",
       "nome": "Cecap",
       "lat": -22.755007,
       "lon": -45.133085,
-      "x": -137,
-      "y": 167
+      "x": -603,
+      "y": 385
     },
     {
       "id": "CENT",
       "nome": "Centro",
       "lat": -22.728365,
       "lon": -45.127189,
-      "x": -84,
-      "y": -73
+      "x": -323,
+      "y": -106
     },
     {
       "id": "CIDA",
       "nome": "Cidade Industrial",
       "lat": -22.746973,
       "lon": -45.123737,
-      "x": -53,
-      "y": 95
+      "x": -192,
+      "y": 268
     },
     {
       "id": "CRUZ",
       "nome": "Cruz",
       "lat": -22.745172,
       "lon": -45.105258,
-      "x": 114,
-      "y": 78
+      "x": 404,
+      "y": 187
     },
     {
       "id": "JARD",
       "nome": "Jardim Margarida",
       "lat": -22.732868,
       "lon": -45.114956,
-      "x": 27,
-      "y": -32
+      "x": 63,
+      "y": -24
     },
     {
       "id": "JAR2",
       "nome": "Jardim Novo Horizonte",
       "lat": -22.750756,
       "lon": -45.094977,
-      "x": 206,
-      "y": 129
+      "x": 603,
+      "y": 325
     },
     {
       "id": "COLI",
       "nome": "Loteamento Colinas de Lorena",
       "lat": -22.748376,
       "lon": -45.110435,
-      "x": 67,
-      "y": 107
+      "x": 267,
+      "y": 294
     },
     {
       "id": "VILL",
       "nome": "Loteamento Village das Palmeiras",
       "lat": -22.726655,
       "lon": -45.12776,
-      "x": -89,
-      "y": -88
+      "x": -375,
+      "y": -179
     },
     {
       "id": "NOVA",
       "nome": "Nova Lorena",
       "lat": -22.721193,
       "lon": -45.12023,
-      "x": -21,
-      "y": -137
+      "x": -75,
+      "y": -267
     },
     {
       "id": "OLAR",
       "nome": "Olaria",
       "lat": -22.742934,
       "lon": -45.115436,
-      "x": 22,
-      "y": 58
+      "x": 26,
+      "y": 136
     },
     {
       "id": "PARQ",
       "nome": "Parque das Rodovias",
       "lat": -22.730838,
       "lon": -45.091096,
-      "x": 241,
-      "y": -51
+      "x": 700,
+      "y": -71
     },
     {
       "id": "PAR2",
       "nome": "Parque Mondesir",
       "lat": -22.75547,
       "lon": -45.117885,
-      "x": 0,
-      "y": 171
+      "x": -22,
+      "y": 405
     },
     {
       "id": "PAR3",
       "nome": "Parque Tabatinga",
       "lat": -22.744971,
       "lon": -45.113883,
-      "x": 36,
-      "y": 77
+      "x": 108,
+      "y": 172
     },
     {
       "id": "PONT",
       "nome": "Ponte Nova",
       "lat": -22.704836,
       "lon": -45.132368,
-      "x": -130,
-      "y": -285
+      "x": -569,
+      "y": -396
     },
     {
       "id": "PORT",
       "nome": "Portal das Palmeiras",
       "lat": -22.759788,
       "lon": -45.124279,
-      "x": -57,
-      "y": 210
+      "x": -248,
+      "y": 447
     },
     {
       "id": "BRIS",
       "nome": "Residencial Brisas do Campo",
       "lat": -22.727315,
       "lon": -45.112432,
-      "x": 49,
-      "y": -82
+      "x": 141,
+      "y": -145
     },
     {
       "id": "DOUT",
       "nome": "Residencial Doutor João Aldo Nassif",
       "lat": -22.762854,
       "lon": -45.131746,
-      "x": -125,
-      "y": 237
+      "x": -537,
+      "y": 500
     },
     {
       "id": "RICA",
       "nome": "Residencial Vila Rica",
       "lat": -22.745784,
       "lon": -45.136464,
-      "x": -167,
-      "y": 84
+      "x": -668,
+      "y": 226
     },
     {
       "id": "SANT",
       "nome": "Santa Lucrécia",
       "lat": -22.736966,
       "lon": -45.104391,
-      "x": 122,
-      "y": 4
+      "x": 434,
+      "y": 14
     },
     {
       "id": "SAN2",
       "nome": "Santo Antônio",
       "lat": -22.74599,
       "lon": -45.131441,
-      "x": -122,
-      "y": 86
+      "x": -484,
+      "y": 245
     },
     {
       "id": "BRIT",
       "nome": "Vila Brito",
       "lat": -22.718175,
       "lon": -45.111592,
-      "x": 57,
-      "y": -165
+      "x": 178,
+      "y": -302
     },
     {
       "id": "CID2",
       "nome": "Vila Cida",
       "lat": -22.738297,
       "lon": -45.128776,
-      "x": -98,
-      "y": 16
+      "x": -426,
+      "y": 77
     },
     {
       "id": "DOSC",
       "nome": "Vila dos Comerciários I",
       "lat": -22.762766,
       "lon": -45.12839,
-      "x": -94,
-      "y": 237
+      "x": -397,
+      "y": 482
     },
     {
       "id": "ESPE",
       "nome": "Vila Esperança",
       "lat": -22.726601,
       "lon": -45.091438,
-      "x": 238,
-      "y": -89
+      "x": 671,
+      "y": -183
     },
     {
       "id": "GENY",
       "nome": "Vila Geny",
       "lat": -22.729533,
       "lon": -45.110689,
-      "x": 65,
-      "y": -62
+      "x": 216,
+      "y": -95
     },
     {
       "id": "HEPA",
       "nome": "Vila Hepacaré",
       "lat": -22.741568,
       "lon": -45.124844,
-      "x": -62,
-      "y": 46
+      "x": -280,
+      "y": 114
     },
     {
       "id": "NUNE",
       "nome": "Vila Nunes",
       "lat": -22.72417,
       "lon": -45.108732,
-      "x": 83,
-      "y": -111
+      "x": 312,
+      "y": -233
     },
     {
       "id": "PASS",
       "nome": "Vila Passos",
       "lat": -22.738107,
       "lon": -45.101434,
-      "x": 148,
-      "y": 15
+      "x": 508,
+      "y": 64
     },
     {
       "id": "POR2",
       "nome": "Vila Portugal",
       "lat": -22.692785,
       "lon": -45.12392,
-      "x": -54,
-      "y": -393
+      "x": -219,
+      "y": -500
     },
     {
       "id": "SAN3",
       "nome": "Vila Santa Edwiges",
       "lat": -22.732741,
       "lon": -45.106239,
-      "x": 105,
-      "y": -34
+      "x": 365,
+      "y": -44
     },
     {
       "id": "SAOR",
       "nome": "Vila São Roque",
       "lat": -22.737352,
       "lon": -45.131584,
-      "x": -123,
-      "y": 8
+      "x": -510,
+      "y": 37
     },
     {
       "id": "ZELI",
       "nome": "Vila Zélia",
       "lat": -22.745426,
       "lon": -45.110468,
-      "x": 67,
-      "y": 81
+      "x": 241,
+      "y": 206
     }
   ],
   "arestas": [

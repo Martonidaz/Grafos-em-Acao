@@ -34,7 +34,7 @@ function criarGrafo(idContainer, dados, opcoes = {}) {
     id: a.id,
     from: a.origem,
     to: a.destino,
-    label: formatarPeso(a.peso, dados.unidade),
+    label: opcoes.pesoSoNoMouse ? undefined : formatarPeso(a.peso, dados.unidade), // grafo denso: peso só no tooltip
     title: `${nomes[a.origem]} - ${nomes[a.destino]}: ${formatarPeso(a.peso, dados.unidade)}`,
   })));
 
