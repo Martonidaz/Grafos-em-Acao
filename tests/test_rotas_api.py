@@ -37,7 +37,8 @@ def test_nao_chama_de_novo_linha_ja_medida(tmp_path):
 def test_sem_rota_fica_em_branco(tmp_path):
     cs = planilha(tmp_path, "kruskal")
     ok, sem_rota = preencher(cs, lambda o, d: None, "hoje")
-    assert ok == 0 and len(sem_rota) == 20 and len(pendentes(cs)[2]) == 20
+    total = len(pendentes(cs)[0]) - 1
+    assert ok == 0 and len(sem_rota) == total and len(pendentes(cs)[2]) == total
 
 
 def test_erro_no_meio_salva_o_que_ja_foi_medido(tmp_path):
@@ -49,4 +50,4 @@ def test_erro_no_meio_salva_o_que_ja_foi_medido(tmp_path):
 
     with pytest.raises(StopIteration):
         preencher(cs, falha_na_terceira, "hoje")
-    assert len(pendentes(cs)[2]) == 18
+    assert len(pendentes(cs)[2]) == len(pendentes(cs)[0]) - 1 - 2

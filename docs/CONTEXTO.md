@@ -41,6 +41,9 @@ Dijkstra mostra a linha de cada trecho e conta as trocas de linha. Limites assum
 direcionada (as linhas fazem ida e volta) e a troca de linha não entra no peso (o Dijkstra minimiza
 distância). Itinerário completo das linhas não está publicado nas fontes consultadas.
 
+Kruskal ampliado (09/11, 22h): 35 dos 50 bairros dos Correios, 65 vias medidas pela Routes API
+(`dados/bairros_api.py`); resultado 38.026 m, 34 aceitas, economia de 61%.
+
 Grupo: Breno Ryan de Andrade Fernandes, Daniel Marton Barbosa, João Vitor Ferreira Azevedo Pereira,
 Mariana Gonçalves de Freitas Ribeiro. Professor: Prof. Me. Warner Brezolin. Entrega: 09/11/2026, 23h.
 

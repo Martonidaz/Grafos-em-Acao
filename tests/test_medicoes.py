@@ -52,12 +52,13 @@ def test_aplicar_grava_peso_e_fonte(tmp_path):
     linhas[1][4:7] = ["1.432", "Daniel", "09/11/2026"]
     escrever(cs, linhas)
 
-    assert aplicar(js, cs) == (1, 19)
+    total = len(linhas) - 1
+    assert aplicar(js, cs) == (1, total - 1)
     grafo = json.loads(js.read_text(encoding="utf-8"))
     medida = next(a for a in grafo["arestas"] if a.get("fonte", "").startswith("Google Maps"))
     assert medida["peso"] == 1432
     assert "Daniel" in medida["fonte"]
-    assert grafo["tipo_dado"] == "parcial (19 arestas sem medida)"
+    assert grafo["tipo_dado"] == f"parcial ({total - 1} arestas sem medida)"
 
 
 def test_aplicar_nao_grava_nada_se_um_valor_for_invalido(tmp_path):

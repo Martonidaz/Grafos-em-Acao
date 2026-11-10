@@ -1,21 +1,66 @@
 ﻿id;origem;destino;peso_atual;peso_medido_m;medido_por;data;link_google_maps
-CEN|VPA;Centro;Vila Passos;1500;3490;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Centro%2C+Lorena+-+SP&destination=Vila+Passos%2C+Lorena+-+SP&travelmode=driving
-CEN|OLA;Centro;Olaria;1800;2445;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Centro%2C+Lorena+-+SP&destination=Olaria%2C+Lorena+-+SP&travelmode=driving
-CEN|SAN;Centro;Santo Antônio;1100;2550;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Centro%2C+Lorena+-+SP&destination=Santo+Ant%C3%B4nio%2C+Lorena+-+SP&travelmode=driving
-CEN|HEP;Centro;Vila Hepacaré;1400;1738;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Centro%2C+Lorena+-+SP&destination=Vila+Hepacar%C3%A9%2C+Lorena+-+SP&travelmode=driving
-CEN|PON;Centro;Ponte Nova;2300;3542;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Centro%2C+Lorena+-+SP&destination=Ponte+Nova%2C+Lorena+-+SP&travelmode=driving
-CAB|VPA;Vila Passos;Cabelinha;1300;3204;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Vila+Passos%2C+Lorena+-+SP&destination=Cabelinha%2C+Lorena+-+SP&travelmode=driving
-HEP|VPA;Vila Passos;Vila Hepacaré;900;3675;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Vila+Passos%2C+Lorena+-+SP&destination=Vila+Hepacar%C3%A9%2C+Lorena+-+SP&travelmode=driving
-CAB|HEP;Vila Hepacaré;Cabelinha;1800;2419;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Vila+Hepacar%C3%A9%2C+Lorena+-+SP&destination=Cabelinha%2C+Lorena+-+SP&travelmode=driving
-CAB|CEC;Cabelinha;Cecap;1700;4429;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Cabelinha%2C+Lorena+-+SP&destination=Cecap%2C+Lorena+-+SP&travelmode=driving
-CAB|POR;Cabelinha;Portal das Palmeiras;2100;4429;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Cabelinha%2C+Lorena+-+SP&destination=Portal+das+Palmeiras%2C+Lorena+-+SP&travelmode=driving
-CEC|POR;Cecap;Portal das Palmeiras;1250;1796;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Cecap%2C+Lorena+-+SP&destination=Portal+das+Palmeiras%2C+Lorena+-+SP&travelmode=driving
-CEC|HEP;Cecap;Vila Hepacaré;2400;3229;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Cecap%2C+Lorena+-+SP&destination=Vila+Hepacar%C3%A9%2C+Lorena+-+SP&travelmode=driving
-CRU|OLA;Olaria;Cruz;2200;1588;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Olaria%2C+Lorena+-+SP&destination=Cruz%2C+Lorena+-+SP&travelmode=driving
-OLA|SAN;Olaria;Santo Antônio;1600;2112;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Olaria%2C+Lorena+-+SP&destination=Santo+Ant%C3%B4nio%2C+Lorena+-+SP&travelmode=driving
-OLA|VNU;Olaria;Vila Nunes;2900;3230;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Olaria%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving
-CRU|PRO;Cruz;Parque das Rodovias;1900;3160;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Cruz%2C+Lorena+-+SP&destination=Parque+das+Rodovias%2C+Lorena+-+SP&travelmode=driving
-CRU|VNU;Cruz;Vila Nunes;1000;4000;Daniel Marton (site do Google Maps, rota mais curta);09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Cruz%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving
-PRO|VNU;Parque das Rodovias;Vila Nunes;1550;2789;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Parque+das+Rodovias%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving
-PON|SAN;Santo Antônio;Ponte Nova;1200;5797;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Santo+Ant%C3%B4nio%2C+Lorena+-+SP&destination=Ponte+Nova%2C+Lorena+-+SP&travelmode=driving
-PON|VNU;Ponte Nova;Vila Nunes;2600;6096;Google Routes API;09/11/2026;https://www.google.com/maps/dir/?api=1&origin=Ponte+Nova%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving
+ATER|CECA;Aterrado;Cecap;650;;;;https://www.google.com/maps/dir/?api=1&origin=Aterrado%2C+Lorena+-+SP&destination=Cecap%2C+Lorena+-+SP&travelmode=driving
+ATER|RICA;Aterrado;Residencial Vila Rica;1743;;;;https://www.google.com/maps/dir/?api=1&origin=Aterrado%2C+Lorena+-+SP&destination=Residencial+Vila+Rica%2C+Lorena+-+SP&travelmode=driving
+ATER|SAN2;Aterrado;Santo Antônio;1672;;;;https://www.google.com/maps/dir/?api=1&origin=Aterrado%2C+Lorena+-+SP&destination=Santo+Ant%C3%B4nio%2C+Lorena+-+SP&travelmode=driving
+BRIS|BRIT;Residencial Brisas do Campo;Vila Brito;1169;;;;https://www.google.com/maps/dir/?api=1&origin=Residencial+Brisas+do+Campo%2C+Lorena+-+SP&destination=Vila+Brito%2C+Lorena+-+SP&travelmode=driving
+BRIS|GENY;Residencial Brisas do Campo;Vila Geny;2255;;;;https://www.google.com/maps/dir/?api=1&origin=Residencial+Brisas+do+Campo%2C+Lorena+-+SP&destination=Vila+Geny%2C+Lorena+-+SP&travelmode=driving
+BRIS|JARD;Residencial Brisas do Campo;Jardim Margarida;1238;;;;https://www.google.com/maps/dir/?api=1&origin=Residencial+Brisas+do+Campo%2C+Lorena+-+SP&destination=Jardim+Margarida%2C+Lorena+-+SP&travelmode=driving
+BRIS|NUNE;Residencial Brisas do Campo;Vila Nunes;617;;;;https://www.google.com/maps/dir/?api=1&origin=Residencial+Brisas+do+Campo%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving
+BRIT|CAMP;Vila Brito;Campinho;3323;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Brito%2C+Lorena+-+SP&destination=Campinho%2C+Lorena+-+SP&travelmode=driving
+BRIT|NOVA;Vila Brito;Nova Lorena;2081;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Brito%2C+Lorena+-+SP&destination=Nova+Lorena%2C+Lorena+-+SP&travelmode=driving
+BRIT|NUNE;Vila Brito;Vila Nunes;848;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Brito%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving
+BRIT|POR2;Vila Brito;Vila Portugal;3725;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Brito%2C+Lorena+-+SP&destination=Vila+Portugal%2C+Lorena+-+SP&travelmode=driving
+CABE|CENT;Cabelinha;Centro;906;;;;https://www.google.com/maps/dir/?api=1&origin=Cabelinha%2C+Lorena+-+SP&destination=Centro%2C+Lorena+-+SP&travelmode=driving
+CABE|NOVA;Cabelinha;Nova Lorena;678;;;;https://www.google.com/maps/dir/?api=1&origin=Cabelinha%2C+Lorena+-+SP&destination=Nova+Lorena%2C+Lorena+-+SP&travelmode=driving
+CABE|VILL;Cabelinha;Loteamento Village das Palmeiras;1087;;;;https://www.google.com/maps/dir/?api=1&origin=Cabelinha%2C+Lorena+-+SP&destination=Loteamento+Village+das+Palmeiras%2C+Lorena+-+SP&travelmode=driving
+CAMP|PONT;Campinho;Ponte Nova;2808;;;;https://www.google.com/maps/dir/?api=1&origin=Campinho%2C+Lorena+-+SP&destination=Ponte+Nova%2C+Lorena+-+SP&travelmode=driving
+CAMP|POR2;Campinho;Vila Portugal;1197;;;;https://www.google.com/maps/dir/?api=1&origin=Campinho%2C+Lorena+-+SP&destination=Vila+Portugal%2C+Lorena+-+SP&travelmode=driving
+CECA|DOSC;Cecap;Vila dos Comerciários I;1556;;;;https://www.google.com/maps/dir/?api=1&origin=Cecap%2C+Lorena+-+SP&destination=Vila+dos+Comerci%C3%A1rios+I%2C+Lorena+-+SP&travelmode=driving
+CECA|DOUT;Cecap;Residencial Doutor João Aldo Nassif;1500;;;;https://www.google.com/maps/dir/?api=1&origin=Cecap%2C+Lorena+-+SP&destination=Residencial+Doutor+Jo%C3%A3o+Aldo+Nassif%2C+Lorena+-+SP&travelmode=driving
+CENT|NOVA;Centro;Nova Lorena;1593;;;;https://www.google.com/maps/dir/?api=1&origin=Centro%2C+Lorena+-+SP&destination=Nova+Lorena%2C+Lorena+-+SP&travelmode=driving
+CENT|VILL;Centro;Loteamento Village das Palmeiras;214;;;;https://www.google.com/maps/dir/?api=1&origin=Centro%2C+Lorena+-+SP&destination=Loteamento+Village+das+Palmeiras%2C+Lorena+-+SP&travelmode=driving
+CID2|HEPA;Vila Cida;Vila Hepacaré;879;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Cida%2C+Lorena+-+SP&destination=Vila+Hepacar%C3%A9%2C+Lorena+-+SP&travelmode=driving
+CID2|SAN2;Vila Cida;Santo Antônio;1396;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Cida%2C+Lorena+-+SP&destination=Santo+Ant%C3%B4nio%2C+Lorena+-+SP&travelmode=driving
+CID2|SAOR;Vila Cida;Vila São Roque;1670;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Cida%2C+Lorena+-+SP&destination=Vila+S%C3%A3o+Roque%2C+Lorena+-+SP&travelmode=driving
+CIDA|HEPA;Cidade Industrial;Vila Hepacaré;949;;;;https://www.google.com/maps/dir/?api=1&origin=Cidade+Industrial%2C+Lorena+-+SP&destination=Vila+Hepacar%C3%A9%2C+Lorena+-+SP&travelmode=driving
+CIDA|OLAR;Cidade Industrial;Olaria;1734;;;;https://www.google.com/maps/dir/?api=1&origin=Cidade+Industrial%2C+Lorena+-+SP&destination=Olaria%2C+Lorena+-+SP&travelmode=driving
+CIDA|PAR2;Cidade Industrial;Parque Mondesir;1346;;;;https://www.google.com/maps/dir/?api=1&origin=Cidade+Industrial%2C+Lorena+-+SP&destination=Parque+Mondesir%2C+Lorena+-+SP&travelmode=driving
+CIDA|SAN2;Cidade Industrial;Santo Antônio;912;;;;https://www.google.com/maps/dir/?api=1&origin=Cidade+Industrial%2C+Lorena+-+SP&destination=Santo+Ant%C3%B4nio%2C+Lorena+-+SP&travelmode=driving
+COLI|CRUZ;Loteamento Colinas de Lorena;Cruz;688;;;;https://www.google.com/maps/dir/?api=1&origin=Loteamento+Colinas+de+Lorena%2C+Lorena+-+SP&destination=Cruz%2C+Lorena+-+SP&travelmode=driving
+COLI|JAR2;Loteamento Colinas de Lorena;Jardim Novo Horizonte;2709;;;;https://www.google.com/maps/dir/?api=1&origin=Loteamento+Colinas+de+Lorena%2C+Lorena+-+SP&destination=Jardim+Novo+Horizonte%2C+Lorena+-+SP&travelmode=driving
+COLI|OLAR;Loteamento Colinas de Lorena;Olaria;1177;;;;https://www.google.com/maps/dir/?api=1&origin=Loteamento+Colinas+de+Lorena%2C+Lorena+-+SP&destination=Olaria%2C+Lorena+-+SP&travelmode=driving
+COLI|PAR2;Loteamento Colinas de Lorena;Parque Mondesir;1757;;;;https://www.google.com/maps/dir/?api=1&origin=Loteamento+Colinas+de+Lorena%2C+Lorena+-+SP&destination=Parque+Mondesir%2C+Lorena+-+SP&travelmode=driving
+COLI|PAR3;Loteamento Colinas de Lorena;Parque Tabatinga;861;;;;https://www.google.com/maps/dir/?api=1&origin=Loteamento+Colinas+de+Lorena%2C+Lorena+-+SP&destination=Parque+Tabatinga%2C+Lorena+-+SP&travelmode=driving
+COLI|ZELI;Loteamento Colinas de Lorena;Vila Zélia;445;;;;https://www.google.com/maps/dir/?api=1&origin=Loteamento+Colinas+de+Lorena%2C+Lorena+-+SP&destination=Vila+Z%C3%A9lia%2C+Lorena+-+SP&travelmode=driving
+CRUZ|JAR2;Cruz;Jardim Novo Horizonte;2742;;;;https://www.google.com/maps/dir/?api=1&origin=Cruz%2C+Lorena+-+SP&destination=Jardim+Novo+Horizonte%2C+Lorena+-+SP&travelmode=driving
+CRUZ|PASS;Cruz;Vila Passos;1212;;;;https://www.google.com/maps/dir/?api=1&origin=Cruz%2C+Lorena+-+SP&destination=Vila+Passos%2C+Lorena+-+SP&travelmode=driving
+CRUZ|SANT;Cruz;Santa Lucrécia;1269;;;;https://www.google.com/maps/dir/?api=1&origin=Cruz%2C+Lorena+-+SP&destination=Santa+Lucr%C3%A9cia%2C+Lorena+-+SP&travelmode=driving
+CRUZ|ZELI;Cruz;Vila Zélia;791;;;;https://www.google.com/maps/dir/?api=1&origin=Cruz%2C+Lorena+-+SP&destination=Vila+Z%C3%A9lia%2C+Lorena+-+SP&travelmode=driving
+DOSC|DOUT;Vila dos Comerciários I;Residencial Doutor João Aldo Nassif;474;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+dos+Comerci%C3%A1rios+I%2C+Lorena+-+SP&destination=Residencial+Doutor+Jo%C3%A3o+Aldo+Nassif%2C+Lorena+-+SP&travelmode=driving
+DOSC|PORT;Vila dos Comerciários I;Portal das Palmeiras;1134;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+dos+Comerci%C3%A1rios+I%2C+Lorena+-+SP&destination=Portal+das+Palmeiras%2C+Lorena+-+SP&travelmode=driving
+DOUT|PORT;Residencial Doutor João Aldo Nassif;Portal das Palmeiras;1286;;;;https://www.google.com/maps/dir/?api=1&origin=Residencial+Doutor+Jo%C3%A3o+Aldo+Nassif%2C+Lorena+-+SP&destination=Portal+das+Palmeiras%2C+Lorena+-+SP&travelmode=driving
+ESPE|PARQ;Vila Esperança;Parque das Rodovias;727;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Esperan%C3%A7a%2C+Lorena+-+SP&destination=Parque+das+Rodovias%2C+Lorena+-+SP&travelmode=driving
+ESPE|PASS;Vila Esperança;Vila Passos;2520;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Esperan%C3%A7a%2C+Lorena+-+SP&destination=Vila+Passos%2C+Lorena+-+SP&travelmode=driving
+ESPE|SAN3;Vila Esperança;Vila Santa Edwiges;2791;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Esperan%C3%A7a%2C+Lorena+-+SP&destination=Vila+Santa+Edwiges%2C+Lorena+-+SP&travelmode=driving
+GENY|JARD;Vila Geny;Jardim Margarida;993;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Geny%2C+Lorena+-+SP&destination=Jardim+Margarida%2C+Lorena+-+SP&travelmode=driving
+GENY|NUNE;Vila Geny;Vila Nunes;2171;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Geny%2C+Lorena+-+SP&destination=Vila+Nunes%2C+Lorena+-+SP&travelmode=driving
+GENY|SAN3;Vila Geny;Vila Santa Edwiges;926;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Geny%2C+Lorena+-+SP&destination=Vila+Santa+Edwiges%2C+Lorena+-+SP&travelmode=driving
+HEPA|SAN2;Vila Hepacaré;Santo Antônio;1210;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Hepacar%C3%A9%2C+Lorena+-+SP&destination=Santo+Ant%C3%B4nio%2C+Lorena+-+SP&travelmode=driving
+HEPA|SAOR;Vila Hepacaré;Vila São Roque;2039;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Hepacar%C3%A9%2C+Lorena+-+SP&destination=Vila+S%C3%A3o+Roque%2C+Lorena+-+SP&travelmode=driving
+JAR2|PASS;Jardim Novo Horizonte;Vila Passos;3924;;;;https://www.google.com/maps/dir/?api=1&origin=Jardim+Novo+Horizonte%2C+Lorena+-+SP&destination=Vila+Passos%2C+Lorena+-+SP&travelmode=driving
+JARD|SAN3;Jardim Margarida;Vila Santa Edwiges;1389;;;;https://www.google.com/maps/dir/?api=1&origin=Jardim+Margarida%2C+Lorena+-+SP&destination=Vila+Santa+Edwiges%2C+Lorena+-+SP&travelmode=driving
+NOVA|PONT;Nova Lorena;Ponte Nova;2393;;;;https://www.google.com/maps/dir/?api=1&origin=Nova+Lorena%2C+Lorena+-+SP&destination=Ponte+Nova%2C+Lorena+-+SP&travelmode=driving
+NOVA|VILL;Nova Lorena;Loteamento Village das Palmeiras;1775;;;;https://www.google.com/maps/dir/?api=1&origin=Nova+Lorena%2C+Lorena+-+SP&destination=Loteamento+Village+das+Palmeiras%2C+Lorena+-+SP&travelmode=driving
+OLAR|PAR3;Olaria;Parque Tabatinga;466;;;;https://www.google.com/maps/dir/?api=1&origin=Olaria%2C+Lorena+-+SP&destination=Parque+Tabatinga%2C+Lorena+-+SP&travelmode=driving
+OLAR|ZELI;Olaria;Vila Zélia;884;;;;https://www.google.com/maps/dir/?api=1&origin=Olaria%2C+Lorena+-+SP&destination=Vila+Z%C3%A9lia%2C+Lorena+-+SP&travelmode=driving
+PAR2|PORT;Parque Mondesir;Portal das Palmeiras;1886;;;;https://www.google.com/maps/dir/?api=1&origin=Parque+Mondesir%2C+Lorena+-+SP&destination=Portal+das+Palmeiras%2C+Lorena+-+SP&travelmode=driving
+PAR3|ZELI;Parque Tabatinga;Vila Zélia;525;;;;https://www.google.com/maps/dir/?api=1&origin=Parque+Tabatinga%2C+Lorena+-+SP&destination=Vila+Z%C3%A9lia%2C+Lorena+-+SP&travelmode=driving
+PARQ|PASS;Parque das Rodovias;Vila Passos;1921;;;;https://www.google.com/maps/dir/?api=1&origin=Parque+das+Rodovias%2C+Lorena+-+SP&destination=Vila+Passos%2C+Lorena+-+SP&travelmode=driving
+PARQ|SANT;Parque das Rodovias;Santa Lucrécia;1985;;;;https://www.google.com/maps/dir/?api=1&origin=Parque+das+Rodovias%2C+Lorena+-+SP&destination=Santa+Lucr%C3%A9cia%2C+Lorena+-+SP&travelmode=driving
+PASS|SAN3;Vila Passos;Vila Santa Edwiges;1021;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Passos%2C+Lorena+-+SP&destination=Vila+Santa+Edwiges%2C+Lorena+-+SP&travelmode=driving
+PASS|SANT;Vila Passos;Santa Lucrécia;457;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Passos%2C+Lorena+-+SP&destination=Santa+Lucr%C3%A9cia%2C+Lorena+-+SP&travelmode=driving
+PONT|POR2;Ponte Nova;Vila Portugal;1964;;;;https://www.google.com/maps/dir/?api=1&origin=Ponte+Nova%2C+Lorena+-+SP&destination=Vila+Portugal%2C+Lorena+-+SP&travelmode=driving
+RICA|SAN2;Residencial Vila Rica;Santo Antônio;1201;;;;https://www.google.com/maps/dir/?api=1&origin=Residencial+Vila+Rica%2C+Lorena+-+SP&destination=Santo+Ant%C3%B4nio%2C+Lorena+-+SP&travelmode=driving
+RICA|SAOR;Residencial Vila Rica;Vila São Roque;3263;;;;https://www.google.com/maps/dir/?api=1&origin=Residencial+Vila+Rica%2C+Lorena+-+SP&destination=Vila+S%C3%A3o+Roque%2C+Lorena+-+SP&travelmode=driving
+SAN2|SAOR;Santo Antônio;Vila São Roque;2480;;;;https://www.google.com/maps/dir/?api=1&origin=Santo+Ant%C3%B4nio%2C+Lorena+-+SP&destination=Vila+S%C3%A3o+Roque%2C+Lorena+-+SP&travelmode=driving
+SAN3|SANT;Vila Santa Edwiges;Santa Lucrécia;700;;;;https://www.google.com/maps/dir/?api=1&origin=Vila+Santa+Edwiges%2C+Lorena+-+SP&destination=Santa+Lucr%C3%A9cia%2C+Lorena+-+SP&travelmode=driving

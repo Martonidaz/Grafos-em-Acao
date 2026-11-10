@@ -89,7 +89,8 @@ def test_kruskal_igual_networkx():
 
 def test_kruskal_desconexo():
     g = carregar_grafo("kruskal")
-    arestas = remover_arestas(g, ["CAB|POR", "CEC|POR"])
+    isolado = g["vertices"][0]["id"]  # tira todas as vias de um bairro: ele fica isolado
+    arestas = remover_arestas(g, [a["id"] for a in g["arestas"] if isolado in a["id"].split("|")])
     r = kruskal(ids(g), arestas)
     assert not r["ok"]
     assert "desconexo" in r["erro"]

@@ -24,10 +24,14 @@ Consultadas em outubro de 2026; distâncias de Lorena medidas em 09/11/2026.
 
 ## Kruskal — bairros de Lorena/SP (`lorena_bairros.json`)
 
-- CEPs Brasil — Bairros de Lorena/SP. https://cepsbrasil.com.br/sp/lorena
-- Google Maps — distância da rota de carro entre os bairros (20 vias), pela Routes API e conferida no site; vale a menor rota encontrada. Detalhe em `dados/medicoes_kruskal.csv`.
+- CEPs do Brasil — Bairros de Lorena/SP (base de CEPs dos Correios, 50 bairros). https://www.cepsdobrasil.com.br/cep/sp/lorena/bairros
+- Google Maps (Routes API), 09/11/2026 — localização de cada bairro e distância da rota de carro de cada via (65 vias).
+  Gerado por `python -m dados.bairros_api`; localizações em `dados/lorena_bairros_pontos.json`.
 
-**Limitação:** os comprimentos são reais (rota entre pontos de referência dos bairros), mas quais pares de bairros têm via candidata é um modelo do grupo.
+**Recorte:** 35 dos 50 bairros. Fora: Área Rural (não é um ponto), 13 bairros que o Google não localizou com
+precisão (vários caíram no mesmo ponto genérico; um caiu perto de São Paulo) e Vila dos Comerciários II
+(localizada a ~17 km do centro). As vias candidatas ligam cada bairro aos 3 vizinhos mais próximos, com
+conexidade garantida; o comprimento de cada via é real.
 
 ## Teoria
 

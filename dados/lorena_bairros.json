@@ -1,215 +1,709 @@
 {
   "titulo": "Pavimentação de vias entre bairros de Lorena/SP",
   "algoritmo": "kruskal",
-  "descricao": "Bairros de Lorena/SP e as vias de acesso candidatas à pavimentação.",
-  "criterio_peso": "Distância da rota de carro entre os bairros no Google Maps (a menor rota encontrada), em metros (m).",
   "unidade": "m",
+  "referencias": [
+    {
+      "titulo": "CEPs do Brasil - Bairros de Lorena/SP (base de CEPs dos Correios, 50 bairros), consultado em 09/11/2026.",
+      "url": "https://www.cepsdobrasil.com.br/cep/sp/lorena/bairros"
+    },
+    {
+      "titulo": "Google Maps (Routes API) - localização dos bairros e distância de rota de carro, 09/11/2026.",
+      "url": "https://www.google.com/maps/place/Lorena,+SP"
+    }
+  ],
+  "descricao": "Bairros de Lorena/SP (lista dos Correios) e as vias candidatas à pavimentação entre bairros vizinhos.",
+  "criterio_peso": "Distância da rota de carro entre os bairros no Google Maps (Routes API, sem trânsito), em metros (m).",
   "tipo_dado": "medido",
-  "aviso": "Os bairros existem em Lorena/SP (lista de bairros dos Correios/CEPs). Os COMPRIMENTOS são reais: rota de carro entre os bairros medida no Google Maps em 09/11/2026 (Routes API, conferida no site). Quais pares de bairros têm via candidata é um modelo do grupo (bairros vizinhos).",
+  "aviso": "35 dos 50 bairros listados pelos Correios (base de CEPs), localizados e medidos no Google Maps em 09/11/2026. Ficaram de fora a Área Rural e 14 bairros que o Google não localizou com precisão (loteamentos e vilas pequenas, ou ponto fora da área urbana). Cada bairro foi ligado aos 3 vizinhos mais próximos; o peso de cada via é a rota de carro real entre eles.",
+  "descartados": [
+    "Conjunto Habitacional de Interesse Social (impreciso: mesmo ponto de outro bairro)",
+    "Loteamento Jardim Primavera (fora de Lorena: -23.5626, -46.1881)",
+    "Loteamento Lorena Village (impreciso: mesmo ponto de outro bairro)",
+    "Loteamento Residencial Campos dos Ipês (impreciso: mesmo ponto de outro bairro)",
+    "Madre Mazzarelo (impreciso: mesmo ponto de outro bairro)",
+    "Matadouro Velho (impreciso: mesmo ponto de outro bairro)",
+    "Sapé (impreciso: mesmo ponto de outro bairro)",
+    "Vila Buck (impreciso: mesmo ponto de outro bairro)",
+    "Vila Cristina (impreciso: mesmo ponto de outro bairro)",
+    "Vila Fabiano (impreciso: mesmo ponto de outro bairro)",
+    "Vila Maria de Lourdes (impreciso: mesmo ponto de outro bairro)",
+    "Vila Neide (impreciso: mesmo ponto de outro bairro)",
+    "Vila Simão (impreciso: mesmo ponto de outro bairro)",
+    "Vila dos Comerciários II (localizado a ~17 km do centro, fora da área urbana)"
+  ],
   "vertices": [
     {
-      "id": "CEN",
-      "nome": "Centro",
-      "x": 0,
-      "y": 0
+      "id": "ATER",
+      "nome": "Aterrado",
+      "lat": -22.752224,
+      "lon": -45.137029,
+      "x": -172,
+      "y": 142
     },
     {
-      "id": "VPA",
-      "nome": "Vila Passos",
-      "x": -220,
-      "y": 70
-    },
-    {
-      "id": "CAB",
+      "id": "CABE",
       "nome": "Cabelinha",
-      "x": -420,
-      "y": 150
+      "lat": -22.724818,
+      "lon": -45.122072,
+      "x": -38,
+      "y": -105
     },
     {
-      "id": "HEP",
-      "nome": "Vila Hepacaré",
-      "x": -170,
-      "y": 230
+      "id": "CAMP",
+      "nome": "Campinho",
+      "lat": -22.698777,
+      "lon": -45.120329,
+      "x": -22,
+      "y": -339
     },
     {
-      "id": "CEC",
+      "id": "CECA",
       "nome": "Cecap",
-      "x": -340,
-      "y": 360
+      "lat": -22.755007,
+      "lon": -45.133085,
+      "x": -137,
+      "y": 167
     },
     {
-      "id": "POR",
-      "nome": "Portal das Palmeiras",
-      "x": -560,
-      "y": 330
+      "id": "CENT",
+      "nome": "Centro",
+      "lat": -22.728365,
+      "lon": -45.127189,
+      "x": -84,
+      "y": -73
     },
     {
-      "id": "SAN",
-      "nome": "Santo Antônio",
-      "x": 190,
-      "y": 40
+      "id": "CIDA",
+      "nome": "Cidade Industrial",
+      "lat": -22.746973,
+      "lon": -45.123737,
+      "x": -53,
+      "y": 95
     },
     {
-      "id": "PON",
-      "nome": "Ponte Nova",
-      "x": 320,
-      "y": 330
-    },
-    {
-      "id": "OLA",
-      "nome": "Olaria",
-      "x": 60,
-      "y": -210
-    },
-    {
-      "id": "CRU",
+      "id": "CRUZ",
       "nome": "Cruz",
-      "x": 230,
-      "y": -350
+      "lat": -22.745172,
+      "lon": -45.105258,
+      "x": 114,
+      "y": 78
     },
     {
-      "id": "VNU",
-      "nome": "Vila Nunes",
-      "x": 420,
-      "y": -170
+      "id": "JARD",
+      "nome": "Jardim Margarida",
+      "lat": -22.732868,
+      "lon": -45.114956,
+      "x": 27,
+      "y": -32
     },
     {
-      "id": "PRO",
+      "id": "JAR2",
+      "nome": "Jardim Novo Horizonte",
+      "lat": -22.750756,
+      "lon": -45.094977,
+      "x": 206,
+      "y": 129
+    },
+    {
+      "id": "COLI",
+      "nome": "Loteamento Colinas de Lorena",
+      "lat": -22.748376,
+      "lon": -45.110435,
+      "x": 67,
+      "y": 107
+    },
+    {
+      "id": "VILL",
+      "nome": "Loteamento Village das Palmeiras",
+      "lat": -22.726655,
+      "lon": -45.12776,
+      "x": -89,
+      "y": -88
+    },
+    {
+      "id": "NOVA",
+      "nome": "Nova Lorena",
+      "lat": -22.721193,
+      "lon": -45.12023,
+      "x": -21,
+      "y": -137
+    },
+    {
+      "id": "OLAR",
+      "nome": "Olaria",
+      "lat": -22.742934,
+      "lon": -45.115436,
+      "x": 22,
+      "y": 58
+    },
+    {
+      "id": "PARQ",
       "nome": "Parque das Rodovias",
-      "x": 470,
-      "y": -430
+      "lat": -22.730838,
+      "lon": -45.091096,
+      "x": 241,
+      "y": -51
+    },
+    {
+      "id": "PAR2",
+      "nome": "Parque Mondesir",
+      "lat": -22.75547,
+      "lon": -45.117885,
+      "x": 0,
+      "y": 171
+    },
+    {
+      "id": "PAR3",
+      "nome": "Parque Tabatinga",
+      "lat": -22.744971,
+      "lon": -45.113883,
+      "x": 36,
+      "y": 77
+    },
+    {
+      "id": "PONT",
+      "nome": "Ponte Nova",
+      "lat": -22.704836,
+      "lon": -45.132368,
+      "x": -130,
+      "y": -285
+    },
+    {
+      "id": "PORT",
+      "nome": "Portal das Palmeiras",
+      "lat": -22.759788,
+      "lon": -45.124279,
+      "x": -57,
+      "y": 210
+    },
+    {
+      "id": "BRIS",
+      "nome": "Residencial Brisas do Campo",
+      "lat": -22.727315,
+      "lon": -45.112432,
+      "x": 49,
+      "y": -82
+    },
+    {
+      "id": "DOUT",
+      "nome": "Residencial Doutor João Aldo Nassif",
+      "lat": -22.762854,
+      "lon": -45.131746,
+      "x": -125,
+      "y": 237
+    },
+    {
+      "id": "RICA",
+      "nome": "Residencial Vila Rica",
+      "lat": -22.745784,
+      "lon": -45.136464,
+      "x": -167,
+      "y": 84
+    },
+    {
+      "id": "SANT",
+      "nome": "Santa Lucrécia",
+      "lat": -22.736966,
+      "lon": -45.104391,
+      "x": 122,
+      "y": 4
+    },
+    {
+      "id": "SAN2",
+      "nome": "Santo Antônio",
+      "lat": -22.74599,
+      "lon": -45.131441,
+      "x": -122,
+      "y": 86
+    },
+    {
+      "id": "BRIT",
+      "nome": "Vila Brito",
+      "lat": -22.718175,
+      "lon": -45.111592,
+      "x": 57,
+      "y": -165
+    },
+    {
+      "id": "CID2",
+      "nome": "Vila Cida",
+      "lat": -22.738297,
+      "lon": -45.128776,
+      "x": -98,
+      "y": 16
+    },
+    {
+      "id": "DOSC",
+      "nome": "Vila dos Comerciários I",
+      "lat": -22.762766,
+      "lon": -45.12839,
+      "x": -94,
+      "y": 237
+    },
+    {
+      "id": "ESPE",
+      "nome": "Vila Esperança",
+      "lat": -22.726601,
+      "lon": -45.091438,
+      "x": 238,
+      "y": -89
+    },
+    {
+      "id": "GENY",
+      "nome": "Vila Geny",
+      "lat": -22.729533,
+      "lon": -45.110689,
+      "x": 65,
+      "y": -62
+    },
+    {
+      "id": "HEPA",
+      "nome": "Vila Hepacaré",
+      "lat": -22.741568,
+      "lon": -45.124844,
+      "x": -62,
+      "y": 46
+    },
+    {
+      "id": "NUNE",
+      "nome": "Vila Nunes",
+      "lat": -22.72417,
+      "lon": -45.108732,
+      "x": 83,
+      "y": -111
+    },
+    {
+      "id": "PASS",
+      "nome": "Vila Passos",
+      "lat": -22.738107,
+      "lon": -45.101434,
+      "x": 148,
+      "y": 15
+    },
+    {
+      "id": "POR2",
+      "nome": "Vila Portugal",
+      "lat": -22.692785,
+      "lon": -45.12392,
+      "x": -54,
+      "y": -393
+    },
+    {
+      "id": "SAN3",
+      "nome": "Vila Santa Edwiges",
+      "lat": -22.732741,
+      "lon": -45.106239,
+      "x": 105,
+      "y": -34
+    },
+    {
+      "id": "SAOR",
+      "nome": "Vila São Roque",
+      "lat": -22.737352,
+      "lon": -45.131584,
+      "x": -123,
+      "y": 8
+    },
+    {
+      "id": "ZELI",
+      "nome": "Vila Zélia",
+      "lat": -22.745426,
+      "lon": -45.110468,
+      "x": 67,
+      "y": 81
     }
   ],
   "arestas": [
     {
-      "origem": "CEN",
-      "destino": "VPA",
-      "peso": 3490,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "ATER",
+      "destino": "CECA",
+      "peso": 650,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "CEN",
-      "destino": "OLA",
-      "peso": 2445,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "ATER",
+      "destino": "RICA",
+      "peso": 1743,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "CEN",
-      "destino": "SAN",
-      "peso": 2550,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "ATER",
+      "destino": "SAN2",
+      "peso": 1672,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "CEN",
-      "destino": "HEP",
-      "peso": 1738,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "BRIS",
+      "destino": "BRIT",
+      "peso": 1169,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "CEN",
-      "destino": "PON",
-      "peso": 3542,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "BRIS",
+      "destino": "GENY",
+      "peso": 2255,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "VPA",
-      "destino": "CAB",
-      "peso": 3204,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "BRIS",
+      "destino": "JARD",
+      "peso": 1238,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "VPA",
-      "destino": "HEP",
-      "peso": 3675,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "BRIS",
+      "destino": "NUNE",
+      "peso": 617,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "HEP",
-      "destino": "CAB",
-      "peso": 2419,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "BRIT",
+      "destino": "CAMP",
+      "peso": 3323,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "CAB",
-      "destino": "CEC",
-      "peso": 4429,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "BRIT",
+      "destino": "NOVA",
+      "peso": 2081,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "CAB",
-      "destino": "POR",
-      "peso": 4429,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "BRIT",
+      "destino": "NUNE",
+      "peso": 848,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "CEC",
-      "destino": "POR",
-      "peso": 1796,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "BRIT",
+      "destino": "POR2",
+      "peso": 3725,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "CEC",
-      "destino": "HEP",
-      "peso": 3229,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "CABE",
+      "destino": "CENT",
+      "peso": 906,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "OLA",
-      "destino": "CRU",
-      "peso": 1588,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "CABE",
+      "destino": "NOVA",
+      "peso": 678,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "OLA",
-      "destino": "SAN",
-      "peso": 2112,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "CABE",
+      "destino": "VILL",
+      "peso": 1087,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "OLA",
-      "destino": "VNU",
-      "peso": 3230,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "CAMP",
+      "destino": "PONT",
+      "peso": 2808,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "CRU",
-      "destino": "PRO",
-      "peso": 3160,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "CAMP",
+      "destino": "POR2",
+      "peso": 1197,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "CRU",
-      "destino": "VNU",
-      "peso": 4000,
-      "fonte": "Google Maps, rota de carro (medido por Daniel Marton (site do Google Maps, rota mais curta) em 09/11/2026)"
+      "origem": "CECA",
+      "destino": "DOSC",
+      "peso": 1556,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "PRO",
-      "destino": "VNU",
-      "peso": 2789,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "CECA",
+      "destino": "DOUT",
+      "peso": 1500,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "SAN",
-      "destino": "PON",
-      "peso": 5797,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
+      "origem": "CENT",
+      "destino": "NOVA",
+      "peso": 1593,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "origem": "PON",
-      "destino": "VNU",
-      "peso": 6096,
-      "fonte": "Google Maps, rota de carro (medido por Google Routes API em 09/11/2026)"
-    }
-  ],
-  "referencias": [
-    {
-      "titulo": "CEPs Brasil - Bairros de Lorena/SP (Centro, Vila Passos, Cabelinha, Vila Hepacare, Cecap, Portal das Palmeiras, Santo Antônio, Ponte Nova, Olaria, Cruz, Vila Nunes, Parque das Rodovias).",
-      "url": "https://cepsbrasil.com.br/sp/lorena"
+      "origem": "CENT",
+      "destino": "VILL",
+      "peso": 214,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     },
     {
-      "titulo": "Google Maps (Routes API e site) - distâncias de rota de carro medidas em 09/11/2026.",
-      "url": "https://www.google.com/maps/place/Lorena,+SP"
+      "origem": "CID2",
+      "destino": "HEPA",
+      "peso": 879,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "CID2",
+      "destino": "SAN2",
+      "peso": 1396,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "CID2",
+      "destino": "SAOR",
+      "peso": 1670,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "CIDA",
+      "destino": "HEPA",
+      "peso": 949,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "CIDA",
+      "destino": "OLAR",
+      "peso": 1734,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "CIDA",
+      "destino": "PAR2",
+      "peso": 1346,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "CIDA",
+      "destino": "SAN2",
+      "peso": 912,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "COLI",
+      "destino": "CRUZ",
+      "peso": 688,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "COLI",
+      "destino": "JAR2",
+      "peso": 2709,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "COLI",
+      "destino": "OLAR",
+      "peso": 1177,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "COLI",
+      "destino": "PAR2",
+      "peso": 1757,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "COLI",
+      "destino": "PAR3",
+      "peso": 861,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "COLI",
+      "destino": "ZELI",
+      "peso": 445,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "CRUZ",
+      "destino": "JAR2",
+      "peso": 2742,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "CRUZ",
+      "destino": "PASS",
+      "peso": 1212,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "CRUZ",
+      "destino": "SANT",
+      "peso": 1269,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "CRUZ",
+      "destino": "ZELI",
+      "peso": 791,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "DOSC",
+      "destino": "DOUT",
+      "peso": 474,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "DOSC",
+      "destino": "PORT",
+      "peso": 1134,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "DOUT",
+      "destino": "PORT",
+      "peso": 1286,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "ESPE",
+      "destino": "PARQ",
+      "peso": 727,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "ESPE",
+      "destino": "PASS",
+      "peso": 2520,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "ESPE",
+      "destino": "SAN3",
+      "peso": 2791,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "GENY",
+      "destino": "JARD",
+      "peso": 993,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "GENY",
+      "destino": "NUNE",
+      "peso": 2171,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "GENY",
+      "destino": "SAN3",
+      "peso": 926,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "HEPA",
+      "destino": "SAN2",
+      "peso": 1210,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "HEPA",
+      "destino": "SAOR",
+      "peso": 2039,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "JAR2",
+      "destino": "PASS",
+      "peso": 3924,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "JARD",
+      "destino": "SAN3",
+      "peso": 1389,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "NOVA",
+      "destino": "PONT",
+      "peso": 2393,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "NOVA",
+      "destino": "VILL",
+      "peso": 1775,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "OLAR",
+      "destino": "PAR3",
+      "peso": 466,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "OLAR",
+      "destino": "ZELI",
+      "peso": 884,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "PAR2",
+      "destino": "PORT",
+      "peso": 1886,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "PAR3",
+      "destino": "ZELI",
+      "peso": 525,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "PARQ",
+      "destino": "PASS",
+      "peso": 1921,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "PARQ",
+      "destino": "SANT",
+      "peso": 1985,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "PASS",
+      "destino": "SAN3",
+      "peso": 1021,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "PASS",
+      "destino": "SANT",
+      "peso": 457,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "PONT",
+      "destino": "POR2",
+      "peso": 1964,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "RICA",
+      "destino": "SAN2",
+      "peso": 1201,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "RICA",
+      "destino": "SAOR",
+      "peso": 3263,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "SAN2",
+      "destino": "SAOR",
+      "peso": 2480,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
+    },
+    {
+      "origem": "SAN3",
+      "destino": "SANT",
+      "peso": 700,
+      "fonte": "Google Routes API, rota de carro (09/11/2026)"
     }
   ]
 }
