@@ -79,9 +79,10 @@ exige conta de faturamento com cartão e cobra tudo acima da cota**. Só rode de
 2. **Projeto novo e separado** (ex.: `grafos-em-acao`) ligado à sua conta de faturamento existente.
    Ative **somente** a *Routes API*.
 3. **Chave restrita:** *Credenciais → Criar chave de API → Restrições de API → só Routes API*.
-4. **Cota baixa (a única trava que realmente impede gasto):** *APIs e serviços → Routes API →
-   Cotas*: reduza o limite de requisições por dia para 100 (se só houver limite por minuto, use um
-   valor baixo, como 10).
+4. **Trava de gasto:** a mais forte é usar uma conta em **teste gratuito** (Google Cloud): sem
+   cobrança enquanto não houver upgrade manual, então **nunca clique em "Fazer upgrade"**. Em conta
+   paga, tente reduzir a cota diária em *Routes API → Cotas*; em 09/11/2026 as cotas de Compute
+   Routes apareciam como **não ajustáveis**, e aí restam o teto do script e a cota grátis.
 5. **Alerta de orçamento** de R$ 1 em *Faturamento → Orçamentos e alertas* (só avisa, não bloqueia).
 6. Rode com a chave só na sessão do terminal (nunca em arquivo do repositório):
    ```powershell
