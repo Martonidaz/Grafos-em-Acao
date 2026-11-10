@@ -7,6 +7,10 @@
   <p>Com recurso limitado, a prefeitura quer pavimentar o <b>menor comprimento total</b> de vias que ainda permita ir de qualquer
      bairro a qualquer outro. <b>Critério do peso:</b> {{ grafo.criterio_peso }}</p>
   <div class="aviso"><strong>Dados:</strong> {{ grafo.aviso }}</div>
+  {% if grafo.descartados %}
+  <details class="aviso" style="margin-top:8px"><summary><strong>Bairros fora do grafo ({{ grafo.descartados|length }})</strong> e o motivo de cada um</summary>
+    <ul>{% for d in grafo.descartados %}<li><b>{{ d.nome }}</b>: {{ d.motivo }}</li>{% endfor %}</ul>
+  </details>{% endif %}
 </section>
 
 <div class="grade">

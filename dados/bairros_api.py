@@ -137,15 +137,25 @@ def main():
         mesmo_ponto = Counter(tuple(round(c, 5) for c in ll) for ll in achados.values() if ll)
         for nome, ll in achados.items():
             if not ll:
-                fora.append(f"{nome} (não localizado)")
+                fora.append({"nome": nome, "motivo": "o Google não encontrou o bairro"})
                 continue
             lat, lon = ll
             if not (LAT[0] <= lat <= LAT[1] and LON[0] <= lon <= LON[1]):
-                fora.append(f"{nome} (fora de Lorena: {lat:.4f}, {lon:.4f})")
+                fora.append(
+                    {
+                        "nome": nome,
+                        "motivo": f"o Google o localizou fora de Lorena ({lat:.2f}; {lon:.2f})",
+                    }
+                )
                 continue
             if mesmo_ponto[(round(lat, 5), round(lon, 5))] > 1:
                 # o Google devolve um ponto genérico quando não acha o bairro: mesmo ponto = não achado
-                fora.append(f"{nome} (impreciso: mesmo ponto de outro bairro)")
+                fora.append(
+                    {
+                        "nome": nome,
+                        "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)",
+                    }
+                )
                 continue
             vid = sigla(nome, usadas)
             pontos[vid] = (lat, lon)

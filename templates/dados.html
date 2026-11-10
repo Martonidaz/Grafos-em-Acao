@@ -15,6 +15,10 @@
   <p class="vazio" style="margin:0"><b>Vértices:</b> {{ g.vertices|length }} · <b>Arestas:</b> {{ g.arestas|length }} ·
      <b>Peso:</b> {{ g.criterio_peso }} · <b>Tipo de dado:</b> {{ g.tipo_dado }}</p>
   <div class="aviso">{{ g.aviso }}</div>
+  {% if g.descartados %}
+  <details class="aviso" style="margin-top:8px"><summary><strong>Bairros fora do grafo ({{ g.descartados|length }})</strong> e o motivo de cada um</summary>
+    <ul>{% for d in g.descartados %}<li><b>{{ d.nome }}</b>: {{ d.motivo }}</li>{% endfor %}</ul>
+  </details>{% endif %}
 
   <div class="grade" style="grid-template-columns: 1fr 1.4fr; margin-top: 14px">
     <div class="tabela-wrap">

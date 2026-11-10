@@ -15,22 +15,68 @@
   "descricao": "Bairros de Lorena/SP (lista dos Correios) e as vias candidatas à pavimentação entre bairros vizinhos.",
   "criterio_peso": "Distância da rota de carro entre os bairros no Google Maps (Routes API, sem trânsito), em metros (m).",
   "tipo_dado": "medido",
-  "aviso": "35 dos 50 bairros listados pelos Correios (base de CEPs), localizados e medidos no Google Maps em 09/11/2026. Ficaram de fora a Área Rural e 14 bairros que o Google não localizou com precisão (loteamentos e vilas pequenas, ou ponto fora da área urbana). Cada bairro foi ligado aos 3 vizinhos mais próximos; o peso de cada via é a rota de carro real entre eles.",
+  "aviso": "Estão no grafo todos os bairros que o Google Maps conseguiu localizar com precisão: 35 dos 50 listados pelos Correios (base de CEPs), medidos em 09/11/2026. Cada bairro foi ligado aos 3 vizinhos mais próximos e o peso de cada via é a rota de carro real. Os 15 bairros que ficaram de fora e o motivo de cada um estão listados abaixo.",
   "descartados": [
-    "Conjunto Habitacional de Interesse Social (impreciso: mesmo ponto de outro bairro)",
-    "Loteamento Jardim Primavera (fora de Lorena: -23.5626, -46.1881)",
-    "Loteamento Lorena Village (impreciso: mesmo ponto de outro bairro)",
-    "Loteamento Residencial Campos dos Ipês (impreciso: mesmo ponto de outro bairro)",
-    "Madre Mazzarelo (impreciso: mesmo ponto de outro bairro)",
-    "Matadouro Velho (impreciso: mesmo ponto de outro bairro)",
-    "Sapé (impreciso: mesmo ponto de outro bairro)",
-    "Vila Buck (impreciso: mesmo ponto de outro bairro)",
-    "Vila Cristina (impreciso: mesmo ponto de outro bairro)",
-    "Vila Fabiano (impreciso: mesmo ponto de outro bairro)",
-    "Vila Maria de Lourdes (impreciso: mesmo ponto de outro bairro)",
-    "Vila Neide (impreciso: mesmo ponto de outro bairro)",
-    "Vila Simão (impreciso: mesmo ponto de outro bairro)",
-    "Vila dos Comerciários II (localizado a ~17 km do centro, fora da área urbana)"
+    {
+      "nome": "Conjunto Habitacional de Interesse Social",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Loteamento Jardim Primavera",
+      "motivo": "o Google o localizou perto de São Paulo (-23,56; -46,19), fora de Lorena"
+    },
+    {
+      "nome": "Loteamento Lorena Village",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Loteamento Residencial Campos dos Ipês",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Madre Mazzarelo",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Matadouro Velho",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Sapé",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Vila Buck",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Vila Cristina",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Vila Fabiano",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Vila Maria de Lourdes",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Vila Neide",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Vila Simão",
+      "motivo": "o Google devolveu o mesmo ponto genérico para este e outros bairros (não foi localizado de fato)"
+    },
+    {
+      "nome": "Vila dos Comerciários II",
+      "motivo": "localizado a ~17 km do centro, fora da área urbana; suas vias de 17 a 18 km distorceriam o resultado"
+    },
+    {
+      "nome": "Área Rural de Lorena",
+      "motivo": "não é um bairro com um ponto único: abrange toda a zona rural do município"
+    }
   ],
   "vertices": [
     {
