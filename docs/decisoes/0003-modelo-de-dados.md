@@ -42,4 +42,3 @@ ingestão) e de novo no Dijkstra para peso negativo. Pesos: voos por Haversine (
 linha reta); ônibus e vias pela rota de carro do Google Maps (rua não é linha reta), vale a menor
 rota encontrada. Aresta não direcionada guardada uma vez; duplicata é recusada na carga.
 
->>> Justificativa em palavras do grupo (P1–P4), para a defesa.
