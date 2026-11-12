@@ -7,18 +7,18 @@ from .grafo import formatar, id_aresta, lista_adjacencia
 INF = float("inf")
 
 
-def validar_entrada(vertices, origem, destino):
+def validar_entrada(vertices, origem, destino): # valida se a origem e o destino existem no grafo
     if not origem or not destino:
         raise ValueError("Selecione a origem e o destino.")
-    if origem not in vertices:
-        raise ValueError(f"A origem '{origem}' não existe no grafo.")
+    if origem not in vertices: 
+        raise ValueError(f"A origem '{origem}' não existe no grafo.") 
     if destino not in vertices:
         raise ValueError(f"O destino '{destino}' não existe no grafo.")
     if origem == destino:
         raise ValueError("A origem e o destino devem ser pontos diferentes.")
 
 
-def validar_pesos(arestas):
+def validar_pesos(arestas): # valida se existem pesos negativos nas arestas, pois o algoritmo de Dijkstra não funciona com pesos negativos
     # com peso negativo a escolha gulosa deixa de ser definitiva e o resultado sai errado
     for a in arestas:
         if a["peso"] < 0:
@@ -28,7 +28,7 @@ def validar_pesos(arestas):
             )
 
 
-def montar_tabela(vertices, dist, anterior, visitados):
+def montar_tabela(vertices, dist, anterior, visitados): 
     # copia da tabela de distancias pra mostrar no passo a passo
     tabela = []
     for v in vertices:
@@ -40,12 +40,13 @@ def montar_tabela(vertices, dist, anterior, visitados):
 
 
 def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
+    # valida a entrada e os pesos das arestas
     validar_entrada(vertices, origem, destino)
     validar_pesos(arestas)
     if nomes is None:
         nomes = {v: v for v in vertices}
 
-    adj = lista_adjacencia(vertices, arestas)
+    adj = lista_adjacencia(vertices, arestas) # cria a lista de adjacencia do grafo a partir das arestas
 
     # comeca tudo com infinito, so a origem com 0
     dist = {}
@@ -90,13 +91,13 @@ def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
             if vizinho in visitados:
                 continue
             analisadas.append(id_aresta(atual, vizinho))
-            nova = dist[atual] + peso
+            nova = dist[atual] + peso # calcula a nova distancia do vizinho passando pelo atual
             conta = (
                 f"{nomes[vizinho]}: {formatar(dist[atual], unidade)} + {formatar(peso, unidade)}"
                 f" = {formatar(nova, unidade)}"
             )
 
-            if nova < dist[vizinho]:
+            if nova < dist[vizinho]: # se a nova distancia for menor que a antiga, atualiza
                 antiga = "∞" if dist[vizinho] == INF else formatar(dist[vizinho], unidade)
                 dist[vizinho] = nova
                 anterior[vizinho] = atual
@@ -108,12 +109,13 @@ def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
             detalhes.append("Nenhum vizinho para atualizar.")
 
         arvore = []
-        for v in vertices:
+        for v in vertices: # monta a arvore de caminhos mais curtos a partir do anterior
             if anterior[v] is not None:
                 arvore.append(id_aresta(anterior[v], v))
 
         passos.append(
             {
+                # texto do passo a passo, mostrando o vertice atual, a distancia e os detalhes das atualizacoes
                 "texto": f"Visita {nomes[atual]} (menor distância ainda não visitada: "
                 f"{formatar(dist[atual], unidade)}).",
                 "detalhes": detalhes,
@@ -140,13 +142,13 @@ def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
     # monta o caminho voltando pelo anterior
     caminho = []
     v = destino
-    while v is not None:
+    while v is not None: 
         caminho.append(v)
         v = anterior[v]
     caminho.reverse()
 
     arestas_caminho = []
-    for i in range(len(caminho) - 1):
+    for i in range(len(caminho) - 1): # monta a lista de arestas do caminho a partir dos vertices do caminho
         arestas_caminho.append(id_aresta(caminho[i], caminho[i + 1]))
 
     nomes_caminho = [nomes[c] for c in caminho]
