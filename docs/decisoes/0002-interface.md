@@ -26,5 +26,3 @@ pelo usuário. A apresentação precisa mostrar o grafo e o resultado.
 ## Decisão
 
 Web com Flask + vis-network (já implementada na v1).
-
->>> ESCREVA AQUI A JUSTIFICATIVA (respondendo P1–P3): o professor vai perguntar "por que web?"
