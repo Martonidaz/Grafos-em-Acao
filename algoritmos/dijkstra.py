@@ -51,7 +51,7 @@ def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
     # comeca tudo com infinito, so a origem com 0
     dist = {}
     anterior = {}
-    for v in vertices:
+    for v in vertices: # inicializa as distancias e os anteriores de cada vertice
         dist[v] = INF
         anterior[v] = None
     dist[origem] = 0
@@ -131,7 +131,7 @@ def dijkstra(vertices, arestas, origem, destino, nomes=None, unidade=""):
         if atual == destino:
             break
 
-    if dist[destino] == INF:
+    if dist[destino] == INF: # se a distancia do destino ainda for infinito, nao existe caminho entre origem e destino
         return {
             "ok": False,
             "erro": f"Não existe caminho entre {nomes[origem]} e {nomes[destino]} "
